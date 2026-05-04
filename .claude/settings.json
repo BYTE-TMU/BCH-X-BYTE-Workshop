@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "/Users/rayanroshan/Downloads/Byte_bch_Website",
+      "/Users/rayanroshan/Downloads/Byte_bch_Website/.github"
+    ],
+    "allow": [
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}
