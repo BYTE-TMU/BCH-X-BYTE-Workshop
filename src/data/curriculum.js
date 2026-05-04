@@ -4,8 +4,7 @@ export const sections = [
     number: 0,
     title: 'Welcome & Setup',
     duration: '10 Minutes',
-    format: 'Live',
-    description: 'Orient every person in the room before a single tool is opened. Establish the tone, the format, the example project, and the ground rules.',
+    description: 'Get oriented before you start. Understand the format, the example project, and what you will build tonight.',
     subsections: [
       {
         code: '0.1',
@@ -14,11 +13,11 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Open by welcoming everyone and thanking BCH for the collaboration. Introduce the BYTE and BCH presenters by first name and role. Keep introductions to one sentence each. Confirm the format: two hours, a mix of live demos and pre-recorded walkthroughs, questions welcome at any point. Let the audience know there will be a prize draw at the end for completing the feedback form.',
+            text: 'Welcome to the workshop! You will meet the facilitators and get introduced to what you are going to build. We will spend two hours going through a mix of guided walkthroughs and hands-on building. You can ask questions at any point, and there will be a prize draw at the end for completing the feedback form.',
           },
           {
             type: 'presenterNote',
-            text: 'Do a quick show of hands before moving on: who has used an LLM like Gemini or Claude before? Who has tried to build anything technical before, even a website? This gives you a live read of the room. Adjust your pace in Section 1 accordingly.',
+            text: 'Take a quick show of hands: who has used an LLM like Gemini or Claude before? Who has tried to build anything technical before, even a website? This helps the facilitators know what pace to go at. If you have used these tools before, help someone sitting next to you.',
           },
         ],
       },
@@ -29,7 +28,7 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Open with a scenario every person in the room will recognize: you have an idea. You open a blank Google Doc. You stare at it. You close it. Most people in the room have been there. That moment exists because the gap between having an idea and knowing how to build it feels enormous. This workshop exists to close that gap. By the end of tonight, every person in the room will have gone through the full lifecycle of turning a vague idea into a live, deployed product using AI tools that are free and available right now. The non-technical path is a first-class path. Students who have never written a line of code will leave with the same end result as students who code every day.',
+            text: 'You have an idea. You open a blank screen. You stare at it. You close it. Most people in this room have been there. That moment exists because the gap between having an idea and knowing how to build it feels enormous. This workshop exists to close that gap. By the end of tonight, you will have gone through the full lifecycle of turning a vague idea into a live, deployed product using AI tools that are free and available right now. Whether you code or not, you will leave with the same end result — a live product with a real URL.',
           },
         ],
       },
@@ -40,11 +39,11 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Introduce the project for the evening: a personal landing page that introduces who you are, what you are studying, and what you are building or looking for. Every person in this room needs one. It is useful the moment you leave tonight. Show a finished example on screen. Walk through the four sections: a hero block with a name and one-line bio, a skills section, a projects section with two example cards, and a contact section.',
+            text: 'The project for tonight: a personal landing page that introduces who you are, what you are studying, and what you are building or looking for. Every student needs one. It is useful the moment you leave tonight. You will build a finished page with a hero section with your name and bio, a skills section, a projects section, and a contact section.',
           },
           {
             type: 'presenterNote',
-            text: 'The finished example should look clean and professional. Show it upfront before explaining how it was built — the reveal at the end of the build section lands harder.',
+            text: 'The finished example should look clean and professional. See it upfront before learning how it was built — the reveal at the end lands harder.',
           },
         ],
       },
@@ -55,19 +54,19 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'A quick overview of every tool used tonight. You do not need accounts for everything right now — accounts will be walked through at the start of each section.',
+            text: 'Here is every tool you will use tonight. You do not need accounts for everything right now — you will set up accounts at the start of each section.',
           },
           {
             type: 'bullets',
             items: [
-              'Gemini — used for research, brainstorming, and market validation.',
-              'Claude — used for synthesizing research into a project brief and for all coding and implementation.',
-              'Lovable — used on the non-technical path to build a full application from a plain English description.',
-              'Replit — alternative non-technical path, in-browser with AI assistance and no setup.',
-              'Cursor — used on the technical path as the AI-native code editor.',
-              'Claude Code — used on the technical path for targeted multi-file edits.',
-              'GitHub and Vercel — used by both paths to deploy a live URL.',
-              'Claude and Notion AI — used in the maintenance section for documentation and sprint planning.',
+              'Gemini — for research, brainstorming, and validating your ideas.',
+              'Claude — for planning your project and all coding and building.',
+              'Lovable — a no-code builder that uses AI to create full applications from plain English.',
+              'Replit — an alternative in-browser option with AI assistance, no setup needed.',
+              'Cursor — an AI-native code editor if you want to write code.',
+              'Claude Code — for making targeted edits across multiple files if using Cursor.',
+              'GitHub and Vercel — to deploy your live product to a real URL.',
+              'Claude and Notion AI — for documenting and planning what comes next.',
             ],
           },
         ],
@@ -79,8 +78,7 @@ export const sections = [
     number: 1,
     title: 'Business Plan & Research',
     duration: '30 Minutes',
-    format: 'Live',
-    description: 'Go from a vague idea to a clean scoped project brief using a two-step LLM workflow: Gemini for brainstorming and validation, then Claude for synthesis and build prompt generation.',
+    description: 'Turn a vague idea into a clear project plan using AI tools for research and planning.',
     subsections: [
       {
         code: '1.1',
@@ -89,12 +87,12 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'A project brief answers four questions before any building starts. Use an analogy BCH students will recognize: a project brief is to a software product what an executive summary is to a pitch deck.',
+            text: 'A project brief answers four questions before you start building. Think of it like an outline before you write an essay.',
           },
           {
             type: 'numbered',
             items: [
-              'What is the problem?',
+              'What is the problem you are solving?',
               'Who has this problem?',
               'What are the three to five core features that solve it?',
               'How will you know it worked?',
@@ -102,7 +100,7 @@ export const sections = [
           },
           {
             type: 'body',
-            text: 'Show a bad example: "I want to make an app for students." Walk through why it fails — no defined user, no scoped features, no success metric. Then show a good brief using the personal landing page as the example.',
+            text: 'You will see a bad example: "I want to make an app for students." See why it fails — no defined user, no scoped features, no success metric. Then see a good brief using the personal landing page as the example.',
           },
           {
             type: 'presenterNote',
@@ -117,7 +115,7 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Open Gemini at gemini.google.com. Walk through account creation — sign in with a Google account. Explain that Gemini has real-time web awareness, meaning its research is grounded in what exists today, not just training data.',
+            text: 'Open Gemini at gemini.google.com. Sign in with a Google account. Gemini has real-time web awareness, so its research is grounded in what exists today, not just training data.',
           },
           {
             type: 'prompt',
@@ -128,36 +126,36 @@ export const sections = [
           },
           {
             type: 'prompt',
-            label: 'Live Prompt 1 — Define the problem and target user',
+            label: 'Good Prompt 1 — Define the problem and target user',
             prompt: 'I am a second-year business student at a university in Toronto. I want to build a personal landing page that helps me stand out when applying to internships and co-ops. Help me understand: what problem does this actually solve, who else has this problem, and what should a strong student landing page actually include to be genuinely useful to a recruiter?',
             tool: 'gemini',
             warning: false,
           },
           {
             type: 'body',
-            text: 'Walk through the output. Highlight two or three things Gemini got right. Flag one or two things that are too generic.',
+            text: 'Review the output. Highlight two or three things Gemini got right. Note one or two things that are too generic.',
           },
           {
             type: 'prompt',
-            label: 'Live Prompt 2 — Research the current landscape',
+            label: 'Good Prompt 2 — Research the current landscape',
             prompt: 'What tools do university students currently use to build personal landing pages? What are the most common ones, and what do students say is missing or frustrating about them? I want to understand what already exists before I decide what to build.',
             tool: 'gemini',
             warning: false,
           },
           {
             type: 'body',
-            text: 'Point out when Gemini cites or references real tools or sources.',
+            text: 'Notice when Gemini cites or references real tools or sources.',
           },
           {
             type: 'prompt',
-            label: 'Live Prompt 3 — Validate with recruiter perspective',
+            label: 'Good Prompt 3 — Validate with recruiter perspective',
             prompt: 'What do recruiters and hiring managers actually look for when they visit a student\'s personal website? Give me specific things, not general advice. I want to know what makes the difference between a page they spend 30 seconds on versus one they actually send to the hiring team.',
             tool: 'gemini',
             warning: false,
           },
           {
             type: 'teachingPoint',
-            text: 'Gemini is doing two things at once: brainstorming and validating. It generates ideas while grounding them in real market context. That combination is why it is the right starting point. Do not skip to building without it.',
+            text: 'Gemini is doing two things at once: brainstorming and validating. It generates ideas while grounding them in real market context. That combination is why it is a great starting point. Do not skip to building without this step.',
           },
         ],
       },
@@ -168,33 +166,33 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Switch to Claude at claude.ai. Walk through account creation. Explain that Claude is purpose-built for long-form reasoning and structured document generation.',
+            text: 'Switch to Claude at claude.ai. Sign in. Claude is purpose-built for long-form reasoning and turning messy notes into clear plans.',
           },
           {
             type: 'prompt',
-            label: 'Live Prompt 1 — Synthesize research into a project brief',
+            label: 'Good Prompt 1 — Synthesize research into a project brief',
             prompt: 'I have been researching a personal landing page for university students applying to internships. Here is what I found from my research session: [paste Gemini output here]. Using this research, write me a structured project brief with exactly four sections: one, the problem statement in two to three sentences; two, the target user in one clear sentence; three, exactly three core features the page must have; four, two specific success metrics that would tell me this page is working. Keep it concise, practical, and free of jargon.',
             tool: 'claude',
             warning: false,
           },
           {
             type: 'body',
-            text: 'Walk through the output section by section. Show before (raw messy notes) and after (clean one-pager). Ask the room if they would change anything and show how a follow-up prompt can make that change immediately.',
+            text: 'Review the output section by section. See how it takes your raw notes and turns them into a clean one-pager. Ask yourself if you would change anything and show how a follow-up prompt can make that change immediately.',
           },
           {
             type: 'prompt',
-            label: 'Live Prompt 2 — Generate the build prompt',
+            label: 'Good Prompt 2 — Generate the build prompt',
             prompt: 'Now take this project brief and write me two build prompts. The first should be optimized for pasting into Lovable, which is a natural language app builder with no code required. The second should be optimized for pasting into Cursor, which is a code editor with AI assistance. Both prompts should describe the same personal landing page but be framed appropriately for each tool\'s strengths. Make the prompts specific enough that someone with no technical background could use them.',
             tool: 'claude',
             warning: false,
           },
           {
             type: 'body',
-            text: 'Show both prompts side by side. Explain these are the exact prompts used to open Sections 2 and 3.',
+            text: 'See both prompts side by side. These are the exact prompts you will use in the next sections.',
           },
           {
             type: 'teachingPoint',
-            text: 'The two-LLM workflow is not redundant. Gemini gave breadth and real-world grounding. Claude gave structure and actionable output. Using one tool for both would produce weaker results at each step.',
+            text: 'The two-LLM workflow is powerful. Gemini gave you breadth and real-world grounding. Claude gave you structure and something actionable. Using one tool for both would produce weaker results at each step.',
           },
         ],
       },
@@ -206,7 +204,7 @@ export const sections = [
           {
             type: 'bullets',
             items: [
-              'Prompting in one sentence and expecting a finished result. A prompt is the start of a conversation, not a command. The follow-up is where the real value lives.',
+              'Prompting in one sentence and expecting a finished result. A prompt is the start of a conversation, not a command. The follow-up is where the real value is.',
               'Skipping the research step and going straight to building. If you do not know who you are building for, you will build the wrong thing.',
               'Treating the first output as final. Read it critically. Push back. Iterate.',
             ],
@@ -218,11 +216,10 @@ export const sections = [
   {
     id: 'section-2',
     number: 2,
-    title: 'Building the Project (Non-Technical Path)',
+    title: 'Building the Project (No-Code Path)',
     duration: '20 Minutes',
-    format: 'Pre-recorded',
-    description: 'Take the Lovable build prompt generated by Claude in Section 1 and produce a live, deployed personal landing page with zero lines of code written.',
-    introFrame: 'What you are about to see is exactly what it looks like to go from the Claude prompt we just generated to a live, deployed product. The person in this recording has no technical background. They are using the same prompt you just watched us write. Watch for how they describe what they want and how quickly the result comes back.',
+    description: 'Take the plan you wrote and build a live, deployed personal landing page with zero lines of code.',
+    introFrame: 'You are about to see what it looks like to go from the plan you just wrote to a live, deployed product. The person in this walkthrough has no technical background. They are using the same plan you just created. Watch for how they describe what they want and how quickly the result comes back.',
     subsections: [
       {
         code: '2.1',
@@ -231,7 +228,7 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Navigate to lovable.dev, create a free account. Walk through the interface: the prompt bar, the preview panel, the deploy option. There is no code involved at any step.',
+            text: 'Navigate to lovable.dev and create a free account. Walk through the interface: the prompt bar, the preview panel, and the deploy option. There is no code involved at any step.',
           },
         ],
       },
@@ -242,18 +239,18 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Paste this prompt directly from Claude into the Lovable prompt bar:',
+            text: 'Paste this prompt directly into the Lovable prompt bar:',
           },
           {
             type: 'prompt',
-            label: 'Lovable Build Prompt — Paste from Claude',
+            label: 'Build Prompt — Paste from Claude',
             prompt: 'Build me a personal landing page for a second-year university student applying to internships in business or technology. The page should include: a hero section with a name, degree and year, and a one-line bio; a skills section listing four to six areas of focus or tools; a projects section with two cards, each showing a project name, a one-sentence description, and a link placeholder; and a contact section with a LinkedIn link and an email address. Use a clean, modern design with a white background, dark text, and a single accent colour. The layout should be responsive and professional.',
             tool: 'lovable',
             warning: false,
           },
           {
             type: 'body',
-            text: 'Walk through the result section by section. Show what Lovable got right and flag one or two things that need adjustment.',
+            text: 'Review the result section by section. See what Lovable got right and identify one or two things that need adjustment.',
           },
         ],
       },
@@ -264,7 +261,7 @@ export const sections = [
         content: [
           {
             type: 'teachingPoint',
-            text: 'Iteration is the skill. The first output from any AI tool is a draft. The follow-up prompt is where design decisions get made and the product starts to feel like yours.',
+            text: 'Iteration is the real skill. The first output from any AI tool is a draft. The follow-up prompt is where your design choices get made and the product becomes yours.',
           },
           {
             type: 'prompt',
@@ -276,7 +273,7 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Iteration 2 — Content refinement',
-            prompt: 'In the hero section, add a short paragraph under the bio that explains what the student is currently studying, what kind of roles they are looking for, and one sentence about what makes them different. Keep it to three sentences total.',
+            prompt: 'In the hero section, add a short paragraph under the bio that explains what you are currently studying, what kind of roles you are looking for, and one sentence about what makes you different. Keep it to three sentences total.',
             tool: 'lovable',
             warning: false,
           },
@@ -303,7 +300,7 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Click deploy in Lovable, wait for the URL, open in browser. Show copying the URL and pasting it into a mock email or LinkedIn message. This took under 15 minutes, required zero lines of code, and the result is a live product with a real URL you can send to a recruiter tonight.',
+            text: 'Click deploy in Lovable, wait for the URL, and open it in your browser. You can now copy the URL and paste it into a message or LinkedIn. This took under 15 minutes, required zero lines of code, and the result is a live product with a real URL you can send to anyone tonight.',
           },
         ],
       },
@@ -312,10 +309,9 @@ export const sections = [
   {
     id: 'section-3',
     number: 3,
-    title: 'Building the Project (Technical Path)',
+    title: 'Building the Project (Code Path)',
     duration: '20 Minutes',
-    format: 'Pre-recorded',
-    description: 'Take the Cursor-optimized build prompt from Claude and build the same landing page using Cursor with Claude as the underlying model, then deploy via GitHub and Vercel.',
+    description: 'Use a code editor with AI assistance to build the same landing page if you want to learn some code.',
     introFrame: 'This path uses a code editor called Cursor. Cursor has Claude built directly into it, which means you can describe what you want in plain English and have it write or edit the code for you inside your actual project files. You do not need to know how to code to follow along. Just watch how the instructions are written and what happens next.',
     subsections: [
       {
@@ -325,7 +321,7 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Navigate to cursor.sh, download and install. Open a new folder called landing-page. Show the editor layout: file explorer left, main editor center, AI chat panel right. Point out in settings that Cursor uses Claude as the underlying AI model.',
+            text: 'Navigate to cursor.sh, download and install. Open a new folder called landing-page. Check out the editor layout: file explorer on the left, main editor in the center, AI chat panel on the right. You can see in settings that Cursor uses Claude as the underlying AI.',
           },
         ],
       },
@@ -336,18 +332,18 @@ export const sections = [
         content: [
           {
             type: 'prompt',
-            label: 'Cursor Build Prompt — Paste from Claude',
-            prompt: 'Create a personal landing page as a single index.html file with embedded CSS and no external dependencies. The page should include: a navigation bar with anchor links to each section; a hero section with a name placeholder, a degree and year placeholder, a one-line bio placeholder, and a short paragraph about the student\'s goals; a skills section with six skill tags in a flex grid; a projects section with two cards each containing a title, a one-sentence description, and a link placeholder; and a contact section with LinkedIn and email placeholders. Use a clean professional design with a white background, dark text, system fonts, and navy blue as the accent colour. The page must be fully responsive.',
+            label: 'Build Prompt — Paste from Claude',
+            prompt: 'Create a personal landing page as a single index.html file with embedded CSS and no external dependencies. The page should include: a navigation bar with anchor links to each section; a hero section with a name placeholder, a degree and year placeholder, a one-line bio placeholder, and a short paragraph about your goals; a skills section with six skill tags in a flex grid; a projects section with two cards each containing a title, a one-sentence description, and a link placeholder; and a contact section with LinkedIn and email placeholders. Use a clean professional design with a white background, dark text, system fonts, and navy blue as the accent colour. The page must be fully responsive.',
             tool: 'cursor',
             warning: false,
           },
           {
             type: 'body',
-            text: 'Open the generated file in a browser. Explain the HTML structure in plain English using spatial language: nav at the top, hero first, then skills, projects, contact at the bottom.',
+            text: 'Open the generated file in a browser. You will see the HTML structure in plain language: nav at the top, hero first, then skills, projects, contact at the bottom.',
           },
           {
             type: 'teachingPoint',
-            text: 'Cursor read your instruction and wrote the entire file. The skill here is not writing HTML or knowing CSS — it is knowing how to describe what you want precisely enough that the AI can produce something usable. That skill transfers to every tool in this stack.',
+            text: 'Cursor read your instruction and wrote the entire file. The skill here is not knowing HTML or CSS — it is knowing how to describe what you want clearly enough that the AI can produce something usable. That skill transfers to every tool you will use.',
           },
         ],
       },
@@ -365,7 +361,7 @@ export const sections = [
           },
           {
             type: 'body',
-            text: 'Show the fix applied, open browser, click each nav link to confirm.',
+            text: 'See the fix applied. Open your browser and click each nav link to confirm it works.',
           },
           {
             type: 'prompt',
@@ -376,7 +372,7 @@ export const sections = [
           },
           {
             type: 'body',
-            text: 'Show the fix applied. Key message: you did not need to know how to write a media query. You described the problem and the AI fixed it.',
+            text: 'See the fix applied. Key message: you did not need to know how to write a media query. You described the problem and the AI fixed it.',
           },
         ],
       },
@@ -393,13 +389,13 @@ export const sections = [
             type: 'bullets',
             items: [
               'git init — initialize a Git repository',
-              'git add . and git commit -m \'initial build\' — save current state',
+              'git add . and git commit -m "initial build" — save current state',
               'Push to a new GitHub repository',
             ],
           },
           {
             type: 'body',
-            text: 'Navigate to vercel.com, sign in with GitHub, click add new project, select the repository, click deploy. Show the live URL. Open in browser. Copy and share the URL. Both paths end at the same place — a live product with a real URL.',
+            text: 'Navigate to vercel.com, sign in with GitHub, click add new project, select the repository, and click deploy. You now have a live URL. Open it in your browser and copy the URL to share with anyone. Both paths end at the same place — a live product with a real URL.',
           },
         ],
       },
@@ -410,9 +406,8 @@ export const sections = [
     number: 4,
     title: 'Maintenance & What Comes After Launch',
     duration: '10 Minutes',
-    format: 'Pre-recorded',
-    description: 'Shipping is day one, not the finish line. Post-launch maintenance, documentation, sprint planning, and the feedback loop.',
-    introFrame: 'Most workshops end when the product goes live. We do not, because building something and keeping it running are two completely different skills. What you are about to see covers what happens the day after you ship: how to document what you built, how to plan what comes next, and how to use AI to make both of those things faster.',
+    description: 'Learn what happens after you ship: documentation, planning what to build next, and how to keep improving your product.',
+    introFrame: 'Most workshops end when the product goes live. This one does not, because shipping is day one, not the finish line. What comes next covers what to do after launch: how to document what you built, how to plan what comes next, and how to use AI to make both faster.',
     subsections: [
       {
         code: '4.1',
@@ -428,7 +423,7 @@ export const sections = [
           },
           {
             type: 'body',
-            text: 'Walk through the output. Explain: a README is the instruction manual for your project.',
+            text: 'Review the output. A README is the instruction manual for your project. It helps anyone who looks at your work understand what it is and how to use it.',
           },
         ],
       },
@@ -439,7 +434,7 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Open Notion, create a new page titled "Landing Page — Feature Backlog." Type a raw list of ideas: dark mode toggle, animated hero text, contact form that sends an email, testimonials section, blog section, project filtering by category, downloadable resume button.',
+            text: 'Open Notion and create a new page titled "Landing Page — Feature Backlog." Type a raw list of ideas: dark mode toggle, animated hero text, contact form that sends an email, testimonials section, blog section, project filtering by category, downloadable resume button.',
           },
           {
             type: 'prompt',
@@ -450,7 +445,7 @@ export const sections = [
           },
           {
             type: 'body',
-            text: 'Explain what a sprint is in one sentence: a fixed window of time where you commit to building a specific set of things before moving on.',
+            text: 'A sprint is a fixed window of time where you commit to building a specific set of things before moving on. This helps you stay focused and make progress.',
           },
         ],
       },
@@ -462,88 +457,15 @@ export const sections = [
           {
             type: 'numbered',
             items: [
-              'Collect user feedback — share the URL, ask people to use it, note what they say.',
-              'Use Claude to plan and implement the change — describe the feedback to Claude and ask it to update the code or the content.',
+              'Collect feedback — share your URL, ask people to use it, take notes on what they say.',
+              'Plan the fix — describe the feedback to Claude and ask it to update the code or the content.',
               'Redeploy — push the update to GitHub and Vercel deploys automatically.',
-              'Repeat — the product never stops improving as long as you keep listening to the people using them.',
+              'Repeat — keep listening to the people using your product and keep improving it.',
             ],
           },
           {
             type: 'body',
             text: 'The best products are not the ones with the cleverest idea. They are the ones where the builder stayed curious and kept listening to the people using them.',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 'section-5',
-    number: 5,
-    title: 'Q&A and Closing',
-    duration: '10 Minutes',
-    format: 'Live',
-    description: 'Send every attendee home with a clear next step, a resource in hand, and a community to keep building with.',
-    subsections: [
-      {
-        code: '5.1',
-        title: 'Open Q&A',
-        timing: '5 minutes',
-        content: [
-          {
-            type: 'body',
-            text: 'Open the floor. Keep answers direct and practical. If a question goes deep into a specific tool, offer to follow up after the session.',
-          },
-          {
-            type: 'presenterNote',
-            text: 'If the room is quiet, seed the Q&A: "The most common question we get is whether you need to know how to code to use Cursor. The honest answer is no, but knowing even a little bit makes you faster. The best way to start is to build something and ask Claude to explain every line it writes. That is how most of our members learned."',
-          },
-        ],
-      },
-      {
-        code: '5.2',
-        title: 'Recap and Mindset Shift',
-        timing: '2 minutes',
-        content: [
-          {
-            type: 'body',
-            text: 'Six stages of tonight:',
-          },
-          {
-            type: 'numbered',
-            items: [
-              'You defined the problem using Gemini.',
-              'You validated it and researched the market, also with Gemini.',
-              'You synthesized the research into a brief and a build prompt using Claude.',
-              'You built a live product using either Lovable, Replit, or Cursor with Claude.',
-              'You deployed it to a real URL in under five minutes.',
-              'You planned what comes next using Claude for documentation and Notion AI for sprints.',
-            ],
-          },
-          {
-            type: 'mindset',
-            text: 'AI is not a shortcut and it is not a search engine. It is a co-builder. The students who get the most out of it are not the ones who type the least. They are the ones who come in with a clear goal, ask precise questions, read the output critically, and push back when it is not good enough. That is exactly what you practiced tonight. That skill transfers to every tool, every project, and every job you will ever have.',
-          },
-        ],
-      },
-      {
-        code: '5.3',
-        title: 'Resources and BYTE Invite',
-        timing: '2 minutes',
-        content: [
-          {
-            type: 'body',
-            text: 'Distribute the Workshop Tools Reference. Walk through it in 30 seconds. Invite attendees to join BYTE — real teams, real projects, real demo days. Display QR code for feedback form. Completing the form enters them into the prize draw.',
-          },
-        ],
-      },
-      {
-        code: '5.4',
-        title: 'Live Prize Draw',
-        timing: '1 minute',
-        content: [
-          {
-            type: 'body',
-            text: 'Select a winner from completed feedback submissions. Close with: "That is BCH x BYTE. Thank you for building with us tonight."',
           },
         ],
       },

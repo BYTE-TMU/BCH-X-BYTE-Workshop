@@ -18,7 +18,7 @@ export default function Sidebar() {
             <Link
               key={s.id}
               to={`/curriculum/${s.id}`}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ease-in-out ${
                 active
                   ? 'bg-brand-redLight text-brand-red font-semibold'
                   : 'text-brand-black hover:bg-brand-grayLight hover:text-brand-red'
@@ -37,13 +37,12 @@ export default function Sidebar() {
         <p className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-2">Reference</p>
         {[
           { to: '/tools', label: 'Tools' },
-          { to: '/appendix', label: 'Q&A Appendix' },
           { to: '/resources', label: 'Resources' },
         ].map(({ to, label }) => (
           <Link
             key={to}
             to={to}
-            className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+            className={`block px-3 py-2 rounded-lg text-sm transition-all duration-200 ease-in-out ${
               location.pathname === to
                 ? 'bg-brand-redLight text-brand-red font-semibold'
                 : 'text-brand-black hover:bg-brand-grayLight hover:text-brand-red'

@@ -36,7 +36,7 @@ export default function CurriculumOverview() {
       <div className="bg-brand-grayLight rounded-xl p-6 mb-10 border border-brand-border">
         <div className="flex items-center justify-between mb-3">
           <p className="text-sm font-semibold text-brand-black">Your progress</p>
-          <p className="text-sm font-bold text-brand-red">{completedCount} / 6 sections complete</p>
+          <p className="text-sm font-bold text-brand-red">{completedCount} / 5 sections complete</p>
         </div>
         <ProgressBar percent={percentComplete} />
       </div>
@@ -67,11 +67,6 @@ export default function CurriculumOverview() {
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-xs bg-brand-grayLight text-brand-gray font-semibold px-2.5 py-1 rounded-full">
                     {s.duration}
-                  </span>
-                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                    s.format === 'Live' ? 'bg-format-liveLight text-format-live' : 'bg-format-recordedLight text-format-recorded'
-                  }`}>
-                    {s.format}
                   </span>
                   {done && (
                     <span className="text-xs bg-path-nontechLight text-path-nontech font-semibold px-2.5 py-1 rounded-full">

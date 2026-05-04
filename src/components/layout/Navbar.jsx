@@ -70,7 +70,6 @@ export default function Navbar() {
             </div>
 
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
-            <NavLink to="/appendix" className={navLinkClass}>Q&A</NavLink>
             <NavLink to="/resources" className={navLinkClass}>Resources</NavLink>
           </div>
 
@@ -78,7 +77,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             {isCurriculumPage && (
               <span className="text-xs font-semibold bg-brand-grayLight text-brand-gray px-3 py-1 rounded-full">
-                {completedCount} / 6 complete
+                {completedCount} / 5 complete
               </span>
             )}
             <button
@@ -155,7 +154,6 @@ export default function Navbar() {
             ))}
             <div className="border-t border-brand-border my-2" />
             <Link to="/tools" className="block py-2 text-brand-black hover:text-brand-red" onClick={() => setMobileOpen(false)}>Tools</Link>
-            <Link to="/appendix" className="block py-2 text-brand-black hover:text-brand-red" onClick={() => setMobileOpen(false)}>Q&A Appendix</Link>
             <Link to="/resources" className="block py-2 text-brand-black hover:text-brand-red" onClick={() => setMobileOpen(false)}>Resources</Link>
           </div>
         </div>

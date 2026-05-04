@@ -17,7 +17,7 @@ export default function Footer() {
             <p className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-4">Curriculum</p>
             <div className="space-y-2">
               <Link to="/curriculum" className="block text-sm text-brand-gray hover:text-white transition-colors">Overview</Link>
-              {[0,1,2,3,4,5].map((n) => (
+              {[0,1,2,3,4].map((n) => (
                 <Link key={n} to={`/curriculum/section-${n}`} className="block text-sm text-brand-gray hover:text-white transition-colors">
                   Section {n}
                 </Link>
@@ -38,7 +38,6 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} BYTE — TMU. All rights reserved.</p>
           <div className="flex gap-6">
             <Link to="/tools" className="hover:text-white transition-colors">Tools</Link>
-            <Link to="/appendix" className="hover:text-white transition-colors">Q&A</Link>
             <Link to="/resources" className="hover:text-white transition-colors">Resources</Link>
           </div>
         </div>

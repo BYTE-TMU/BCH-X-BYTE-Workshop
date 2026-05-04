@@ -108,7 +108,7 @@ export default function SectionPage() {
           Section {section.number}
         </span>
         <h1 className="text-3xl sm:text-4xl font-bold text-brand-black mt-1 mb-2">{section.title}</h1>
-        <SectionBadge duration={section.duration} format={section.format} />
+        <SectionBadge duration={section.duration} />
         <p className="text-brand-gray leading-relaxed mt-2">{section.description}</p>
       </div>
 

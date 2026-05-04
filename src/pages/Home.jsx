@@ -121,7 +121,7 @@ export default function Home() {
       <section className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="mb-10">
           <p className="text-xs font-bold uppercase tracking-widest text-brand-red mb-3">Workshop at a Glance</p>
-          <h2 className="text-3xl font-bold text-brand-black">Six sections. Two hours. One live product.</h2>
+          <h2 className="text-3xl font-bold text-brand-black">Five sections. Two hours. One live product.</h2>
         </div>
         <div className="border border-brand-border rounded-xl overflow-hidden">
           {sections.map((s, i) => (
@@ -140,11 +140,6 @@ export default function Home() {
               <div className="hidden sm:flex items-center gap-2 shrink-0">
                 <span className="text-xs bg-brand-grayLight text-brand-gray font-semibold px-2.5 py-1 rounded-full">
                   {s.duration}
-                </span>
-                <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                  s.format === 'Live' ? 'bg-format-liveLight text-format-live' : 'bg-format-recordedLight text-format-recorded'
-                }`}>
-                  {s.format}
                 </span>
               </div>
               <ArrowRight size={16} className="text-brand-gray shrink-0" />
