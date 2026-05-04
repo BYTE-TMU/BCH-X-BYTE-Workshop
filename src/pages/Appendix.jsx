@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ChevronDown, ChevronUp, Search } from 'lucide-react'
+import { ChevronDown, Search } from 'lucide-react'
 import { appendix } from '../data/appendix'
 import Breadcrumb from '../components/layout/Breadcrumb'
 
@@ -14,10 +14,15 @@ function Accordion({ category, questions }) {
         className="w-full flex items-center justify-between px-5 py-4 bg-white hover:bg-brand-grayLight transition-colors text-left"
       >
         <span className="font-semibold text-brand-black">{category}</span>
-        {open ? <ChevronUp size={16} className="text-brand-gray" /> : <ChevronDown size={16} className="text-brand-gray" />}
+        <ChevronDown
+          size={16}
+          className={`text-brand-gray transition-transform duration-250 ${open ? 'rotate-180' : ''}`}
+        />
       </button>
-      {open && (
-        <div className="border-t border-brand-border divide-y divide-brand-border">
+
+      {/* CSS grid trick: animate grid-template-rows 0fr → 1fr */}
+      <div className={`accordion-content ${open ? 'open' : ''}`}>
+        <div className="accordion-inner border-t border-brand-border divide-y divide-brand-border">
           {questions.map((item, i) => (
             <div key={i} className="px-5 py-5 bg-white">
               <p className="font-semibold text-brand-black mb-2">{item.q}</p>
@@ -25,7 +30,7 @@ function Accordion({ category, questions }) {
             </div>
           ))}
         </div>
-      )}
+      </div>
     </div>
   )
 }
@@ -58,7 +63,7 @@ export default function Appendix() {
           placeholder="Search questions…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full pl-9 pr-4 py-2.5 text-sm border border-brand-border rounded-lg focus:outline-none focus:border-brand-red"
+          className="w-full pl-9 pr-4 py-2.5 text-sm border border-brand-border rounded-lg focus:outline-none focus:border-brand-red transition-colors"
         />
       </div>
 

@@ -36,6 +36,9 @@ export default {
         content: '720px',
         wide:    '1100px',
       },
+      transitionDuration: {
+        250: '250ms',
+      },
     },
   },
   plugins: [],
