@@ -28,7 +28,7 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'You have an idea. You open a blank screen. You stare at it. You close it. Most people in this room have been there. That moment exists because the gap between having an idea and knowing how to build it feels enormous. This workshop exists to close that gap. By the end of tonight, you will have gone through the full lifecycle of turning a vague idea into a live, deployed product using AI tools that are free and available right now. Whether you code or not, you will leave with the same end result — a live product with a real URL.',
+            text: 'You have an idea. You open a blank screen. You stare at it. You close it. Most people in this room have been there. That moment exists because the gap between having an idea and knowing how to build it feels enormous. This workshop exists to close that gap. By the end of tonight, you will have gone through the full lifecycle of turning a vague idea into a live, deployed product using AI tools that are free and available right now. Whether you code or not, you will leave with the same end result: a live product with a real URL.',
           },
         ],
       },
@@ -43,7 +43,7 @@ export const sections = [
           },
           {
             type: 'presenterNote',
-            text: 'The finished example should look clean and professional. See it upfront before learning how it was built — the reveal at the end lands harder.',
+            text: 'The finished example should look clean and professional. See it upfront before learning how it was built; the reveal at the end lands harder.',
           },
         ],
       },
@@ -54,19 +54,19 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Here is every tool you will use tonight. You do not need accounts for everything right now — you will set up accounts at the start of each section.',
+            text: 'Here is every tool you will use tonight. You do not need accounts for everything right now; you will set up accounts at the start of each section.',
           },
           {
             type: 'bullets',
             items: [
-              'Gemini — for research, brainstorming, and validating your ideas.',
-              'Claude — for planning your project and all coding and building.',
-              'Lovable — a no-code builder that uses AI to create full applications from plain English.',
-              'Replit — an alternative in-browser option with AI assistance, no setup needed.',
-              'Cursor — an AI-native code editor if you want to write code.',
-              'Claude Code — for making targeted edits across multiple files if using Cursor.',
-              'GitHub and Vercel — to deploy your live product to a real URL.',
-              'Claude and Notion AI — for documenting and planning what comes next.',
+              'Gemini: for research, brainstorming, and validating your ideas.',
+              'Claude: for planning your project and all coding and building.',
+              'Lovable: a no-code builder that uses AI to create full applications from plain English.',
+              'Replit: an alternative in-browser option with AI assistance, no setup needed.',
+              'Cursor: an AI-native code editor if you want to write code.',
+              'Claude Code: for making targeted edits across multiple files if using Cursor.',
+              'GitHub and Vercel: to deploy your live product to a real URL.',
+              'Claude and Notion AI: for documenting and planning what comes next.',
             ],
           },
         ],
@@ -100,7 +100,7 @@ export const sections = [
           },
           {
             type: 'body',
-            text: 'You will see a bad example: "I want to make an app for students." See why it fails — no defined user, no scoped features, no success metric. Then see a good brief using the personal landing page as the example.',
+            text: 'You will see a bad example: "I want to make an app for students." See why it fails: no defined user, no scoped features, no success metric. Then see a good brief using the personal landing page as the example.',
           },
           {
             type: 'presenterNote',
@@ -119,14 +119,14 @@ export const sections = [
           },
           {
             type: 'prompt',
-            label: 'Weak Prompt — Do Not Use This',
+            label: 'Weak Prompt: Do Not Use This',
             prompt: 'Make me a personal website.',
             tool: 'gemini',
             warning: true,
           },
           {
             type: 'prompt',
-            label: 'Good Prompt 1 — Define the problem and target user',
+            label: 'Good Prompt 1: Define the problem and target user',
             prompt: 'I am a second-year business student at a university in Toronto. I want to build a personal landing page that helps me stand out when applying to internships and co-ops. Help me understand: what problem does this actually solve, who else has this problem, and what should a strong student landing page actually include to be genuinely useful to a recruiter?',
             tool: 'gemini',
             warning: false,
@@ -137,7 +137,7 @@ export const sections = [
           },
           {
             type: 'prompt',
-            label: 'Good Prompt 2 — Research the current landscape',
+            label: 'Good Prompt 2: Research the current landscape',
             prompt: 'What tools do university students currently use to build personal landing pages? What are the most common ones, and what do students say is missing or frustrating about them? I want to understand what already exists before I decide what to build.',
             tool: 'gemini',
             warning: false,
@@ -148,7 +148,7 @@ export const sections = [
           },
           {
             type: 'prompt',
-            label: 'Good Prompt 3 — Validate with recruiter perspective',
+            label: 'Good Prompt 3: Validate with recruiter perspective',
             prompt: 'What do recruiters and hiring managers actually look for when they visit a student\'s personal website? Give me specific things, not general advice. I want to know what makes the difference between a page they spend 30 seconds on versus one they actually send to the hiring team.',
             tool: 'gemini',
             warning: false,
@@ -170,7 +170,7 @@ export const sections = [
           },
           {
             type: 'prompt',
-            label: 'Good Prompt 1 — Synthesize research into a project brief',
+            label: 'Good Prompt 1: Synthesize research into a project brief',
             prompt: 'I have been researching a personal landing page for university students applying to internships. Here is what I found from my research session: [paste Gemini output here]. Using this research, write me a structured project brief with exactly four sections: one, the problem statement in two to three sentences; two, the target user in one clear sentence; three, exactly three core features the page must have; four, two specific success metrics that would tell me this page is working. Keep it concise, practical, and free of jargon.',
             tool: 'claude',
             warning: false,
@@ -181,7 +181,7 @@ export const sections = [
           },
           {
             type: 'prompt',
-            label: 'Good Prompt 2 — Generate the build prompt',
+            label: 'Good Prompt 2: Generate the build prompt',
             prompt: 'Now take this project brief and write me two build prompts. The first should be optimized for pasting into Lovable, which is a natural language app builder with no code required. The second should be optimized for pasting into Cursor, which is a code editor with AI assistance. Both prompts should describe the same personal landing page but be framed appropriately for each tool\'s strengths. Make the prompts specific enough that someone with no technical background could use them.',
             tool: 'claude',
             warning: false,
@@ -243,7 +243,7 @@ export const sections = [
           },
           {
             type: 'prompt',
-            label: 'Build Prompt — Paste from Claude',
+            label: 'Build Prompt: Paste from Claude',
             prompt: 'Build me a personal landing page for a second-year university student applying to internships in business or technology. The page should include: a hero section with a name, degree and year, and a one-line bio; a skills section listing four to six areas of focus or tools; a projects section with two cards, each showing a project name, a one-sentence description, and a link placeholder; and a contact section with a LinkedIn link and an email address. Use a clean, modern design with a white background, dark text, and a single accent colour. The layout should be responsive and professional.',
             tool: 'lovable',
             warning: false,
@@ -265,28 +265,28 @@ export const sections = [
           },
           {
             type: 'prompt',
-            label: 'Iteration 1 — Visual refinement',
+            label: 'Iteration 1: Visual refinement',
             prompt: 'Change the accent colour to a deep navy blue and make the hero section taller with more vertical breathing room. The name should be larger and the bio should sit below it with a clear visual separation.',
             tool: 'lovable',
             warning: false,
           },
           {
             type: 'prompt',
-            label: 'Iteration 2 — Content refinement',
+            label: 'Iteration 2: Content refinement',
             prompt: 'In the hero section, add a short paragraph under the bio that explains what you are currently studying, what kind of roles you are looking for, and one sentence about what makes you different. Keep it to three sentences total.',
             tool: 'lovable',
             warning: false,
           },
           {
             type: 'prompt',
-            label: 'Iteration 3 — Structural refinement',
+            label: 'Iteration 3: Structural refinement',
             prompt: 'Add a fixed navigation bar at the top with links that scroll smoothly to each section: About, Skills, Projects, and Contact. The nav bar should stay visible as the user scrolls down the page.',
             tool: 'lovable',
             warning: false,
           },
           {
             type: 'prompt',
-            label: 'Iteration 4 — Final polish',
+            label: 'Iteration 4: Final polish',
             prompt: 'Make the two project cards side by side on wider screens and stacked vertically on mobile. Add a subtle shadow to each card and a hover effect that lifts the card slightly when the mouse moves over it.',
             tool: 'lovable',
             warning: false,
@@ -332,7 +332,7 @@ export const sections = [
         content: [
           {
             type: 'prompt',
-            label: 'Build Prompt — Paste from Claude',
+            label: 'Build Prompt: Paste from Claude',
             prompt: 'Create a personal landing page as a single index.html file with embedded CSS and no external dependencies. The page should include: a navigation bar with anchor links to each section; a hero section with a name placeholder, a degree and year placeholder, a one-line bio placeholder, and a short paragraph about your goals; a skills section with six skill tags in a flex grid; a projects section with two cards each containing a title, a one-sentence description, and a link placeholder; and a contact section with LinkedIn and email placeholders. Use a clean professional design with a white background, dark text, system fonts, and navy blue as the accent colour. The page must be fully responsive.',
             tool: 'cursor',
             warning: false,
@@ -343,7 +343,7 @@ export const sections = [
           },
           {
             type: 'teachingPoint',
-            text: 'Cursor read your instruction and wrote the entire file. The skill here is not knowing HTML or CSS — it is knowing how to describe what you want clearly enough that the AI can produce something usable. That skill transfers to every tool you will use.',
+            text: 'Cursor read your instruction and wrote the entire file. The skill here is not knowing HTML or CSS; it is knowing how to describe what you want clearly enough that the AI can produce something usable. That skill transfers to every tool you will use.',
           },
         ],
       },
@@ -354,7 +354,7 @@ export const sections = [
         content: [
           {
             type: 'prompt',
-            label: 'Fix 1 — Navigation anchor links',
+            label: 'Fix 1: Navigation anchor links',
             prompt: 'The navigation links are not scrolling to the correct sections when clicked. Check the href values in the nav and the id attributes on each section element. Fix any mismatches so every link scrolls smoothly to the right section. Also add smooth scroll behaviour to the entire page.',
             tool: 'cursor',
             warning: false,
@@ -365,7 +365,7 @@ export const sections = [
           },
           {
             type: 'prompt',
-            label: 'Fix 2 — Mobile responsiveness',
+            label: 'Fix 2: Mobile responsiveness',
             prompt: 'In mobile view, the project cards are overflowing their container and the navigation links are too close together to tap easily. Fix the project cards so they stack vertically on screens under 768px wide, and adjust the nav so the links have enough spacing to be tappable on a phone.',
             tool: 'cursor',
             warning: false,
@@ -388,14 +388,14 @@ export const sections = [
           {
             type: 'bullets',
             items: [
-              'git init — initialize a Git repository',
-              'git add . and git commit -m "initial build" — save current state',
+              'git init: initialize a Git repository',
+              'git add . and git commit -m "initial build": save current state',
               'Push to a new GitHub repository',
             ],
           },
           {
             type: 'body',
-            text: 'Navigate to vercel.com, sign in with GitHub, click add new project, select the repository, and click deploy. You now have a live URL. Open it in your browser and copy the URL to share with anyone. Both paths end at the same place — a live product with a real URL.',
+            text: 'Navigate to vercel.com, sign in with GitHub, click add new project, select the repository, and click deploy. You now have a live URL. Open it in your browser and copy the URL to share with anyone. Both paths end at the same place: a live product with a real URL.',
           },
         ],
       },
@@ -434,7 +434,7 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Open Notion and create a new page titled "Landing Page — Feature Backlog." Type a raw list of ideas: dark mode toggle, animated hero text, contact form that sends an email, testimonials section, blog section, project filtering by category, downloadable resume button.',
+            text: 'Open Notion and create a new page titled "Landing Page: Feature Backlog." Type a raw list of ideas: dark mode toggle, animated hero text, contact form that sends an email, testimonials section, blog section, project filtering by category, downloadable resume button.',
           },
           {
             type: 'prompt',
@@ -457,10 +457,10 @@ export const sections = [
           {
             type: 'numbered',
             items: [
-              'Collect feedback — share your URL, ask people to use it, take notes on what they say.',
-              'Plan the fix — describe the feedback to Claude and ask it to update the code or the content.',
-              'Redeploy — push the update to GitHub and Vercel deploys automatically.',
-              'Repeat — keep listening to the people using your product and keep improving it.',
+              'Collect feedback: share your URL, ask people to use it, take notes on what they say.',
+              'Plan the fix: describe the feedback to Claude and ask it to update the code or the content.',
+              'Redeploy: push the update to GitHub and Vercel deploys automatically.',
+              'Repeat: keep listening to the people using your product and keep improving it.',
             ],
           },
           {

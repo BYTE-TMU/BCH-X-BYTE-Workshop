@@ -7,7 +7,7 @@ export const tools = [
     path: 'both',
     free: true,
     url: 'https://gemini.google.com',
-    step: 'Step 1 — Brainstorm & Validate',
+    step: 'Step 1: Brainstorm & Validate',
     description: "Step 1 of the research workflow. Use Gemini to brainstorm the problem space, identify your target user, explore what already exists in the market, and validate your idea against real current sources. Gemini's real-time web awareness makes it the right tool for grounding research in what actually exists today.",
   },
   {
@@ -17,7 +17,7 @@ export const tools = [
     path: 'both',
     free: true,
     url: 'https://claude.ai',
-    step: 'Step 2 — Synthesize & Generate Build Prompt',
+    step: 'Step 2: Synthesize & Generate Build Prompt',
     description: "Step 2 of the research workflow. Paste Gemini's raw output into Claude and prompt it to produce a structured project brief. Then ask Claude to convert that brief into a build-ready prompt for the implementation stage. Claude handles long-form reasoning and structured document generation better than any other tool in this stack.",
   },
   // Implementation
@@ -68,7 +68,7 @@ export const tools = [
     path: 'both',
     free: true,
     url: 'https://github.com',
-    step: 'Both Paths — Version Control',
+    step: 'Both Paths: Version Control',
     description: 'Version control and code hosting. Required for the technical path deployment flow. Initialize a Git repository, commit the project, and push to GitHub before connecting to Vercel. Free accounts include private repositories. Verified students also have access to GitHub Education benefits.',
   },
   {
@@ -78,7 +78,7 @@ export const tools = [
     path: 'both',
     free: true,
     url: 'https://vercel.com',
-    step: 'Both Paths — Deployment',
+    step: 'Both Paths: Deployment',
     description: 'One-click deployment platform. For the technical path, connect a GitHub repository and deploy in under five minutes. For the non-technical path, Lovable handles deployment natively. The end result in both cases is a shareable live URL.',
   },
   // Maintenance
@@ -89,7 +89,7 @@ export const tools = [
     path: 'both',
     free: true,
     url: 'https://claude.ai',
-    step: 'Post-Launch — Documentation',
+    step: 'Post-Launch: Documentation',
     description: 'Use Claude to generate README files, technical documentation, and changelogs written clearly enough that a non-technical stakeholder can follow them. Also used to write bug triage checklists and error-handling prompts.',
   },
   {
@@ -99,7 +99,7 @@ export const tools = [
     path: 'both',
     free: true,
     url: 'https://notion.so',
-    step: 'Post-Launch — Sprint Planning',
+    step: 'Post-Launch: Sprint Planning',
     description: 'AI-powered workspace for project management. Paste a raw backlog of ideas and prompt Notion AI to organize them into sprint tasks with priorities, effort estimates, and owners. Effective for students who have never run a product sprint before.',
   },
   {
@@ -109,7 +109,7 @@ export const tools = [
     path: 'both',
     free: true,
     url: 'https://linear.app',
-    step: 'Post-Launch — Issue Tracking',
+    step: 'Post-Launch: Issue Tracking',
     description: 'Lightweight issue tracker used by engineering teams at fast-moving startups and co-ops. Presented as the industry-standard alternative to Notion for tracking bugs, feature requests, and sprint progress.',
   },
 ]

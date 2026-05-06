@@ -2,12 +2,14 @@ import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
+import { useScrollReveal } from './hooks/useScrollReveal'
 import Home from './pages/Home'
 import CurriculumOverview from './pages/CurriculumOverview'
 import SectionPage from './pages/SectionPage'
 import Tools from './pages/Tools'
 import Appendix from './pages/Appendix'
 import Resources from './pages/Resources'
+import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 
 function ScrollToTop() {
@@ -20,6 +22,7 @@ function ScrollToTop() {
 
 function AnimatedRoutes() {
   const location = useLocation()
+  useScrollReveal()
   return (
     <div key={location.pathname} className="page-enter">
       <Routes location={location}>
@@ -29,6 +32,7 @@ function AnimatedRoutes() {
         <Route path="/tools" element={<Tools />} />
         <Route path="/appendix" element={<Appendix />} />
         <Route path="/resources" element={<Resources />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

@@ -38,37 +38,37 @@ export const checklistSteps = [
 
 export const promptLibrary = [
   {
-    section: 'Section 1 — Business Plan & Research',
+    section: 'Section 1: Business Plan & Research',
     items: [
       {
-        label: 'Gemini Prompt 1 — Define the problem and target user',
+        label: 'Gemini Prompt 1: Define the problem and target user',
         prompt: 'I am a second-year business student at a university in Toronto. I want to build a personal landing page that helps me stand out when applying to internships and co-ops. Help me understand: what problem does this actually solve, who else has this problem, and what should a strong student landing page actually include to be genuinely useful to a recruiter?',
         tool: 'gemini',
       },
       {
-        label: 'Gemini Prompt 2 — Research the current landscape',
+        label: 'Gemini Prompt 2: Research the current landscape',
         prompt: 'What tools do university students currently use to build personal landing pages? What are the most common ones, and what do students say is missing or frustrating about them? I want to understand what already exists before I decide what to build.',
         tool: 'gemini',
       },
       {
-        label: 'Gemini Prompt 3 — Validate with recruiter perspective',
+        label: 'Gemini Prompt 3: Validate with recruiter perspective',
         prompt: "What do recruiters and hiring managers actually look for when they visit a student's personal website? Give me specific things, not general advice. I want to know what makes the difference between a page they spend 30 seconds on versus one they actually send to the hiring team.",
         tool: 'gemini',
       },
       {
-        label: 'Claude Prompt 1 — Synthesize research into a project brief',
+        label: 'Claude Prompt 1: Synthesize research into a project brief',
         prompt: 'I have been researching a personal landing page for university students applying to internships. Here is what I found from my research session: [paste Gemini output here]. Using this research, write me a structured project brief with exactly four sections: one, the problem statement in two to three sentences; two, the target user in one clear sentence; three, exactly three core features the page must have; four, two specific success metrics that would tell me this page is working. Keep it concise, practical, and free of jargon.',
         tool: 'claude',
       },
       {
-        label: 'Claude Prompt 2 — Generate the build prompt',
+        label: 'Claude Prompt 2: Generate the build prompt',
         prompt: "Now take this project brief and write me two build prompts. The first should be optimized for pasting into Lovable, which is a natural language app builder with no code required. The second should be optimized for pasting into Cursor, which is a code editor with AI assistance. Both prompts should describe the same personal landing page but be framed appropriately for each tool's strengths. Make the prompts specific enough that someone with no technical background could use them.",
         tool: 'claude',
       },
     ],
   },
   {
-    section: 'Section 2 — Non-Technical Path (Lovable)',
+    section: 'Section 2: Non-Technical Path (Lovable)',
     items: [
       {
         label: 'Lovable Build Prompt',
@@ -78,7 +78,7 @@ export const promptLibrary = [
     ],
   },
   {
-    section: 'Section 3 — Technical Path (Cursor)',
+    section: 'Section 3: Technical Path (Cursor)',
     items: [
       {
         label: 'Cursor Build Prompt',
@@ -88,7 +88,7 @@ export const promptLibrary = [
     ],
   },
   {
-    section: 'Section 4 — Maintenance',
+    section: 'Section 4: Maintenance',
     items: [
       {
         label: 'Claude README Prompt',

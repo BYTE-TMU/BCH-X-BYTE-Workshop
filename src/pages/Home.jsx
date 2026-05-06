@@ -39,7 +39,7 @@ export default function Home() {
             Build a Project from<br />Scratch Using AI
           </h1>
           <p className="text-lg text-brand-gray leading-relaxed max-w-2xl mx-auto mb-10">
-            A hands-on workshop where you go from a vague idea to a live, deployed product — no coding experience required.
+            A hands-on workshop where you go from a vague idea to a live, deployed product, no coding experience required.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
@@ -63,7 +63,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-brand-red mb-3">What You Will Build</p>
-            <h2 className="text-3xl font-bold text-brand-black mb-4">A personal landing page — from idea to live URL</h2>
+            <h2 className="text-3xl font-bold text-brand-black mb-4">A personal landing page: from idea to live URL</h2>
             <p className="text-brand-gray leading-relaxed">
               An AI-powered personal landing page. Every student in the room needs one, it has zero prerequisite knowledge to understand, and it is simple enough to go from brief to live URL in the time available on both paths.
             </p>

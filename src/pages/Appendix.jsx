@@ -53,7 +53,7 @@ export default function Appendix() {
       <Breadcrumb crumbs={[{ to: '/', label: 'Home' }, { label: 'Q&A Appendix' }]} />
       <h1 className="text-4xl font-bold text-brand-black mb-2">Q&A Appendix</h1>
       <p className="text-brand-gray leading-relaxed mb-8">
-        Anticipated questions by category — mirrors the live Q&A appendix document used during the workshop.
+        Anticipated questions by category, mirroring the live Q&A appendix document used during the workshop.
       </p>
 
       <div className="relative mb-8 max-w-md">

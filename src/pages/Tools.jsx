@@ -29,7 +29,7 @@ export default function Tools() {
       <Breadcrumb crumbs={[{ to: '/', label: 'Home' }, { label: 'Tools' }]} />
       <h1 className="text-4xl font-bold text-brand-black mb-2">Tools Reference</h1>
       <p className="text-brand-gray leading-relaxed mb-8">
-        Every tool introduced in the workshop — what it is for, what path it serves, and whether it has a free tier.
+        Every tool introduced in the workshop: what it is for, what path it serves, and whether it has a free tier.
       </p>
 
       {/* Filter bar */}

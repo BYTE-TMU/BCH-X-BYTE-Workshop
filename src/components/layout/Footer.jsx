@@ -28,14 +28,14 @@ export default function Footer() {
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-4">Past Projects</p>
             <div className="space-y-3 text-sm text-brand-gray">
-              <p><span className="text-white font-medium">Yapp</span> — campus event and waypoint discovery platform for verified TMU students, launched Demo Day March 27, 2025.</p>
-              <p><span className="text-white font-medium">SecureBYTE</span> — AI-powered Python vulnerability scanner with LLM-powered explanations, demoed at Fall 2025 Demo Event.</p>
+              <p><span className="text-white font-medium">Yapp</span>: campus event and waypoint discovery platform for verified TMU students, launched Demo Day March 27, 2025.</p>
+              <p><span className="text-white font-medium">SecureBYTE</span>: AI-powered Python vulnerability scanner with LLM-powered explanations, demoed at Fall 2025 Demo Event.</p>
             </div>
           </div>
         </div>
 
         <div className="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-gray">
-          <p>© {new Date().getFullYear()} BYTE — TMU. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} BYTE, TMU. All rights reserved.</p>
           <div className="flex gap-6">
             <Link to="/tools" className="hover:text-white transition-colors">Tools</Link>
             <Link to="/resources" className="hover:text-white transition-colors">Resources</Link>

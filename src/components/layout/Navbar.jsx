@@ -71,6 +71,7 @@ export default function Navbar() {
 
             <NavLink to="/tools" className={navLinkClass}>Tools</NavLink>
             <NavLink to="/resources" className={navLinkClass}>Resources</NavLink>
+            <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
           </div>
 
           {/* Right: progress pill + presenter toggle */}
@@ -155,6 +156,7 @@ export default function Navbar() {
             <div className="border-t border-brand-border my-2" />
             <Link to="/tools" className="block py-2 text-brand-black hover:text-brand-red" onClick={() => setMobileOpen(false)}>Tools</Link>
             <Link to="/resources" className="block py-2 text-brand-black hover:text-brand-red" onClick={() => setMobileOpen(false)}>Resources</Link>
+            <Link to="/contact" className="block py-2 text-brand-black hover:text-brand-red" onClick={() => setMobileOpen(false)}>Contact</Link>
           </div>
         </div>
       )}

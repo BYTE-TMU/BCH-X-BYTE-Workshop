@@ -29,7 +29,7 @@ export default function Resources() {
       <Breadcrumb crumbs={[{ to: '/', label: 'Home' }, { label: 'Resources' }]} />
       <h1 className="text-4xl font-bold text-brand-black mb-2">Resources</h1>
       <p className="text-brand-gray leading-relaxed mb-12">
-        Everything you need to keep building after the workshop — checklist, tool links, and the full prompt library.
+        Everything you need to keep building after the workshop: checklist, tool links, and the full prompt library.
       </p>
 
       {/* Quick start checklist */}
@@ -67,7 +67,7 @@ export default function Resources() {
       {/* Tool links */}
       <section className="mb-16">
         <h2 className="text-2xl font-bold text-brand-black mb-1">Tool Links</h2>
-        <p className="text-brand-gray text-sm mb-6">Every tool in one place — open directly from here.</p>
+        <p className="text-brand-gray text-sm mb-6">Every tool in one place. Open directly from here.</p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {tools.map((t) => (
             <a
@@ -120,7 +120,7 @@ export default function Resources() {
       {/* Prompt library */}
       <section className="mb-16">
         <h2 className="text-2xl font-bold text-brand-black mb-1">Prompt Library</h2>
-        <p className="text-brand-gray text-sm mb-8">All prompts from the curriculum in one place — copy and paste directly into the tools.</p>
+        <p className="text-brand-gray text-sm mb-8">All prompts from the curriculum in one place. Copy and paste directly into the tools.</p>
         {promptLibrary.map((group) => (
           <div key={group.section} className="mb-10">
             <h3 className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-4">{group.section}</h3>
@@ -157,7 +157,7 @@ export default function Resources() {
       {/* Downloads — disabled */}
       <section>
         <h2 className="text-2xl font-bold text-brand-black mb-1">Downloads</h2>
-        <p className="text-brand-gray text-sm mb-6">Workshop documents — coming soon.</p>
+        <p className="text-brand-gray text-sm mb-6">Workshop documents, coming soon.</p>
         <div className="grid sm:grid-cols-2 gap-4">
           {['Tools Reference Document', 'Curriculum Slide Deck'].map((name) => (
             <div

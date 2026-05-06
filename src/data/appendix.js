@@ -5,11 +5,11 @@ export const appendix = [
     questions: [
       {
         q: 'How is BYTE different from other tech clubs on campus?',
-        a: "Most tech clubs at TMU focus on social events, networking mixers, or competitive programming. BYTE is project-first. Every semester, members are assigned to a real engineering team that ships a product by Demo Day. There is no passive membership — you are either building or you are learning how to build. SecureBYTE is a good example: that was not a class assignment, it was a production tool with a live backend, multiple contributors, real security controls, and an industry panel at launch.",
+        a: "Most tech clubs at TMU focus on social events, networking mixers, or competitive programming. BYTE is project-first. Every semester, members are assigned to a real engineering team that ships a product by Demo Day. There is no passive membership; you are either building or you are learning how to build. SecureBYTE is a good example: that was not a class assignment, it was a production tool with a live backend, multiple contributors, real security controls, and an industry panel at launch.",
       },
       {
         q: 'Do you need to be a CS student to join BYTE?',
-        a: 'No. We have members from engineering, business, and science. What matters is that you want to build something. We have roles beyond engineering — project management, product design, research, and documentation. The BCH x BYTE workshop itself is a direct expression of that: we are intentionally building programming for students who come from non-technical backgrounds.',
+        a: 'No. We have members from engineering, business, and science. What matters is that you want to build something. We have roles beyond engineering: project management, product design, research, and documentation. The BCH x BYTE workshop itself is a direct expression of that: we are intentionally building programming for students who come from non-technical backgrounds.',
       },
       {
         q: 'How many members does BYTE have?',
@@ -23,7 +23,7 @@ export const appendix = [
     questions: [
       {
         q: 'Why Gemini and Claude specifically? Why not just pick one?',
-        a: 'Each tool has a different strength. Gemini has real-time web awareness, which makes it useful for grounding research in what actually exists in the market today. Claude handles long-form reasoning and structured synthesis better — if you give it messy raw notes, it will produce a clean, logical document. Using both in sequence is not redundant. It is a workflow. You brainstorm and validate with Gemini, then synthesize with Claude.',
+        a: 'Each tool has a different strength. Gemini has real-time web awareness, which makes it useful for grounding research in what actually exists in the market today. Claude handles long-form reasoning and structured synthesis better; if you give it messy raw notes, it will produce a clean, logical document. Using both in sequence is not redundant. It is a workflow. You brainstorm and validate with Gemini, then synthesize with Claude.',
       },
       {
         q: 'Are these tools free?',
@@ -31,11 +31,11 @@ export const appendix = [
       },
       {
         q: 'What is Cursor and how is it different from just using Claude in the browser?',
-        a: 'Cursor is a code editor — similar to VS Code — with Claude built directly into the editing environment. The difference is context. Claude in the browser does not know your codebase. Cursor reads your entire project, understands the file structure, sees your existing code, and makes edits directly in your files. You can highlight a block of code and ask it to fix a bug, or describe a new feature and have it write the implementation across multiple files at once.',
+        a: 'Cursor is a code editor, similar to VS Code, with Claude built directly into the editing environment. The difference is context. Claude in the browser does not know your codebase. Cursor reads your entire project, understands the file structure, sees your existing code, and makes edits directly in your files. You can highlight a block of code and ask it to fix a bug, or describe a new feature and have it write the implementation across multiple files at once.',
       },
       {
         q: 'What is Lovable and is it really no-code?',
-        a: 'Lovable is a natural language application builder. You describe the product you want and Lovable generates a full deployable application from that description. It handles frontend, backend logic, and deployment. It is genuinely no-code — you do not need to touch a file or understand a programming language. The limitation is customization depth: for highly specific or complex applications you will eventually hit a ceiling. But for an MVP or proof-of-concept, it is one of the fastest paths from idea to live product that currently exists.',
+        a: 'Lovable is a natural language application builder. You describe the product you want and Lovable generates a full deployable application from that description. It handles frontend, backend logic, and deployment. It is genuinely no-code; you do not need to touch a file or understand a programming language. The limitation is customization depth: for highly specific or complex applications you will eventually hit a ceiling. But for an MVP or proof-of-concept, it is one of the fastest paths from idea to live product that currently exists.',
       },
       {
         q: 'What is v0 by Vercel?',
@@ -49,7 +49,7 @@ export const appendix = [
     questions: [
       {
         q: 'Do attendees need to bring laptops?',
-        a: 'Yes. This is a hands-on workshop. A laptop is required to follow along with the implementation section. Students who do not have a laptop can still follow the demo portions — the pre-recorded sections are watchable and instructive even without active participation.',
+        a: 'Yes. This is a hands-on workshop. A laptop is required to follow along with the implementation section. Students who do not have a laptop can still follow the demo portions; the pre-recorded sections are watchable and instructive even without active participation.',
       },
       {
         q: 'How long is the workshop and what is the format?',
@@ -57,7 +57,7 @@ export const appendix = [
       },
       {
         q: 'Do attendees leave with anything?',
-        a: 'Yes — a resource sheet listing every tool introduced, what each tool is best used for, its free tier, and recommended next steps. The goal is that someone can leave, open their laptop, and start building the same evening without doing additional research.',
+        a: 'Yes, a resource sheet listing every tool introduced, what each tool is best used for, its free tier, and recommended next steps. The goal is that someone can leave, open their laptop, and start building the same evening without doing additional research.',
       },
       {
         q: 'How many people is this workshop designed for?',
@@ -75,11 +75,11 @@ export const appendix = [
       },
       {
         q: 'Will this actually help students in job interviews or internship applications?',
-        a: 'Yes, directly. Being able to say you built and deployed a product — even a simple one — is more credible than listing tools on a resume. More concretely: the research and prompting skills taught in the business plan section apply immediately to case competitions, consulting projects, market research, and product management interviews. The LLM research workflow is transferable to almost any professional context.',
+        a: 'Yes, directly. Being able to say you built and deployed a product, even a simple one, is more credible than listing tools on a resume. More concretely: the research and prompting skills taught in the business plan section apply immediately to case competitions, consulting projects, market research, and product management interviews. The LLM research workflow is transferable to almost any professional context.',
       },
       {
         q: 'Is this content available anywhere else on campus?',
-        a: 'Not in this format. There are courses that touch on AI tools and there are hackathons where students build things, but there is no existing programming at TMU that walks a non-technical audience through the full lifecycle — from idea to brief to deployed product to maintenance plan — in a single session with real tools and live guidance.',
+        a: 'Not in this format. There are courses that touch on AI tools and there are hackathons where students build things, but there is no existing programming at TMU that walks a non-technical audience through the full lifecycle, from idea to brief to deployed product to maintenance plan, in a single session with real tools and live guidance.',
       },
     ],
   },
@@ -93,7 +93,7 @@ export const appendix = [
       },
       {
         q: 'Is this a one-time event or an ongoing partnership?',
-        a: 'This workshop is designed to be the first in an ongoing series. Each iteration can cover a different domain — research tools, product analytics, AI agents, or automation. The structure is repeatable and the tooling evolves fast enough that there will always be new material worth covering.',
+        a: 'This workshop is designed to be the first in an ongoing series. Each iteration can cover a different domain: research tools, product analytics, AI agents, or automation. The structure is repeatable and the tooling evolves fast enough that there will always be new material worth covering.',
       },
       {
         q: 'What does BYTE get out of this partnership?',
@@ -119,7 +119,7 @@ export const appendix = [
       },
       {
         q: 'What if students have no idea what they want to build?',
-        a: 'The business plan section addresses this. We start with the problem, not the product. We teach students to identify a frustration they or someone they know has experienced and work backwards to a product idea. Gemini is particularly useful at this stage — describe a general problem space and ask it to help narrow down to a concrete, buildable idea.',
+        a: 'The business plan section addresses this. We start with the problem, not the product. We teach students to identify a frustration they or someone they know has experienced and work backwards to a product idea. Gemini is particularly useful at this stage; describe a general problem space and ask it to help narrow down to a concrete, buildable idea.',
       },
     ],
   },

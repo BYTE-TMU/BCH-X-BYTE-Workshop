@@ -151,7 +151,7 @@ export default function SectionPage() {
           ) : (
             <Square size={20} />
           )}
-          {isComplete ? 'Section complete — unmark' : 'Mark this section as complete'}
+          {isComplete ? 'Section complete: unmark' : 'Mark this section as complete'}
         </button>
         {justCompleted && (
           <p className="text-xs text-path-nontech mt-2 font-medium">
