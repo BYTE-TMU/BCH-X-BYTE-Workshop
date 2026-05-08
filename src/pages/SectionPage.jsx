@@ -11,6 +11,7 @@ import PromptBox from '../components/ui/PromptBox'
 import TeachingPoint from '../components/ui/TeachingPoint'
 import PresenterNote from '../components/ui/PresenterNote'
 import Callout from '../components/ui/Callout'
+import DiagramBlock from '../components/ui/DiagramBlock'
 
 function ContentBlock({ block }) {
   switch (block.type) {
@@ -66,6 +67,9 @@ function ContentBlock({ block }) {
           <p className="text-xl font-semibold text-brand-black leading-relaxed">{block.text}</p>
         </blockquote>
       )
+
+    case 'diagram':
+      return <DiagramBlock id={block.id} />
 
     default:
       return null

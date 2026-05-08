@@ -69,6 +69,10 @@ export const sections = [
               'Claude and Notion AI: for documenting and planning what comes next.',
             ],
           },
+          {
+            type: 'diagram',
+            id: 'tool-pipeline',
+          },
         ],
       },
     ],
@@ -101,6 +105,10 @@ export const sections = [
           {
             type: 'body',
             text: 'You will see a bad example: "I want to make an app for students." See why it fails: no defined user, no scoped features, no success metric. Then see a good brief using the personal landing page as the example.',
+          },
+          {
+            type: 'diagram',
+            id: 'brief-comparison',
           },
           {
             type: 'presenterNote',
@@ -194,6 +202,10 @@ export const sections = [
             type: 'teachingPoint',
             text: 'The two-LLM workflow is powerful. Gemini gave you breadth and real-world grounding. Claude gave you structure and something actionable. Using one tool for both would produce weaker results at each step.',
           },
+          {
+            type: 'diagram',
+            id: 'two-llm-workflow',
+          },
         ],
       },
       {
@@ -262,6 +274,10 @@ export const sections = [
           {
             type: 'teachingPoint',
             text: 'Iteration is the real skill. The first output from any AI tool is a draft. The follow-up prompt is where your design choices get made and the product becomes yours.',
+          },
+          {
+            type: 'diagram',
+            id: 'iteration-loop',
           },
           {
             type: 'prompt',
@@ -382,6 +398,10 @@ export const sections = [
         timing: '4 minutes',
         content: [
           {
+            type: 'diagram',
+            id: 'code-deploy-pipeline',
+          },
+          {
             type: 'body',
             text: 'Run these commands in the terminal to initialize and push to GitHub:',
           },
@@ -444,6 +464,10 @@ export const sections = [
             warning: false,
           },
           {
+            type: 'diagram',
+            id: 'sprint-visual',
+          },
+          {
             type: 'body',
             text: 'A sprint is a fixed window of time where you commit to building a specific set of things before moving on. This helps you stay focused and make progress.',
           },
@@ -462,6 +486,10 @@ export const sections = [
               'Redeploy: push the update to GitHub and Vercel deploys automatically.',
               'Repeat: keep listening to the people using your product and keep improving it.',
             ],
+          },
+          {
+            type: 'diagram',
+            id: 'feedback-loop',
           },
           {
             type: 'body',

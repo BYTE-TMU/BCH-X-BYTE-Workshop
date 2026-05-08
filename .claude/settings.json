@@ -8,7 +8,10 @@
       "Bash(git branch *)",
       "Bash(git push *)",
       "Read(//Users/rayanroshan/Downloads/**)",
-      "Bash(mv \"/Users/rayanroshan/Downloads/Byte_bch_Website/src/assets/Team Images/Parth Pawa_7.JPG\" \"/Users/rayanroshan/Downloads/Byte_bch_Website/src/assets/Team Images/Parth_Pawa.jpg\")"
+      "Bash(mv \"/Users/rayanroshan/Downloads/Byte_bch_Website/src/assets/Team Images/Parth Pawa_7.JPG\" \"/Users/rayanroshan/Downloads/Byte_bch_Website/src/assets/Team Images/Parth_Pawa.jpg\")",
+      "Bash(curl -s http://localhost:5174)",
+      "Bash(curl -s http://localhost:5174/BCH-X-BYTE-Workshop/)",
+      "Bash(curl -s \"http://localhost:5174/BCH-X-BYTE-Workshop/section/section-0\" -o /dev/null -w \"%{http_code}\")"
     ],
     "additionalDirectories": [
       "/Users/rayanroshan/Downloads/Byte_bch_Website",
