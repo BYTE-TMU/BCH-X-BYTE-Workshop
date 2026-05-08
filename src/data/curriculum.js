@@ -223,6 +223,25 @@ export const sections = [
           },
         ],
       },
+      {
+        code: '1.5',
+        title: 'Choosing Your Path',
+        timing: '2 minutes',
+        content: [
+          {
+            type: 'body',
+            text: 'You now have a project brief and a build prompt. Before you move to the next section, you need to pick one of two paths. Both paths end with the same result: a live product with a real URL. The difference is in how you get there and what you take away from the experience.',
+          },
+          {
+            type: 'diagram',
+            id: 'path-comparison',
+          },
+          {
+            type: 'teachingPoint',
+            text: 'Neither path is easier or harder than the other — they are built for different goals. If you are unsure, go with the Non-Technical Path. You can always come back and explore the Technical Path after the workshop.',
+          },
+        ],
+      },
     ],
   },
   {

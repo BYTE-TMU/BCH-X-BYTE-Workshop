@@ -375,16 +375,121 @@ function SprintVisual() {
   )
 }
 
+// ─── Diagram: Path Comparison (Section 1.5) ──────────────────────────────────
+
+function PathComparison() {
+  const rows = [
+    {
+      category: 'Cost',
+      nontech: [
+        { type: 'pro', text: 'Free to get started — no account setup costs' },
+        { type: 'con', text: "Lovable's free plan has limits; exporting your project or adding a custom domain costs money" },
+      ],
+      tech: [
+        { type: 'pro', text: 'All tools used tonight have a free tier that covers everything you need' },
+        { type: 'con', text: 'Takes more time to set up — you will spend some of your building time on configuration' },
+      ],
+    },
+    {
+      category: 'How Many People Can Use Your Site',
+      nontech: [
+        { type: 'pro', text: 'Lovable handles traffic automatically — your site stays up even if a lot of people visit at once' },
+        { type: 'con', text: 'Very high traffic may require upgrading to a paid plan' },
+      ],
+      tech: [
+        { type: 'pro', text: 'Your site lives on Vercel, which also handles traffic automatically' },
+        { type: 'con', text: 'You are responsible for understanding how your site is set up if something goes wrong' },
+      ],
+    },
+    {
+      category: 'How Much You Can Change Later',
+      nontech: [
+        { type: 'pro', text: 'Easy to update — just describe what you want in plain English' },
+        { type: 'con', text: 'Hard to add complex features (like a login or a form that saves data) without hitting a wall' },
+      ],
+      tech: [
+        { type: 'pro', text: 'You can add anything later — new pages, forms, or entirely new features' },
+        { type: 'con', text: 'Adding new features requires you to write or understand some code' },
+      ],
+    },
+    {
+      category: 'Best For',
+      nontech: [
+        { type: 'best', text: 'You want a live product tonight with no prior experience — speed and simplicity matter most' },
+      ],
+      tech: [
+        { type: 'best', text: 'You want to understand how the product works and be able to grow it into something bigger' },
+      ],
+    },
+  ]
+
+  return (
+    <Wrapper title="Choosing Your Path — Non-Technical vs Technical">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+        <div className="bg-path-nontech rounded-lg px-4 py-2.5">
+          <p className="text-white text-xs font-bold uppercase tracking-widest">Non-Technical Path</p>
+          <p className="text-green-100 text-xs mt-0.5">Lovable</p>
+        </div>
+        <div className="bg-path-technical rounded-lg px-4 py-2.5">
+          <p className="text-white text-xs font-bold uppercase tracking-widest">Technical Path</p>
+          <p className="text-blue-100 text-xs mt-0.5">Cursor · GitHub · Vercel</p>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        {rows.map((row) => (
+          <div key={row.category}>
+            <p className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-2">
+              {row.category}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="border border-path-nontech rounded-lg p-3 bg-path-nontechLight">
+                <ul className="space-y-1.5">
+                  {row.nontech.map((item, i) => (
+                    <li key={i} className="flex items-start gap-1.5 text-xs text-brand-black">
+                      <span className={`shrink-0 ${item.type === 'con' ? 'text-brand-red' : 'text-path-nontech'}`}>
+                        {item.type === 'pro' ? '✓' : item.type === 'con' ? '✗' : '→'}
+                      </span>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="border border-path-technical rounded-lg p-3 bg-path-techLight">
+                <ul className="space-y-1.5">
+                  {row.tech.map((item, i) => (
+                    <li key={i} className="flex items-start gap-1.5 text-xs text-brand-black">
+                      <span className={`shrink-0 ${item.type === 'con' ? 'text-brand-red' : 'text-path-technical'}`}>
+                        {item.type === 'pro' ? '✓' : item.type === 'con' ? '✗' : '→'}
+                      </span>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p className="text-xs text-brand-gray text-center mt-4">
+        Neither path is right or wrong — choose the one that fits how you want to learn tonight.
+      </p>
+    </Wrapper>
+  )
+}
+
 // ─── Registry & Export ────────────────────────────────────────────────────────
 
 const DIAGRAMS = {
-  'tool-pipeline':      ToolPipeline,
-  'brief-comparison':   BriefComparison,
-  'two-llm-workflow':   TwoLLMWorkflow,
-  'iteration-loop':     IterationLoop,
+  'tool-pipeline':        ToolPipeline,
+  'brief-comparison':     BriefComparison,
+  'two-llm-workflow':     TwoLLMWorkflow,
+  'iteration-loop':       IterationLoop,
   'code-deploy-pipeline': CodeDeployPipeline,
-  'feedback-loop':      FeedbackLoop,
-  'sprint-visual':      SprintVisual,
+  'feedback-loop':        FeedbackLoop,
+  'sprint-visual':        SprintVisual,
+  'path-comparison':      PathComparison,
 }
 
 export default function DiagramBlock({ id }) {
