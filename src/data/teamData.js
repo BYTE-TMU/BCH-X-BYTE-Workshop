@@ -9,7 +9,7 @@ export const teamMembers = [
   {
     id: 'rayan-roshan',
     name: 'Rayan Roshan',
-    role: 'Project Experience Lead',
+    role: 'VP of Technology',
     email: 'rayan.roshan@torontomu.ca',
     linkedin: 'https://www.linkedin.com/in/rayan-roshan/',
     image: rayanImg,
