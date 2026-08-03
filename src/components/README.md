@@ -22,7 +22,7 @@ Components that wrap or frame page content. They appear on every page (Navbar, F
 
 ### [`ui/`](ui/README.md)
 
-Presentational components that render specific content block types: prompts, teaching points, presenter notes, badges, navigation, and progress indicators. They are driven entirely by props — no data imports, no context reads (except `PresenterNote` which reads `presenterMode`).
+Presentational components that render specific content block types: prompts, teaching points, presenter notes, badges, navigation, progress indicators, search, and diagrams. Most are driven entirely by props. The exceptions read only what they cannot receive as a prop: `PresenterNote` and `SubsectionTimer` need `presenterMode`, `PathPicker` and `SectionNav` need `selectedPath`, and `FreeTierBadge` reads its labels from `data/tools.js` so they stay identical everywhere they appear.
 
 ---
 

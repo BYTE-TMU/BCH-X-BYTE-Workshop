@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { ExternalLink } from 'lucide-react'
-import { checklistSteps, promptLibrary } from '../data/resources'
-import { tools } from '../data/tools'
+import { checklistSteps } from '../data/resources'
+import { tools, getToolById, FREE_TIER_VERIFIED } from '../data/tools'
+import { promptLibrary } from '../utils/collectPrompts'
 import PromptBox from '../components/ui/PromptBox'
+import FreeTierBadge from '../components/ui/FreeTierBadge'
 import Breadcrumb from '../components/layout/Breadcrumb'
 
 const CHECKLIST_KEY = 'bch_byte_checklist'
@@ -90,28 +92,40 @@ export default function Resources() {
       {/* Free tier summary */}
       <section className="mb-16">
         <h2 className="text-2xl font-bold text-brand-black mb-1">Free Tier Summary</h2>
-        <p className="text-brand-gray text-sm mb-6">Everything you need for the workshop is free.</p>
-        <div className="border border-brand-border rounded-xl overflow-hidden">
-          <table className="w-full text-sm">
+        <p className="text-brand-gray text-sm mb-2">
+          You can complete the whole workshop without paying, but two tools have real limits and two need a paid plan.
+          Every paid step below has a free alternative.
+        </p>
+        <p className="text-xs text-brand-gray mb-6">
+          Limits verified {FREE_TIER_VERIFIED}. AI pricing changes fast — confirm with the vendor before you rely on it.
+        </p>
+        <div className="border border-brand-border rounded-xl overflow-x-auto">
+          <table className="w-full text-sm min-w-[640px]">
             <thead>
               <tr className="bg-brand-grayLight">
                 <th className="text-left px-5 py-3 font-semibold text-brand-black">Tool</th>
-                <th className="text-left px-5 py-3 font-semibold text-brand-black">Free Tier</th>
+                <th className="text-left px-5 py-3 font-semibold text-brand-black">Status</th>
+                <th className="text-left px-5 py-3 font-semibold text-brand-black">What you actually get</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-brand-border">
-              {tools.map((t) => (
-                <tr key={t.id} className="bg-white">
-                  <td className="px-5 py-3 font-medium text-brand-black">{t.name}</td>
-                  <td className="px-5 py-3 text-brand-gray">
-                    {t.free ? (
-                      <span className="text-path-nontech font-semibold">✓ Free</span>
-                    ) : (
-                      <span className="text-amber-600 font-semibold">Paid plan required</span>
-                    )}
-                  </td>
-                </tr>
-              ))}
+              {tools.map((t) => {
+                const fallback = t.freeTier.fallback ? getToolById(t.freeTier.fallback) : null
+                return (
+                  <tr key={t.id} className="bg-white align-top">
+                    <td className="px-5 py-3 font-medium text-brand-black whitespace-nowrap">{t.name}</td>
+                    <td className="px-5 py-3"><FreeTierBadge status={t.freeTier.status} /></td>
+                    <td className="px-5 py-3 text-brand-gray leading-relaxed">
+                      {t.freeTier.detail}
+                      {fallback && (
+                        <span className="block mt-1 text-brand-black">
+                          <span className="font-semibold">Free alternative:</span> {fallback.name}
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
@@ -122,11 +136,11 @@ export default function Resources() {
         <h2 className="text-2xl font-bold text-brand-black mb-1">Prompt Library</h2>
         <p className="text-brand-gray text-sm mb-8">All prompts from the curriculum in one place. Copy and paste directly into the tools.</p>
         {promptLibrary.map((group) => (
-          <div key={group.section} className="mb-10">
+          <div key={group.sectionId} className="mb-10">
             <h3 className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-4">{group.section}</h3>
             {group.items.map((item, i) => (
               <PromptBox
-                key={i}
+                key={`${group.sectionId}-${i}`}
                 label={item.label}
                 prompt={item.prompt}
                 tool={item.tool}

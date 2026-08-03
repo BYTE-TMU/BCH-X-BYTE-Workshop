@@ -1,9 +1,13 @@
+// Each section carries a `path`: 'both' means everyone does it, 'nontech' and
+// 'technical' are the two alternative build routes a student picks in 1.5.
+// Subsections marked `extension: true` are take-home material — they render inside
+// a collapsed disclosure and are excluded from the live 90-minute run of show.
 export const sections = [
   {
     id: 'section-0',
     number: 0,
     title: 'Welcome & Setup',
-    duration: '10 Minutes',
+    path: 'both',
     description: 'Get oriented before you start. Understand the format, the example project, and what you will build tonight.',
     subsections: [
       {
@@ -54,20 +58,23 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Here is every tool you will use tonight. You do not need accounts for everything right now; you will set up accounts at the start of each section.',
+            text: 'Here is every tool you will use tonight. You do not need accounts for everything right now; you will set up accounts at the start of each section. Everything here has a free tier, but two of them have limits worth knowing about before you start.',
           },
           {
             type: 'bullets',
             items: [
-              'Gemini: for research, brainstorming, and validating your ideas.',
-              'Claude: for planning your project and all coding and building.',
-              'Lovable: a no-code builder that uses AI to create full applications from plain English.',
-              'Replit: an alternative in-browser option with AI assistance, no setup needed.',
-              'Cursor: an AI-native code editor if you want to write code.',
-              'Claude Code: for making targeted edits across multiple files if using Cursor.',
-              'GitHub and Vercel: to deploy your live product to a real URL.',
-              'Claude and Notion AI: for documenting and planning what comes next.',
+              'Gemini: for research, brainstorming, and validating your ideas. Free.',
+              'Claude: for planning your project, and later for documentation and sprint planning. Free.',
+              'Lovable: a no-code builder that turns plain English into full applications. Free plan gives 5 credits per day, so budget them.',
+              'Replit: an alternative in-browser option with AI assistance and daily free credits. Your backup if Lovable runs dry.',
+              'Cursor: an AI-native code editor if you want to write code. Free Hobby plan covers tonight.',
+              'GitHub and Vercel: to deploy your live product to a real URL. Both free.',
             ],
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            text: 'AI tool pricing changes constantly. The limits quoted throughout this site were verified in August 2026 and every one of them is listed on the Tools page with a free alternative. If a limit has moved since, the workflow still holds: the tools are interchangeable, the method is not.',
           },
           {
             type: 'diagram',
@@ -81,7 +88,7 @@ export const sections = [
     id: 'section-1',
     number: 1,
     title: 'Business Plan & Research',
-    duration: '30 Minutes',
+    path: 'both',
     description: 'Turn a vague idea into a clear project plan using AI tools for research and planning.',
     subsections: [
       {
@@ -240,6 +247,86 @@ export const sections = [
             type: 'teachingPoint',
             text: 'Neither path is easier or harder than the other — they are built for different goals. If you are unsure, go with the Non-Technical Path. You can always come back and explore the Technical Path after the workshop.',
           },
+          {
+            type: 'pathPicker',
+          },
+        ],
+      },
+      {
+        code: '1.6',
+        title: 'Anatomy of a Prompt That Works',
+        timing: '6 minutes',
+        extension: true,
+        content: [
+          {
+            type: 'body',
+            text: 'Every good prompt you have copied so far is built from the same five parts. Once you can see them, you can write your own for any tool, for anything, without needing a template.',
+          },
+          {
+            type: 'numbered',
+            items: [
+              'Context: who you are and what situation you are in. "I am a second-year business student in Toronto."',
+              'Task: the single thing you want done. Not three things. One.',
+              'Constraints: the boundaries. Length, tone, what to avoid, what must be included.',
+              'Output format: the shape you want the answer in. A table, four sections, three bullet points, a single paragraph.',
+              'Success criteria: how you will judge it. "Specific enough that I could act on it tomorrow."',
+            ],
+          },
+          {
+            type: 'body',
+            text: 'Look back at the weak prompt from 1.2: "Make me a personal website." It has a task and nothing else. The model has to guess at your context, your constraints, the format, and what good would even look like — so it guesses average. Now look at Good Prompt 1 in the same subsection: context in the first sentence, task in the second, and three explicit questions that define both the constraints and the output. Same model, same effort from you, completely different answer.',
+          },
+          {
+            type: 'mindset',
+            text: 'You are not trying to find magic words. You are trying to remove the guesswork.',
+          },
+          {
+            type: 'body',
+            text: 'A useful test before you hit enter: if you handed this prompt to a competent stranger with no other information, could they do the task? If not, the missing piece is exactly what you need to add.',
+          },
+          {
+            type: 'prompt',
+            label: 'Practice: have the AI grade your prompt',
+            prompt: 'Here is a prompt I am about to send to an AI tool: [paste your prompt]. Before I send it, tell me what is missing. Specifically: is my context clear, is there exactly one task or several tangled together, are my constraints explicit, have I said what format I want, and have I said how I will judge the answer? Rewrite it for me with the gaps filled in, and explain what you changed and why.',
+            tool: 'claude',
+            warning: false,
+          },
+        ],
+      },
+      {
+        code: '1.7',
+        title: 'How to Judge What the AI Gives You',
+        timing: '5 minutes',
+        extension: true,
+        content: [
+          {
+            type: 'body',
+            text: 'This workshop tells you to "review the output" a lot. Here is what reviewing actually means. Run every substantial AI response through four questions before you use it.',
+          },
+          {
+            type: 'numbered',
+            items: [
+              'Is it specific to me, or would it apply to anyone? Generic advice is the most common failure. If the answer would work equally well for a nursing student and a finance student, it has not used your context.',
+              'Can I act on it tomorrow? A good answer names concrete next steps. A weak one describes categories of things you could think about.',
+              'What is it claiming as fact, and would I bet on it? Models state wrong things with total confidence. Anything that sounds like a statistic, a price, a date, or a feature of a real product needs checking.',
+              'What did it quietly leave out? Ask yourself what a skeptical person would push back on. Often the model has smoothed over the hard part.',
+            ],
+          },
+          {
+            type: 'teachingPoint',
+            text: 'The point is not to catch the AI being wrong for its own sake. It is that your judgement is the part of this process that cannot be automated. The students who get the most out of these tools are the ones who can tell a good answer from a plausible one.',
+          },
+          {
+            type: 'body',
+            text: 'When something is off, do not start over. Pushing back is faster and produces a better result than a fresh prompt, because the model keeps everything that was already working.',
+          },
+          {
+            type: 'prompt',
+            label: 'Pushing back productively',
+            prompt: 'Your last answer was too generic in two places: [name them]. It would apply to almost any student, and I need it grounded in my specific situation, which is [restate your context]. Keep the structure you used, keep the parts that were specific, and redo only the weak sections. Where you are unsure or making an assumption, say so explicitly instead of filling the gap with something plausible.',
+            tool: 'claude',
+            warning: false,
+          },
         ],
       },
     ],
@@ -248,7 +335,7 @@ export const sections = [
     id: 'section-2',
     number: 2,
     title: 'Building the Project (No-Code Path)',
-    duration: '20 Minutes',
+    path: 'nontech',
     description: 'Take the plan you wrote and build a live, deployed personal landing page with zero lines of code.',
     introFrame: 'You are about to see what it looks like to go from the plan you just wrote to a live, deployed product. The person in this walkthrough has no technical background. They are using the same plan you just created. Watch for how they describe what they want and how quickly the result comes back.',
     subsections: [
@@ -260,6 +347,11 @@ export const sections = [
           {
             type: 'body',
             text: 'Navigate to lovable.dev and create a free account. Walk through the interface: the prompt bar, the preview panel, and the deploy option. There is no code involved at any step.',
+          },
+          {
+            type: 'callout',
+            variant: 'warning',
+            text: 'Budget your credits before you start. Lovable\'s free plan gives you 5 credits per day with a 30 credit monthly cap, and unused credits do not roll over. This section uses one build prompt plus four iterations, which is roughly a full day of free credits. Spend the most on the first build prompt: it does the most work. If you are running low, pick the two iterations that matter most to you and skip the rest. If you run out entirely, Replit\'s free Starter plan gives you daily agent credits and gets you to the same place.',
           },
         ],
       },
@@ -292,7 +384,7 @@ export const sections = [
         content: [
           {
             type: 'teachingPoint',
-            text: 'Iteration is the real skill. The first output from any AI tool is a draft. The follow-up prompt is where your design choices get made and the product becomes yours.',
+            text: 'Iteration is the real skill. The first output from any AI tool is a draft. The follow-up prompt is where your design choices get made and the product becomes yours. Each of the four prompts below costs credits, so treat them as a menu rather than a checklist: iterations 1 and 3 change the most for the least spend.',
           },
           {
             type: 'diagram',
@@ -339,15 +431,52 @@ export const sections = [
           },
         ],
       },
+      {
+        code: '2.5',
+        title: 'When the AI Breaks Your Build',
+        timing: '6 minutes',
+        extension: true,
+        content: [
+          {
+            type: 'body',
+            text: 'At some point a prompt will make things worse. The page will break, a section will vanish, or the styling will fall apart. This is normal and it happens to everyone, including people who do this for a living. What separates a five-minute recovery from a lost evening is knowing the moves.',
+          },
+          {
+            type: 'numbered',
+            items: [
+              'Stop prompting. The instinct is to fire another prompt immediately. Resist it. Prompting on top of a broken state usually compounds the damage, and it costs credits you cannot get back.',
+              'Go back to the last version that worked. Lovable keeps a version history and Replit keeps checkpoints. Restoring is free; re-fixing is not.',
+              'Change one thing at a time. If you asked for four changes and the result broke, you cannot tell which one did it. Re-ask for them one at a time.',
+              'Describe the symptom, not your theory. "The projects section disappeared after the last change" gets a better fix than "I think the grid CSS is wrong."',
+              'Start a fresh conversation if the model keeps repeating a broken approach. A long thread carries its own mistakes forward as context.',
+            ],
+          },
+          {
+            type: 'mindset',
+            text: 'Breaking things is not evidence that you are bad at this. It is the normal texture of building anything.',
+          },
+          {
+            type: 'prompt',
+            label: 'Recovering from a broken state',
+            prompt: 'The last change broke something. Here is exactly what I am seeing: [describe the symptom in plain language, and paste any error message word for word]. Before changing any code, tell me what you think caused it and what you plan to change. Fix only that one thing and leave everything else exactly as it is. If you are not confident about the cause, say so and ask me a question instead of guessing.',
+            tool: 'lovable',
+            warning: false,
+          },
+          {
+            type: 'teachingPoint',
+            text: 'Notice the shape of that prompt: it asks for the diagnosis before the fix. That one habit will save you more time than any other thing in this workshop.',
+          },
+        ],
+      },
     ],
   },
   {
     id: 'section-3',
     number: 3,
     title: 'Building the Project (Code Path)',
-    duration: '20 Minutes',
+    path: 'technical',
     description: 'Use a code editor with AI assistance to build the same landing page if you want to learn some code.',
-    introFrame: 'This path uses a code editor called Cursor. Cursor has Claude built directly into it, which means you can describe what you want in plain English and have it write or edit the code for you inside your actual project files. You do not need to know how to code to follow along. Just watch how the instructions are written and what happens next.',
+    introFrame: 'This path uses a code editor called Cursor. It has AI built directly into it, including Claude models, which means you can describe what you want in plain English and have it write or edit the code for you inside your actual project files. You do not need to know how to code to follow along. Just watch how the instructions are written and what happens next.',
     subsections: [
       {
         code: '3.1',
@@ -356,7 +485,7 @@ export const sections = [
         content: [
           {
             type: 'body',
-            text: 'Navigate to cursor.sh, download and install. Open a new folder called landing-page. Check out the editor layout: file explorer on the left, main editor in the center, AI chat panel on the right. You can see in settings that Cursor uses Claude as the underlying AI.',
+            text: 'Navigate to cursor.com, download and install, and sign up for the free Hobby plan. Open a new folder called landing-page. Check out the editor layout: file explorer on the left, main editor in the center, AI chat panel on the right. In settings you can see the model picker: Cursor lets you choose which AI handles a request, including Claude models alongside its own.',
           },
         ],
       },
@@ -384,9 +513,13 @@ export const sections = [
       },
       {
         code: '3.3',
-        title: 'Refinements with Claude Code',
+        title: 'Refinements with the Cursor Agent',
         timing: '5 minutes',
         content: [
+          {
+            type: 'body',
+            text: 'Nothing generated by an AI works perfectly the first time. Below are the two problems that show up most often in this build and the prompts that fix them. Run these in Cursor\'s AI chat on the free Hobby plan. If you already pay for Claude, Claude Code handles the same fixes from the terminal and is better at changes that span several files, but it is optional here.',
+          },
           {
             type: 'prompt',
             label: 'Fix 1: Navigation anchor links',
@@ -438,13 +571,79 @@ export const sections = [
           },
         ],
       },
+      {
+        code: '3.5',
+        title: 'When the AI Breaks Your Build',
+        timing: '6 minutes',
+        extension: true,
+        content: [
+          {
+            type: 'body',
+            text: 'On the code path you get something the no-code path does not: real error messages, and version control. Both are gifts. An error message is the most useful thing you can hand an AI, and Git means no mistake is permanent.',
+          },
+          {
+            type: 'numbered',
+            items: [
+              'Paste the error text verbatim. Not a summary, not a screenshot description — the actual words. Error messages contain file names and line numbers that tell the AI exactly where to look.',
+              'Commit whenever something works. `git commit -m "hero section done"` costs you five seconds and gives you a point you can always return to.',
+              'Use `git restore .` to throw away uncommitted changes when a fix goes sideways. This is the code path\'s undo button.',
+              'Give the AI the file, not just the problem. In Cursor, open or highlight the relevant file so the model can see the actual code rather than guessing at it.',
+              'If the same fix fails twice, stop and change the approach rather than the wording. Two failures usually means the model has misunderstood the structure, not the request.',
+            ],
+          },
+          {
+            type: 'prompt',
+            label: 'Debugging with the exact error',
+            prompt: 'Something broke after the last change. Here is the exact error, copied word for word: [paste the full error message]. Here is what I was trying to do: [one sentence]. Walk me through what this error actually means in plain language, tell me which line is causing it, then fix only that. Do not refactor anything else while you are in there.',
+            tool: 'cursor',
+            warning: false,
+          },
+          {
+            type: 'mindset',
+            text: 'Reading an error message instead of panicking at it is most of what being technical means.',
+          },
+        ],
+      },
+      {
+        code: '3.6',
+        title: 'Putting It on Your Own Domain',
+        timing: '5 minutes',
+        extension: true,
+        content: [
+          {
+            type: 'body',
+            text: 'A vercel.app URL works perfectly well, but yourname.com on a resume reads differently. Domains cost roughly $10 to $15 a year from a registrar like Namecheap, Cloudflare, or Porkbun, and students can often get one free for a year through the GitHub Student Developer Pack.',
+          },
+          {
+            type: 'numbered',
+            items: [
+              'Buy the domain. Your own name is the safest choice; it will still be right in five years.',
+              'In Vercel, open your project, go to Settings, then Domains, and add the domain you bought.',
+              'Vercel shows you the DNS records to add. Copy them into your registrar\'s DNS settings exactly as shown.',
+              'Wait. DNS changes usually take minutes but can take a few hours. Vercel issues the HTTPS certificate automatically once it sees the records.',
+            ],
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            text: 'On the no-code path, Lovable supports custom domains too, though connecting one may require a paid plan. The DNS steps are identical either way: buy the domain, point the records where the host tells you, wait.',
+          },
+          {
+            type: 'prompt',
+            label: 'If the DNS step goes wrong',
+            prompt: 'I am pointing a custom domain at a site hosted on Vercel and it is not working yet. My registrar is [registrar name]. Here are the DNS records I currently have set: [paste them]. Here is what Vercel is telling me: [paste the status message]. Explain in plain language what is wrong, what each record actually does, and exactly what I should change.',
+            tool: 'claude',
+            warning: false,
+          },
+        ],
+      },
     ],
   },
   {
     id: 'section-4',
     number: 4,
     title: 'Maintenance & What Comes After Launch',
-    duration: '10 Minutes',
+    path: 'both',
     description: 'Learn what happens after you ship: documentation, planning what to build next, and how to keep improving your product.',
     introFrame: 'Most workshops end when the product goes live. This one does not, because shipping is day one, not the finish line. What comes next covers what to do after launch: how to document what you built, how to plan what comes next, and how to use AI to make both faster.',
     subsections: [
@@ -468,16 +667,21 @@ export const sections = [
       },
       {
         code: '4.2',
-        title: 'Sprint Planning with Notion AI',
+        title: 'Sprint Planning with AI',
         timing: '4 minutes',
         content: [
           {
             type: 'body',
-            text: 'Open Notion and create a new page titled "Landing Page: Feature Backlog." Type a raw list of ideas: dark mode toggle, animated hero text, contact form that sends an email, testimonials section, blog section, project filtering by category, downloadable resume button.',
+            text: 'Start a document titled "Landing Page: Feature Backlog." Type a raw list of ideas: dark mode toggle, animated hero text, contact form that sends an email, testimonials section, blog section, project filtering by category, downloadable resume button. Then paste that list into Claude with the prompt below.',
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            text: 'This step used to run in Notion AI. Notion now bundles its full AI features into the Business plan at $20 per member per month, so the free plan will not get you through this. The prompt below works identically in Claude on the free tier. If your team already pays for Notion Business, run it there instead and keep the backlog next to the rest of your project docs.',
           },
           {
             type: 'prompt',
-            label: 'Notion AI Sprint Planning Prompt',
+            label: 'Sprint Planning Prompt',
             prompt: 'Take this raw list of feature ideas and organize them into two sprints. Sprint 1 should include the most impactful features that are also the simplest to build. Sprint 2 should include the more complex or nice-to-have features. Format the output as a table with five columns: feature name, sprint number, effort level (low, medium, or high), expected outcome in one sentence, and the AI tool most likely to help build it.',
             tool: 'claude',
             warning: false,
@@ -513,6 +717,76 @@ export const sections = [
           {
             type: 'body',
             text: 'The best products are not the ones with the cleverest idea. They are the ones where the builder stayed curious and kept listening to the people using them.',
+          },
+        ],
+      },
+      {
+        code: '4.4',
+        title: 'The Ten-Minute Quality Check',
+        timing: '6 minutes',
+        extension: true,
+        content: [
+          {
+            type: 'body',
+            text: 'AI builders produce pages that look right on the screen they were built on and fall apart everywhere else. Before you put this URL on a resume or send it to a recruiter, spend ten minutes on this list. Most of it you can check yourself in a browser.',
+          },
+          {
+            type: 'bullets',
+            items: [
+              'Open it on your phone. This is the single highest-value check, because a large share of the people you send it to will open it on a phone first.',
+              'Make the browser window narrow and drag it wider. Nothing should overlap, overflow, or need sideways scrolling at any width.',
+              'Press Tab repeatedly. You should be able to reach every link and button, and you should always be able to see which one you are on.',
+              'Check that every image has alt text. Screen readers rely on it, and so does anyone on a slow connection.',
+              'Read the text against its background. Light grey on white looks elegant in a mockup and is unreadable in daylight.',
+              'Click every link. AI-generated pages are full of placeholder hrefs that go nowhere.',
+              'Check the page title in the browser tab. It is often left as the tool\'s default, and it is what shows up when someone bookmarks you.',
+            ],
+          },
+          {
+            type: 'prompt',
+            label: 'Audit prompt',
+            prompt: 'Audit my personal landing page for accessibility and mobile usability. Check specifically for: colour contrast that falls below WCAG AA, images missing alt text, headings used out of order or skipping levels, interactive elements that cannot be reached or seen when tabbing with a keyboard, tap targets too small to hit comfortably on a phone, and any layout that overflows horizontally under 400px wide. List every problem you find with the specific element it affects, ordered by how much it matters, then fix them one at a time starting with the worst.',
+            tool: 'claude',
+            warning: false,
+          },
+          {
+            type: 'teachingPoint',
+            text: 'Accessibility is not a separate nice-to-have you bolt on later. Nearly everything on that list also makes the page better for people with no accessibility needs at all: readable text, working links, and a layout that survives a phone screen.',
+          },
+        ],
+      },
+      {
+        code: '4.5',
+        title: 'What to Build Next',
+        timing: '5 minutes',
+        extension: true,
+        content: [
+          {
+            type: 'body',
+            text: 'The workflow you just learned is not specific to landing pages. It is: research with Gemini, structure with Claude, build with Lovable or Cursor, deploy, iterate. Here are three projects that reuse it exactly, ordered by how much of a step up each one is.',
+          },
+          {
+            type: 'numbered',
+            items: [
+              'A project case study page. Take something you have already done — a case competition, a class project, a part-time job — and write it up properly: the problem, what you did, what happened. Same build, more valuable to a recruiter than a skills list.',
+              'A small tool that solves an annoyance you personally have. A study timer, a group-project splitter, a course planner. The step up here is that it has logic, not just content, so you will use the iteration loop far more.',
+              'Something with saved data. A habit tracker, a reading list, a club signup page. This is where you meet databases and accounts, and where Lovable and Cursor start doing genuinely impressive work on your behalf.',
+            ],
+          },
+          {
+            type: 'prompt',
+            label: 'Scoping your next project',
+            prompt: 'I just built and deployed a personal landing page using AI tools, and I want to build something more ambitious next. Here is what I am considering: [describe your idea in a few sentences]. Help me scope it properly. What is the smallest version that would still be genuinely useful to someone? What are the three features it absolutely needs, and what am I likely to think I need but actually do not? What is the one part of this that will be harder than I expect, and how should I approach that part first?',
+            tool: 'claude',
+            warning: false,
+          },
+          {
+            type: 'mindset',
+            text: 'The gap between people who build things and people who talk about building things is almost never talent. It is that one group started before they felt ready.',
+          },
+          {
+            type: 'body',
+            text: 'If you want to keep doing this with other people rather than alone, that is what BYTE is for. Every semester members join a real project team and ship something by Demo Day. The Contact page has the people to talk to.',
           },
         ],
       },

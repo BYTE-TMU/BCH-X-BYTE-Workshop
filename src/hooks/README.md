@@ -23,9 +23,17 @@ Used by: `components/ui/CopyButton.jsx`
 
 ---
 
+### `useScrollReveal.js`
+
+Adds `.reveal-visible` to every `<section>` and `[data-reveal]` element as it scrolls into view, driving the fade-up animation defined in `index.css`. Called once in `App.jsx`.
+
+Print styles override the animation so nothing comes out invisible on paper.
+
+---
+
 ### `useScrollSpy.js`
 
-Observes a list of element IDs and returns the ID of whichever is currently in the viewport near the top of the screen. Used to highlight the active subsection in a sidebar or table of contents.
+Observes a list of element IDs and returns the ID of whichever is currently in the viewport near the top of the screen.
 
 ```js
 const activeId = useScrollSpy(ids: string[], offset = 80)
@@ -38,4 +46,4 @@ const activeId = useScrollSpy(ids: string[], offset = 80)
 
 Returns: `string | null` — the ID of the currently visible element, or `null` before any element is in view.
 
-**Note:** Not currently wired into the sidebar — available for use if per-subsection highlighting is added.
+Used by `components/layout/Sidebar.jsx` to highlight the active subsection in the table of contents. **Memoise the `ids` array** before passing it in — a fresh array literal on every render tears down and rebuilds the IntersectionObserver each time.

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Mail, Linkedin } from 'lucide-react'
 import { teamMembers } from '../data/teamData'
+import { orgs } from '../data/orgs'
 import Breadcrumb from '../components/layout/Breadcrumb'
 
 function Avatar({ src, name, size = 'lg' }) {
@@ -29,24 +30,6 @@ function Avatar({ src, name, size = 'lg' }) {
   )
 }
 
-const orgs = [
-  {
-    label: 'Business Career Hub (BCH)',
-    description:
-      'The Business Career Hub (BCH) at the Ted Rogers School of Management supports students through career coaching, industry-led workshops, technical bootcamps, and Canada\'s largest business co-op program. BCH connects students with leading employers and equips them with the skills to compete in today\'s job market.',
-  },
-  {
-    label: 'TMU BYTE',
-    description:
-      'BYTE (Build Your Technical Experience) is TMU\'s first project-based AI lab. Structured like a real workplace, members take on distinct roles and collaborate on a new project each semester. With a team spanning Computer Science, Engineering, and Business, BYTE bridges classroom learning with hands-on industry experience.',
-  },
-  {
-    label: 'The Collaboration',
-    description:
-      'BCH and BYTE are coming together to bring you a hands-on workshop at the intersection of business and technology. This event is designed for students who want practical exposure to the AI tools shaping the modern workplace, backed by two of TMU\'s most active student-facing organizations.',
-  },
-]
-
 export default function Contact() {
   return (
     <div className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -60,7 +43,10 @@ export default function Contact() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-20">
         {orgs.map((org) => (
-          <div key={org.label} className="bg-brand-grayLight rounded-2xl p-6 border border-brand-border">
+          <div key={org.id} className="bg-brand-grayLight rounded-2xl p-6 border border-brand-border">
+            {org.logo && (
+              <img src={org.logo} alt="" className="h-9 w-auto mb-4 object-contain object-left" />
+            )}
             <h2 className="text-sm font-bold uppercase tracking-widest text-brand-red mb-3">{org.label}</h2>
             <p className="text-brand-gray text-sm leading-relaxed">{org.description}</p>
           </div>

@@ -21,12 +21,6 @@ export default {
           nontech:      '#1D9E75',
           nontechLight: '#E1F5EE',
         },
-        format: {
-          live:          '#C84B2F',
-          liveLight:     '#FAECE7',
-          recorded:      '#185FA5',
-          recordedLight: '#E6F1FB',
-        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

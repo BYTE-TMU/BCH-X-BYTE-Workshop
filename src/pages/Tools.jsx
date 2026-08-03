@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { ExternalLink, Search } from 'lucide-react'
-import { tools, toolGroups } from '../data/tools'
+import { tools, toolGroups, getToolById, FREE_TIER_VERIFIED } from '../data/tools'
 import EntityPill from '../components/ui/EntityPill'
+import FreeTierBadge from '../components/ui/FreeTierBadge'
 import Breadcrumb from '../components/layout/Breadcrumb'
 
 const filterOptions = [
@@ -28,8 +29,11 @@ export default function Tools() {
     <div className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <Breadcrumb crumbs={[{ to: '/', label: 'Home' }, { label: 'Tools' }]} />
       <h1 className="text-4xl font-bold text-brand-black mb-2">Tools Reference</h1>
-      <p className="text-brand-gray leading-relaxed mb-8">
-        Every tool introduced in the workshop: what it is for, what path it serves, and whether it has a free tier.
+      <p className="text-brand-gray leading-relaxed mb-2">
+        Every tool introduced in the workshop: what it is for, what path it serves, and exactly what its free tier gets you.
+      </p>
+      <p className="text-xs text-brand-gray mb-8">
+        Free-tier limits verified {FREE_TIER_VERIFIED}. These change often — check the vendor before you rely on them.
       </p>
 
       {/* Filter bar */}
@@ -69,35 +73,44 @@ export default function Tools() {
           <div key={group} className="mb-12">
             <h2 className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-4">{group}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {groupTools.map((tool) => (
-                <div key={tool.id} className="border border-brand-border rounded-xl p-5 bg-white hover:shadow-sm transition-shadow">
-                  <div className="flex items-start justify-between gap-2 mb-3">
-                    <div>
-                      <h3 className="font-semibold text-brand-black">{tool.name}</h3>
-                      <p className="text-xs text-brand-gray mt-0.5">{tool.step}</p>
+              {groupTools.map((tool) => {
+                const fallback = tool.freeTier.fallback ? getToolById(tool.freeTier.fallback) : null
+                return (
+                  <div key={tool.id} className="border border-brand-border rounded-xl p-5 bg-white hover:shadow-sm transition-shadow flex flex-col">
+                    <div className="flex items-start justify-between gap-2 mb-3">
+                      <div>
+                        <h3 className="font-semibold text-brand-black">{tool.name}</h3>
+                        <p className="text-xs text-brand-gray mt-0.5">{tool.step}</p>
+                      </div>
+                      <div className="flex flex-col items-end gap-1.5">
+                        <EntityPill path={tool.path} />
+                        <FreeTierBadge status={tool.freeTier.status} />
+                      </div>
                     </div>
-                    <div className="flex flex-col items-end gap-1.5">
-                      <EntityPill path={tool.path} />
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                        tool.free
-                          ? 'bg-path-nontechLight text-path-nontech'
-                          : 'bg-amber-50 text-amber-700'
-                      }`}>
-                        {tool.free ? 'Free Tier' : 'Paid'}
-                      </span>
+                    <p className="text-sm text-brand-gray leading-relaxed mb-4">{tool.description}</p>
+
+                    <div className="mt-auto">
+                      <div className="rounded-lg bg-brand-grayLight border border-brand-border p-3 mb-4">
+                        <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gray mb-1">What the free tier gets you</p>
+                        <p className="text-xs text-brand-black leading-relaxed">{tool.freeTier.detail}</p>
+                        {fallback && (
+                          <p className="text-xs text-brand-gray leading-relaxed mt-2">
+                            <span className="font-semibold text-brand-black">Free alternative:</span> {fallback.name}
+                          </p>
+                        )}
+                      </div>
+                      <a
+                        href={tool.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-red hover:underline underline-offset-2"
+                      >
+                        Open Tool <ExternalLink size={13} />
+                      </a>
                     </div>
                   </div>
-                  <p className="text-sm text-brand-gray leading-relaxed mb-4">{tool.description}</p>
-                  <a
-                    href={tool.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-red hover:underline underline-offset-2"
-                  >
-                    Open Tool <ExternalLink size={13} />
-                  </a>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         )

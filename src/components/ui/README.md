@@ -1,6 +1,6 @@
 # src/components/ui/
 
-Presentational components for rendering specific content block types within section pages and other views. All are driven by props.
+Presentational components for rendering specific content block types within section pages and other views. Most are driven purely by props; the few that read context or data are noted below.
 
 ---
 
@@ -59,15 +59,48 @@ Reads `presenterMode` from `ProgressContext`. Returns `null` (not `display:none`
 
 ---
 
+### `SubsectionTimer.jsx`
+
+Countdown against a subsection's authored `timing`, so a facilitator can see they are running long without a separate stopwatch.
+
+Props: `{ timing: string }` — e.g. `'5 minutes'`
+
+- Play / pause / reset controls
+- Purple while comfortable, amber past 80% of the budget, red once negative
+- Renders `null` when `timing` has no number in it
+- Only mounted when presenter mode is on, or in projection mode
+
+---
+
+### `PathPicker.jsx`
+
+Two-button chooser for the Non-Technical and Technical build paths.
+
+Props: `{ compact?: boolean }`
+
+Reads and writes `selectedPath` on `ProgressContext`. Clicking the already-selected path clears it, which returns the site to showing both paths. Rendered by the `pathPicker` content block in subsection 1.5 and directly on the curriculum overview.
+
+---
+
+### `CommandPalette.jsx`
+
+The ⌘K / Ctrl-K / `/` search overlay, mounted once in `App.jsx`.
+
+Props: `{ open: boolean, onClose: () => void }`
+
+- Queries `utils/searchIndex.js`, groups results as Curriculum / Tools / Resources / FAQ while preserving overall rank
+- Arrow keys navigate, Enter opens, Escape closes
+- Results carrying an `anchor` scroll to that subsection after navigation
+
+---
+
 ### `SectionBadge.jsx`
 
-Two pill badges showing a section's duration and format.
+Pill badge showing a section's duration.
 
-Props: `{ duration: string, format: 'Live' | 'Pre-recorded' }`
+Props: `{ duration: string }`
 
-- Duration: gray pill
-- Live: red pill (`format-live` colours)
-- Pre-recorded: blue pill (`format-recorded` colours)
+Pass the derived value from `sectionDuration(section)` rather than a hardcoded string.
 
 ---
 
@@ -77,7 +110,7 @@ Previous / Next navigation rendered at the bottom of every section page.
 
 Props: `{ currentId: string }`
 
-Derives prev/next from `data/curriculum.js` by finding the current section index. Section 0 has no Previous button. Section 5's Next button links to `/tools` instead of another section.
+Walks `sectionsForPath(selectedPath)`, so Next from the no-code build section skips the code path entirely for a student who chose no-code. The first section has no Previous; the last section's Next links to `/resources`.
 
 ---
 
@@ -105,10 +138,28 @@ Props: `{ variant: 'info' | 'warning' | 'tip', children: ReactNode }`
 
 ### `EntityPill.jsx`
 
-Colour-coded path pill used on the Tools page cards.
+Colour-coded path pill.
 
 Props: `{ path: 'both' | 'technical' | 'nontech' }`
 
-- Both Paths → purple
-- Technical → blue
-- Non-Technical → teal
+Both Paths → purple, Technical → blue, Non-Technical → teal.
+
+---
+
+### `FreeTierBadge.jsx`
+
+Colour-coded badge for a tool's free-tier status, used on both the Tools cards and the Resources table so the two can never disagree.
+
+Props: `{ status: 'free' | 'limited' | 'paid' }`
+
+Reads its labels from `freeTierLabels` in `data/tools.js`. Free → teal, limited → amber, paid → red.
+
+---
+
+### `DiagramBlock.jsx`
+
+Registry of hand-built diagrams rendered with divs and Tailwind rather than an SVG library.
+
+Props: `{ id: string }` — must match a key in the registry (`tool-pipeline`, `brief-comparison`, `two-llm-workflow`, `iteration-loop`, `code-deploy-pipeline`, `feedback-loop`, `sprint-visual`, `path-comparison`).
+
+Note that diagram copy lives inside this component rather than in `data/`, so text changes to a diagram happen here.

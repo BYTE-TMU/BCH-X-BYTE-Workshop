@@ -8,27 +8,35 @@ React Context providers for global state shared across the component tree.
 
 ### `ProgressContext.jsx`
 
-The only global context in the app. Manages two independent pieces of state:
+The only global context in the app. Manages four pieces of state, all persisted to `localStorage`.
 
-#### Section completion (persisted)
+#### Subsection progress
 
-Tracks which of the 6 curriculum sections a user has marked complete. Stored in `localStorage` under the key `bch_byte_progress`.
+Tracks completion per **subsection**, not per section. Stored under `bch_byte_progress_v2`, keyed by subsection `code`:
 
-Shape:
 ```js
 {
-  "section-0": false,
-  "section-1": false,
-  "section-2": false,
-  "section-3": false,
-  "section-4": false,
-  "section-5": false,
+  "0.1": true,
+  "0.2": true,
+  "1.1": false,
 }
 ```
 
-#### Presenter mode (session only)
+A section counts as complete when every one of its **live** subsections is done. Take-home subsections (`extension: true`) never count.
 
-Boolean toggle that controls whether `PresenterNote` components are visible. Resets on page refresh — intentional, so presenter notes are hidden by default for attendees.
+**Migration:** progress used to be one boolean per section under `bch_byte_progress`. On first load, if the new key is absent and the old one exists, every subsection of a previously-completed section is marked complete. The old key is left in place and simply ignored afterwards.
+
+#### Selected build path
+
+`'nontech'`, `'technical'`, or `null`. Stored under `bch_byte_path`. Set by `PathPicker` in subsection 1.5 or on the curriculum overview. Drives which sections are dimmed, where the Next button goes, and the progress denominator.
+
+#### Presenter mode
+
+Boolean, stored under `bch_byte_presenter`. Controls whether `PresenterNote` blocks and subsection timers are visible. **It persists across refreshes** so a facilitator does not lose it mid-session, and `?presenter=1` on any section URL switches it on.
+
+#### Last viewed section
+
+Stored under `bch_byte_last_viewed`, used to build the "Resume where you left off" links on the home and curriculum pages.
 
 ---
 
@@ -36,16 +44,30 @@ Boolean toggle that controls whether `PresenterNote` components are visible. Res
 
 ```js
 const {
-  progress,           // { [sectionId]: boolean }
-  presenterMode,      // boolean
-  setPresenterMode,   // (boolean) => void
-  markComplete,       // (sectionId: string) => void
-  markIncomplete,     // (sectionId: string) => void
-  resetProgress,      // () => void
-  completedCount,     // number  0–6
-  percentComplete,    // number  0–100
+  progress,            // { [subsectionCode]: boolean }
+  isSectionComplete,   // (sectionId: string) => boolean
+  setSectionComplete,  // (sectionId: string, done: boolean) => void
+  toggleSubsection,    // (code: string) => void
+  setSubsection,       // (code: string, done: boolean) => void
+  resetProgress,       // () => void
+
+  selectedPath,        // 'nontech' | 'technical' | null
+  setSelectedPath,     // (path) => void
+
+  presenterMode,       // boolean
+  setPresenterMode,    // (boolean | (prev) => boolean) => void
+
+  lastViewed,          // sectionId | null
+  setLastViewed,       // (sectionId) => void
+
+  relevantSections,    // sections on the selected path
+  completedCount,      // number
+  totalCount,          // number — relevantSections.length
+  percentComplete,     // number 0–100, reaches 100
 } = useProgress()
 ```
+
+`completedCount` and `totalCount` are always counted against the same set of sections, so the progress display can actually reach 100%. An earlier version hardcoded six section ids against five sections of data and capped at 83%.
 
 ---
 
@@ -64,7 +86,7 @@ Read in any component:
 ```jsx
 import { useProgress } from '../context/ProgressContext'
 
-const { progress, markComplete } = useProgress()
+const { progress, toggleSubsection } = useProgress()
 ```
 
 `useProgress()` throws if called outside of `ProgressProvider`.

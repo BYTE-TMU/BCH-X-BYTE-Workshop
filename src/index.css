@@ -59,3 +59,37 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Projection mode: bump body copy so it reads from the back of a room. */
+.slides-content p,
+.slides-content li {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+/* The run-of-show page is meant to be printed and held during the workshop. */
+@media print {
+  .print\:hidden {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  /* Animations leave content invisible on paper if they never fire. */
+  .reveal,
+  .page-enter {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .break-inside-avoid {
+    break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: '';
+  }
+}

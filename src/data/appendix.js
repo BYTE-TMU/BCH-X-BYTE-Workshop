@@ -27,11 +27,19 @@ export const appendix = [
       },
       {
         q: 'Are these tools free?',
-        a: "Both Gemini and Claude have free tiers sufficient for all workshop activities. Gemini's free tier through Google is fully capable for research queries. Claude's free tier through claude.ai handles everything in the business plan and research sections. Claude Code requires a paid Claude plan, but Cursor's free tier with its built-in AI assistant covers the same use case for the technical path. All of this is noted on the takeaway resource sheet.",
+        a: "You can finish the entire workshop without paying, but the answer is more nuanced than a yes. Gemini, Claude, GitHub, Vercel, and Linear are genuinely free for everything we do. Lovable and Cursor are free with real limits: Lovable's free plan gives 5 credits per day capped at 30 per month, and Cursor's free Hobby plan caps agent requests. Two tools do need a paid plan: Claude Code requires a paid Claude subscription, and Notion AI's full features are now Business-only at $20 per member per month. Both have free substitutes we use instead, so nobody is blocked. The Tools page lists the exact limit and the free alternative for every tool, verified August 2026.",
+      },
+      {
+        q: 'What happens if I run out of Lovable credits mid-workshop?',
+        a: "This is a real risk, so plan for it. Section 2 uses one build prompt plus four iteration prompts, which is roughly a full day of free credits. Two things help. First, spend your credits where they do the most work: the initial build prompt produces the entire page, while an iteration only tweaks it, so put your effort into writing a detailed first prompt. Second, treat the four iterations as a menu rather than a checklist and pick the two that matter most to you. If you run out anyway, Replit's free Starter plan refreshes agent credits daily and gets you to the same live URL. You will not be left without a deployed product.",
+      },
+      {
+        q: 'Do I need to pay for Notion AI?',
+        a: 'No. Notion moved its full AI features into the Business plan at $20 per member per month, so the sprint planning step in Section 4 is no longer doable on a free Notion account. We run that prompt in Claude instead, which is free and produces the same table. Notion is still worth using as the place you keep the backlog; you just do not need its AI to build one. If your team already pays for Notion Business, use it there so your plan lives beside the rest of your project docs.',
       },
       {
         q: 'What is Cursor and how is it different from just using Claude in the browser?',
-        a: 'Cursor is a code editor, similar to VS Code, with Claude built directly into the editing environment. The difference is context. Claude in the browser does not know your codebase. Cursor reads your entire project, understands the file structure, sees your existing code, and makes edits directly in your files. You can highlight a block of code and ask it to fix a bug, or describe a new feature and have it write the implementation across multiple files at once.',
+        a: 'Cursor is a code editor, similar to VS Code, with AI built directly into the editing environment; it lets you pick which model handles a request, including Claude models. The difference from the browser is context. Claude in the browser does not know your codebase. Cursor reads your entire project, understands the file structure, sees your existing code, and makes edits directly in your files. You can highlight a block of code and ask it to fix a bug, or describe a new feature and have it write the implementation across multiple files at once.',
       },
       {
         q: 'What is Lovable and is it really no-code?',
@@ -111,7 +119,7 @@ export const appendix = [
     questions: [
       {
         q: 'AI tools change very fast. Will this content be outdated quickly?',
-        a: 'The tools change, but the principles do not. Knowing how to write a strong prompt, how to scope a project, how to structure research, and how to iterate on a design are skills that transfer regardless of which specific tool is best in a given month. We update the specific tool recommendations each time we run the workshop, but the underlying curriculum stays stable.',
+        a: 'The tools change, but the principles do not. Knowing how to write a strong prompt, how to scope a project, how to structure research, and how to iterate on a design are skills that transfer regardless of which specific tool is best in a given month. We update the specific tool recommendations each time we run the workshop, and every free-tier limit on the Tools page carries the date it was last verified so you can tell at a glance how stale it is. The underlying curriculum stays stable.',
       },
       {
         q: 'Isn\'t there a risk that students just rely on AI and do not actually learn anything?',

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { sections } from '../../data/curriculum'
 
 export default function Footer() {
   return (
@@ -17,19 +18,20 @@ export default function Footer() {
             <p className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-4">Curriculum</p>
             <div className="space-y-2">
               <Link to="/curriculum" className="block text-sm text-brand-gray hover:text-white transition-colors">Overview</Link>
-              {[0,1,2,3,4].map((n) => (
-                <Link key={n} to={`/curriculum/section-${n}`} className="block text-sm text-brand-gray hover:text-white transition-colors">
-                  Section {n}
+              {sections.map((s) => (
+                <Link key={s.id} to={`/curriculum/${s.id}`} className="block text-sm text-brand-gray hover:text-white transition-colors">
+                  Section {s.number}
                 </Link>
               ))}
+              <Link to="/appendix" className="block text-sm text-brand-gray hover:text-white transition-colors pt-1">FAQ</Link>
             </div>
           </div>
 
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-4">Past Projects</p>
             <div className="space-y-3 text-sm text-brand-gray">
-              <p><span className="text-white font-medium">Yapp</span>: campus event and waypoint discovery platform for verified TMU students, launched Demo Day March 27, 2026.</p>
-              <p><span className="text-white font-medium">SecureBYTE</span>: AI-powered Python vulnerability scanner with LLM-powered explanations, demoed at Fall 2025 Demo Event.</p>
+              <p><span className="text-white font-medium">Yapp</span>: campus event and waypoint discovery platform for verified TMU students, launched at Demo Day in March 2026.</p>
+              <p><span className="text-white font-medium">SecureBYTE</span>: AI-powered Python vulnerability scanner with LLM-powered explanations, demoed at the Fall 2025 Demo Event.</p>
             </div>
           </div>
         </div>

@@ -7,16 +7,14 @@
       "Bash(git remote *)",
       "Bash(git branch *)",
       "Bash(git push *)",
+      "Bash(npm run build)",
+      "Bash(npm run dev)",
+      "Bash(npm install --legacy-peer-deps)",
       "Read(//Users/rayanroshan/Downloads/**)",
-      "Bash(mv \"/Users/rayanroshan/Downloads/Byte_bch_Website/src/assets/Team Images/Parth Pawa_7.JPG\" \"/Users/rayanroshan/Downloads/Byte_bch_Website/src/assets/Team Images/Parth_Pawa.jpg\")",
-      "Bash(curl -s http://localhost:5174)",
-      "Bash(curl -s http://localhost:5174/BCH-X-BYTE-Workshop/)",
-      "Bash(curl -s \"http://localhost:5174/BCH-X-BYTE-Workshop/section/section-0\" -o /dev/null -w \"%{http_code}\")"
+      "Bash(curl -s http://localhost:5173/BCH-X-BYTE-Workshop/)"
     ],
     "additionalDirectories": [
-      "/Users/rayanroshan/Downloads/Byte_bch_Website",
-      "/Users/rayanroshan/Downloads/Byte_bch_Website/.github",
-      "/Users/rayanroshan/Downloads/Byte_bch_Website/src/assets/Team Images"
+      "/Users/rayanroshan/Downloads/BCH-X-BYTE-Workshop"
     ]
   }
 }

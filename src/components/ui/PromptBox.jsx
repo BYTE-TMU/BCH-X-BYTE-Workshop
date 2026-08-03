@@ -2,7 +2,6 @@ import CopyButton from './CopyButton'
 import ToolChip from './ToolChip'
 
 export default function PromptBox({ label, prompt, tool, warning = false }) {
-  const borderColor = warning ? 'border-t-brand-red' : 'border-t-path-both'
   const labelColor = warning ? 'text-brand-red' : 'text-path-both'
 
   return (
