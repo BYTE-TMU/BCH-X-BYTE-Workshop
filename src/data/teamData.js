@@ -25,7 +25,7 @@ export const teamMembers = [
   {
     id: 'meet-patadia',
     name: 'Meet Patadia',
-    role: 'President of BYTE',
+    role: 'Co-President of BYTE',
     email: 'mpatadia@torontomu.ca',
     linkedin: 'https://www.linkedin.com/in/meet-patadia-958729282/',
     image: meetImg,
@@ -33,7 +33,7 @@ export const teamMembers = [
   {
     id: 'yeji-lee',
     name: 'Yeji Lee',
-    role: 'Head of Strategic Operations',
+    role: 'Co-President of BYTE',
     email: 'yeji1.lee@torontomu.ca',
     linkedin: 'https://www.linkedin.com/in/yeji-lee3/',
     image: yejiImg,
