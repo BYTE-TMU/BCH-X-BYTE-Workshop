@@ -3,24 +3,24 @@ import { Info, AlertTriangle, Lightbulb } from 'lucide-react'
 const variants = {
   info: {
     icon: Info,
-    bg: 'bg-blue-50',
-    border: 'border-blue-200',
-    iconColor: 'text-blue-500',
-    textColor: 'text-blue-900',
+    bg: 'bg-state-infoSubtle',
+    border: 'border-state-infoLine',
+    iconColor: 'text-state-info',
+    textColor: 'text-state-info',
   },
   warning: {
     icon: AlertTriangle,
-    bg: 'bg-amber-50',
-    border: 'border-amber-200',
-    iconColor: 'text-amber-500',
-    textColor: 'text-amber-900',
+    bg: 'bg-state-warnSubtle',
+    border: 'border-state-warnLine',
+    iconColor: 'text-state-warn',
+    textColor: 'text-state-warn',
   },
   tip: {
     icon: Lightbulb,
-    bg: 'bg-path-nontechLight',
-    border: 'border-path-nontech/30',
-    iconColor: 'text-path-nontech',
-    textColor: 'text-brand-black',
+    bg: 'bg-state-okSubtle',
+    border: 'border-state-okLine',
+    iconColor: 'text-state-ok',
+    textColor: 'text-state-ok',
   },
 }
 
@@ -31,7 +31,7 @@ export default function Callout({ variant = 'info', children }) {
   return (
     <div className={`flex gap-3 items-start rounded-lg border p-4 my-6 ${v.bg} ${v.border}`}>
       <Icon size={16} className={`shrink-0 mt-0.5 ${v.iconColor}`} />
-      <p className={`text-sm leading-relaxed ${v.textColor}`}>{children}</p>
+      <p className={`text-small leading-relaxed ${v.textColor}`}>{children}</p>
     </div>
   )
 }

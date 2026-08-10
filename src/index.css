@@ -1,8 +1,189 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ==========================================================================
+   Design tokens
+
+   Values are "R G B" triplets rather than hex so Tailwind can compose them
+   with opacity modifiers (`bg-accent/40`). Every colour in the app resolves
+   through one of these, which makes the dark theme a matter of redeclaring
+   the block below under `html.dark` rather than annotating components.
+
+   Contrast ratios in the comments are against `--surface-base` unless noted.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --surface-base: 255 255 255;
+  --surface-sunken: 245 244 240;
+  --surface-raised: 255 255 255;
+  --surface-overlay: 255 255 255;
+  --surface-hover: 245 244 240;
+  --surface-inverse: 26 24 20;
+
+  /* Text. `--ink-secondary` was #888780 (3.6:1) — below the 4.5:1 floor while
+     carrying nearly all the body copy in the app. #6B6A63 is 5.4:1 here and
+     4.9:1 on the sunken surface, which is where most of it actually sits. */
+  --ink: 26 26 26; /* 17.4:1 */
+  --ink-secondary: 107 106 99; /* 5.4:1 */
+  --ink-tertiary: 138 136 127; /* 3.6:1 — large text, icons and decoration only */
+  /* Text sitting on `--surface-inverse`. It cannot just reuse the ink ramp: the
+     footer is a dark block inside a light page, so its secondary text has to be
+     light in *both* themes. */
+  --ink-inverse: 245 243 239;
+  --ink-inverse-dim: 168 164 155;
+
+  /* Hairlines. Warm-shifted off the old neutral #E0E0E0, which read cold
+     against the warm off-white surfaces. */
+  --line: 230 228 222;
+  --line-strong: 210 207 199;
+
+  /* Accent. Deepened a shade from the original #C84B2F, which was 4.0:1 on its
+     own tint — and `text-brand-red` on `bg-brand-redLight` is the active
+     sidebar row, the hero pill and every accent eyebrow. #BC4429 is the same
+     terracotta a step darker and clears 4.5:1 on all three surfaces.
+     The hover value replaces stock Tailwind `red-700`, a cooler, bluer red. */
+  --accent: 188 68 41; /* #BC4429 — 5.3:1 base, 4.8:1 sunken, 4.6:1 on tint */
+  --accent-hover: 169 58 33; /* #A93A21 — 6.3:1 */
+  --accent-subtle: 250 236 231;
+  --accent-on: 255 255 255; /* text on a filled accent surface — 5.3:1 */
+
+  /* Build paths */
+  --path-both: 91 79 207;
+  --path-both-subtle: 238 237 254;
+  --path-technical: 24 95 165;
+  --path-technical-subtle: 230 241 251;
+  --path-nontech: 21 122 90;
+  --path-nontech-subtle: 225 245 238;
+
+  /* Text on a *filled* path colour. It cannot be plain white: the dark theme
+     lightens the path colours, where white drops to ~2:1. */
+  --on-path: 255 255 255; /* 5.3:1 on nontech, the tightest of the three */
+
+  /* The full-bleed call-to-action band. Using the plain accent for a field this
+     large left its subhead at 3.2:1 and, in dark, put a fluorescent orange
+     across the whole viewport. */
+  --accent-band: 169 58 33;
+  --on-band: 255 255 255; /* 6.3:1 */
+  --on-band-dim: 245 226 220; /* 5.1:1 */
+
+  /* Status */
+  --state-info: 21 90 158;
+  --state-info-subtle: 230 241 251;
+  --state-info-line: 191 220 245;
+  --state-warn: 138 90 16;
+  --state-warn-subtle: 253 243 227;
+  --state-warn-line: 240 220 180;
+  --state-ok: 21 122 90;
+  --state-ok-subtle: 225 245 238;
+  --state-ok-line: 182 227 211;
+
+  /* Code surfaces are deliberately dark in both themes — a prompt block reads
+     as a terminal, not as a page surface. */
+  --code-surface: 26 24 21;
+  --code-raised: 36 33 29;
+  --code-line: 47 43 38;
+  --code-ink: 240 238 233;
+  --code-dim: 160 156 148;
+
+  /* Third-party tool chips. These only ever render inside a prompt block, which
+     is dark in both themes — so they are tuned for a dark ground and stay put
+     when the theme flips. */
+  --tool-gemini: 138 184 245;
+  --tool-gemini-subtle: 22 39 63;
+  --tool-claude: 224 162 119;
+  --tool-claude-subtle: 51 37 26;
+  --tool-lovable: 232 144 184;
+  --tool-lovable-subtle: 55 28 41;
+  --tool-cursor: 183 155 240;
+  --tool-cursor-subtle: 37 28 61;
+
+  /* Depth. Warm-tinted rather than pure black so shadows sit in the same
+     colour world as the surfaces casting them. */
+  --shadow-color: 26 24 20;
+  --shadow-a1: 0.06;
+  --shadow-b1: 0.04;
+  --shadow-a2: 0.07;
+  --shadow-b2: 0.05;
+  --shadow-a3: 0.14;
+  --shadow-b3: 0.08;
+
+  --scrim: 26 24 20;
+  --ring: 188 68 41;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  /* Warm-tinted near-black, not #000. Pure black against warm neutrals reads
+     as a hole in the page. */
+  --surface-base: 20 19 17;
+  --surface-sunken: 15 14 13;
+  --surface-raised: 28 26 24;
+  --surface-overlay: 28 26 24;
+  --surface-hover: 36 33 30;
+  --surface-inverse: 15 14 13;
+
+  --ink: 245 243 239; /* 16.8:1 */
+  --ink-secondary: 168 164 155; /* 7.5:1 base, 7.0:1 on raised */
+  --ink-tertiary: 133 130 122; /* 4.8:1 */
+  --ink-inverse: 245 243 239;
+  --ink-inverse-dim: 168 164 155;
+
+  --line: 43 40 37;
+  --line-strong: 61 57 52;
+
+  /* #C84B2F is only 4.0:1 on the dark base, so the accent lifts. The filled
+     accent then needs dark text, not white — white on #E9704F is 3.1:1. */
+  --accent: 233 112 79; /* #E9704F — 6.1:1 base, 5.7:1 on raised */
+  --accent-hover: 242 132 106;
+  --accent-subtle: 51 32 26;
+  --accent-on: 20 19 17; /* 6.1:1 against the accent fill */
+
+  --path-both: 154 144 245;
+  --path-both-subtle: 34 31 61;
+  --path-technical: 107 174 238;
+  --path-technical-subtle: 18 40 61;
+  --path-nontech: 76 211 165;
+  --path-nontech-subtle: 16 48 42;
+
+  --on-path: 20 19 17; /* 6.8:1 on both, 7.9:1 technical, 9.9:1 nontech */
+
+  --accent-band: 138 45 25;
+  --on-band: 255 255 255; /* 8.5:1 */
+  --on-band-dim: 245 226 220; /* 6.8:1 */
+
+  --state-info: 127 186 240;
+  --state-info-subtle: 18 40 61;
+  --state-info-line: 30 68 104;
+  --state-warn: 232 176 99;
+  --state-warn-subtle: 51 38 15;
+  --state-warn-line: 92 69 32;
+  --state-ok: 76 211 165;
+  --state-ok-subtle: 16 48 42;
+  --state-ok-line: 28 83 68;
+
+  /* Lifted so a code block still separates from an already-dark page. */
+  --code-surface: 36 33 29;
+  --code-raised: 47 43 38;
+  --code-line: 61 57 52;
+
+  /* A light-tinted shadow is invisible on a dark surface, so depth switches to
+     pure black at much higher alpha — and leans on surface lift and borders. */
+  --shadow-color: 0 0 0;
+  --shadow-a1: 0.32;
+  --shadow-b1: 0.22;
+  --shadow-a2: 0.45;
+  --shadow-b2: 0.3;
+  --shadow-a3: 0.65;
+  --shadow-b3: 0.4;
+
+  --scrim: 0 0 0;
+  --ring: 233 112 79;
+}
 
 @layer base {
   html {
@@ -10,23 +191,103 @@
   }
 
   body {
-    @apply bg-brand-white text-brand-black font-sans antialiased;
+    @apply bg-surface-base text-ink font-sans antialiased;
   }
 
   * {
     @apply box-border;
   }
+
+  /* There was no focus indicator anywhere in the app, and three inputs cleared
+     the browser default without replacing it. */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid rgb(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* ---- Materials --------------------------------------------------------
+     Translucent chrome that content passes under, rather than an opaque strip
+     that consumes it. Larger surfaces read as thicker glass: more blur, more
+     elevation. */
+
+  .material-chrome {
+    background: rgb(var(--surface-overlay) / 0.72);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .material-panel {
+    background: rgb(var(--surface-raised) / 0.88);
+    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    backdrop-filter: blur(32px) saturate(180%);
+  }
+
+  .material-scrim {
+    background: rgb(var(--scrim) / 0.44);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+
+  /* A hairline under floating chrome is only honest once something is actually
+     beneath it. Until then the bar should have no edge at all. */
+  .scroll-edge {
+    border-bottom: 1px solid transparent;
+    transition: border-color 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-edge[data-scrolled='true'] {
+    border-bottom-color: rgb(var(--line) / 0.8);
+  }
+
+  .scroll-edge::after {
+    content: '';
+    position: absolute;
+    inset: 100% 0 auto 0;
+    height: 20px;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(rgb(var(--surface-base) / 0.7), rgb(var(--surface-base) / 0));
+    transition: opacity 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-edge[data-scrolled='true']::after {
+    opacity: 1;
+  }
+
+  /* ---- Press feedback ---------------------------------------------------
+     Feedback belongs on pointer-down. Waiting for the click to fire is the
+     difference between an interface that feels alive and one that feels dead. */
+
+  .pressable {
+    transition: transform 120ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .pressable:active {
+    transform: scale(0.97);
+  }
+
+  /* Large targets need a much smaller ratio — the same 3% on a full-width card
+     reads as the whole page lurching. */
+  .pressable-lg {
+    transition: transform 140ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .pressable-lg:active {
+    transform: scale(0.99);
+  }
 }
 
 @layer utilities {
   .page-enter {
-    animation: pageEnter 0.25s ease-out both;
+    animation: pageEnter 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .accordion-content {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 0.25s ease;
+    transition: grid-template-rows 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .accordion-content.open {
@@ -41,7 +302,7 @@
 @keyframes pageEnter {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -49,10 +310,21 @@
   }
 }
 
+@keyframes pageEnterFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(24px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.reveal-visible {
@@ -67,14 +339,154 @@
   line-height: 1.7;
 }
 
-/* The run-of-show page is meant to be printed and held during the workshop. */
+/* ==========================================================================
+   User preferences
+   ========================================================================== */
+
+/* Reduced motion is not "no feedback" — it is the same information delivered
+   without vestibular movement. Transforms and travel go; opacity stays. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    transform: none;
+    transition: opacity 0.24s ease;
+  }
+
+  .page-enter {
+    animation: pageEnterFade 0.16s ease-out both;
+  }
+
+  .accordion-content {
+    transition-duration: 1ms;
+  }
+
+  .pressable:active,
+  .pressable-lg:active {
+    transform: none;
+  }
+
+  .pressable,
+  .pressable-lg {
+    transition: opacity 100ms ease;
+  }
+
+  .pressable:active,
+  .pressable-lg:active {
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .material-chrome {
+    background: rgb(var(--surface-base));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .material-panel {
+    background: rgb(var(--surface-raised));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .material-scrim {
+    background: rgb(var(--scrim) / 0.8);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --ink-secondary: 62 60 54;
+    --ink-tertiary: 84 82 74;
+    --line: 154 150 142;
+    --line-strong: 110 106 98;
+  }
+
+  html.dark {
+    --ink-secondary: 220 216 208;
+    --ink-tertiary: 186 182 174;
+    --line: 132 128 120;
+    --line-strong: 168 164 156;
+  }
+
+  .material-chrome,
+  .material-panel {
+    background: rgb(var(--surface-base));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* ==========================================================================
+   Print — the run-of-show page is meant to be printed and held during the
+   workshop, so it must come out light regardless of the active theme.
+   ========================================================================== */
+
 @media print {
+  :root,
+  html.dark {
+    color-scheme: light;
+    --surface-base: 255 255 255;
+    --surface-sunken: 255 255 255;
+    --surface-raised: 255 255 255;
+    --surface-overlay: 255 255 255;
+    --surface-hover: 255 255 255;
+    --surface-inverse: 255 255 255;
+    --ink: 0 0 0;
+    --ink-secondary: 68 68 68;
+    --ink-tertiary: 102 102 102;
+    --ink-inverse: 0 0 0;
+    --ink-inverse-dim: 68 68 68;
+    --line: 190 190 190;
+    --line-strong: 140 140 140;
+    --accent: 150 48 28;
+    --accent-hover: 150 48 28;
+    --accent-subtle: 255 255 255;
+    --accent-on: 255 255 255;
+    --on-path: 0 0 0;
+    --accent-band: 255 255 255;
+    --on-band: 0 0 0;
+    --on-band-dim: 68 68 68;
+    --code-surface: 255 255 255;
+    --code-raised: 255 255 255;
+    --code-line: 190 190 190;
+    --code-ink: 0 0 0;
+    --code-dim: 102 102 102;
+    --tool-gemini: 21 87 176;
+    --tool-gemini-subtle: 255 255 255;
+    --tool-claude: 154 90 40;
+    --tool-claude-subtle: 255 255 255;
+    --tool-lovable: 168 58 107;
+    --tool-lovable-subtle: 255 255 255;
+    --tool-cursor: 107 69 184;
+    --tool-cursor-subtle: 255 255 255;
+    --shadow-a1: 0;
+    --shadow-b1: 0;
+    --shadow-a2: 0;
+    --shadow-b2: 0;
+    --shadow-a3: 0;
+    --shadow-b3: 0;
+  }
+
   .print\:hidden {
     display: none !important;
   }
 
   body {
     background: #fff;
+  }
+
+  .material-chrome,
+  .material-panel,
+  .material-scrim {
+    background: #fff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   /* Animations leave content invisible on paper if they never fire. */

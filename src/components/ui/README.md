@@ -12,7 +12,7 @@ Renders a workshop prompt in a dark code-style box.
 
 Props: `{ label: string, prompt: string, tool?: string, warning?: boolean }`
 
-- `bg-zinc-900` background, monospace font
+- `bg-code-surface` background, monospace font — code surfaces stay dark in both themes
 - Default: purple (`border-t-path-both`) top border
 - `warning={true}`: red border + "Do Not Use This Prompt" banner
 - Includes `ToolChip` (top-left) and `CopyButton` (top-right)
@@ -25,7 +25,7 @@ Small colour-coded pill identifying which tool a prompt belongs to.
 
 Props: `{ tool: 'gemini' | 'claude' | 'lovable' | 'cursor' }`
 
-Colours: Gemini → blue, Claude → orange, Lovable → pink, Cursor → purple.
+Colours come from the `tool-*` tokens: Gemini → blue, Claude → orange, Lovable → pink, Cursor → purple. They are tuned for a dark ground and do not flip with the theme, because this chip only ever renders inside a prompt box.
 
 ---
 
@@ -163,3 +163,11 @@ Registry of hand-built diagrams rendered with divs and Tailwind rather than an S
 Props: `{ id: string }` — must match a key in the registry (`tool-pipeline`, `brief-comparison`, `two-llm-workflow`, `iteration-loop`, `code-deploy-pipeline`, `feedback-loop`, `sprint-visual`, `path-comparison`).
 
 Note that diagram copy lives inside this component rather than in `data/`, so text changes to a diagram happen here.
+
+---
+
+### `ThemeToggle.jsx`
+
+Cycles the theme `light → dark → system` and shows the current mode as a sun / moon / monitor icon. Reads `ThemeContext`. Rendered twice in `Navbar` — once in the desktop control cluster, once in the mobile one.
+
+Three states rather than two, so "follow my OS" stays reachable without spending a second control on it.

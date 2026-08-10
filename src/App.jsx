@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { MotionConfig } from 'motion/react'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import CommandPalette from './components/ui/CommandPalette'
@@ -66,14 +67,25 @@ export default function App() {
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <ScrollToTop />
-      <Navbar onOpenSearch={() => setSearchOpen(true)} />
-      <div className="flex-1">
-        <AnimatedRoutes />
+    // `reducedMotion="user"` is the single place the preference is honoured for
+    // every spring in the app: Motion drops transform and layout animation and
+    // keeps opacity, so components never have to check the media query.
+    <MotionConfig reducedMotion="user">
+      <div className="min-h-screen flex flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-small focus:font-semibold focus:text-accent-on"
+        >
+          Skip to content
+        </a>
+        <ScrollToTop />
+        <Navbar onOpenSearch={() => setSearchOpen(true)} />
+        <div id="main-content" className="flex-1">
+          <AnimatedRoutes />
+        </div>
+        <Footer />
+        <CommandPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
       </div>
-      <Footer />
-      <CommandPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
-    </div>
+    </MotionConfig>
   )
 }

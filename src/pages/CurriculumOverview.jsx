@@ -49,11 +49,11 @@ export default function CurriculumOverview() {
       <Breadcrumb crumbs={[{ to: '/', label: 'Home' }, { label: 'Curriculum' }]} />
 
       <div className="flex items-start justify-between gap-4 mb-2">
-        <h1 className="text-4xl font-bold text-brand-black">Workshop Curriculum</h1>
+        <h1 className="text-h1 font-bold text-brand-black">Workshop Curriculum</h1>
         {started && (
           <button
             onClick={handleReset}
-            className="text-xs text-brand-gray hover:text-brand-red transition-colors shrink-0 mt-2"
+            className="text-caption text-brand-gray hover:text-brand-red transition-colors shrink-0 mt-2"
           >
             Reset progress
           </button>
@@ -67,14 +67,14 @@ export default function CurriculumOverview() {
       {/* Progress */}
       <div className="bg-brand-grayLight rounded-xl p-6 mb-6 border border-brand-border">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-sm font-semibold text-brand-black">Your progress</p>
-          <p className="text-sm font-bold text-brand-red">{completedCount} / {totalCount} sections complete</p>
+          <p className="text-small font-semibold text-brand-black">Your progress</p>
+          <p className="text-small font-bold text-brand-red">{completedCount} / {totalCount} sections complete</p>
         </div>
         <ProgressBar percent={percentComplete} />
         {resumeTarget && (
           <Link
             to={`/curriculum/${resumeTarget.section.id}`}
-            className="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-brand-red hover:underline"
+            className="inline-flex items-center gap-2 mt-4 text-small font-semibold text-brand-red hover:underline"
           >
             <PlayCircle size={16} />
             {started ? `Resume at ${resumeTarget.sub.code} ${resumeTarget.sub.title}` : 'Start with 0.1 Welcome and Introductions'}
@@ -84,8 +84,8 @@ export default function CurriculumOverview() {
 
       {/* Path selection */}
       <div className="mb-10">
-        <p className="text-sm font-semibold text-brand-black">Your build path</p>
-        <p className="text-xs text-brand-gray mt-1">
+        <p className="text-small font-semibold text-brand-black">Your build path</p>
+        <p className="text-caption text-brand-gray mt-1">
           Sections 2 and 3 are two routes to the same live URL. Pick one and the site will focus on it.
         </p>
         <PathPicker compact />
@@ -104,14 +104,14 @@ export default function CurriculumOverview() {
               key={s.id}
               to={`/curriculum/${s.id}`}
               className={cn(
-                'flex items-start gap-5 p-5 border rounded-xl transition-all group',
+                'pressable-lg flex items-start gap-5 p-5 border rounded-xl bg-surface-raised transition-all duration-250 ease-out group',
                 offPath
-                  ? 'border-brand-border opacity-55 hover:opacity-100'
-                  : 'border-brand-border hover:border-brand-red hover:shadow-sm'
+                  ? 'border-line opacity-55 hover:opacity-100'
+                  : 'border-line hover:border-accent hover:shadow-md hover:-translate-y-0.5'
               )}
             >
               <div className="flex flex-col items-center gap-1 shrink-0">
-                <span className="text-2xl font-bold text-brand-border group-hover:text-brand-red/30 transition-colors">
+                <span className="text-h2 font-bold text-brand-border group-hover:text-brand-red/30 transition-colors">
                   {s.number}
                 </span>
                 {done && <CheckCircle2 size={16} className="text-path-nontech" />}
@@ -123,21 +123,21 @@ export default function CurriculumOverview() {
                   </h3>
                   {s.path !== 'both' && <EntityPill path={s.path} />}
                 </div>
-                <p className="text-sm text-brand-gray leading-relaxed mb-3">{s.description}</p>
+                <p className="text-small text-brand-gray leading-relaxed mb-3">{s.description}</p>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs bg-brand-grayLight text-brand-gray font-semibold px-2.5 py-1 rounded-full">
+                  <span className="text-caption bg-brand-grayLight text-brand-gray font-semibold px-2.5 py-1 rounded-full">
                     {sectionDuration(s)}
                   </span>
-                  <span className="text-xs text-brand-gray">
+                  <span className="text-caption text-brand-gray">
                     {doneSubs} / {subs.length} steps
                   </span>
                   {done && (
-                    <span className="text-xs bg-path-nontechLight text-path-nontech font-semibold px-2.5 py-1 rounded-full">
+                    <span className="text-caption bg-path-nontechLight text-path-nontech font-semibold px-2.5 py-1 rounded-full">
                       Complete
                     </span>
                   )}
                   {offPath && (
-                    <span className="text-xs bg-brand-grayLight text-brand-gray font-semibold px-2.5 py-1 rounded-full">
+                    <span className="text-caption bg-brand-grayLight text-brand-gray font-semibold px-2.5 py-1 rounded-full">
                       Not on your path
                     </span>
                   )}

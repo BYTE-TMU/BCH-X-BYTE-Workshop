@@ -14,7 +14,12 @@ export function useScrollReveal() {
           }
         })
       },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      // threshold 0, not a ratio. A ratio is measured against the element's own
+      // height, so any section taller than ~12x the viewport can never reach 8%
+      // and its content stays permanently invisible. The Resources prompt library
+      // is already 4800px tall — that is one short viewport away from the cliff.
+      // rootMargin does the "wait until it is properly on screen" job instead.
+      { threshold: 0, rootMargin: '0px 0px -40px 0px' }
     )
 
     // Give React one frame to finish rendering the new page

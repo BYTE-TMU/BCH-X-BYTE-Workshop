@@ -32,12 +32,12 @@ export default function Facilitator() {
       </div>
 
       <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
-        <h1 className="text-4xl font-bold text-brand-black">Run of Show</h1>
+        <h1 className="text-h1 font-bold text-brand-black">Run of Show</h1>
         <div className="flex items-center gap-2 print:hidden">
           <button
             onClick={() => setPresenterMode((m) => !m)}
             className={cn(
-              'inline-flex items-center gap-2 text-sm font-medium px-3 py-2 rounded-lg border transition-colors',
+              'inline-flex items-center gap-2 text-small font-medium px-3 py-2 rounded-lg border transition-colors',
               presenterMode
                 ? 'border-path-both bg-path-bothLight text-path-both'
                 : 'border-brand-border text-brand-black hover:border-brand-red'
@@ -47,7 +47,7 @@ export default function Facilitator() {
           </button>
           <button
             onClick={() => window.print()}
-            className="inline-flex items-center gap-2 text-sm font-medium px-3 py-2 rounded-lg border border-brand-border text-brand-black hover:border-brand-red transition-colors"
+            className="inline-flex items-center gap-2 text-small font-medium px-3 py-2 rounded-lg border border-brand-border text-brand-black hover:border-brand-red transition-colors"
           >
             <Printer size={15} /> Print
           </button>
@@ -58,7 +58,7 @@ export default function Facilitator() {
         Every section and subsection in order, with the running clock. Take-home material is listed
         separately because it is not delivered live.
       </p>
-      <p className="text-sm font-semibold text-brand-black mb-10">
+      <p className="text-small font-semibold text-brand-black mb-10">
         Total live content: {total} minutes across {sections.length} sections, presenting both build paths to the
         whole room. A student only works through one of them, so their hands-on time is shorter than the clock below.
       </p>
@@ -71,36 +71,36 @@ export default function Facilitator() {
         return (
           <section key={section.id} className="mb-10 break-inside-avoid">
             <div className="flex items-baseline gap-3 flex-wrap border-b border-brand-border pb-2 mb-4">
-              <h2 className="text-xl font-bold text-brand-black">
+              <h2 className="text-h3 font-bold text-brand-black">
                 {section.number}. {section.title}
               </h2>
-              <span className="text-xs font-mono text-brand-gray">
+              <span className="text-caption font-mono text-brand-gray">
                 starts {clock(sectionStart)} · {sectionMinutes(section)} min
               </span>
               {section.path !== 'both' && (
-                <span className="text-xs font-semibold text-brand-gray uppercase tracking-widest">
+                <span className="text-eyebrow uppercase text-brand-gray">
                   {section.path === 'nontech' ? 'No-code path' : 'Code path'}
                 </span>
               )}
               <Link
                 to={`/curriculum/${section.id}?slides=1&presenter=1`}
-                className="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold text-path-both hover:underline print:hidden"
+                className="ml-auto inline-flex items-center gap-1.5 text-caption font-semibold text-path-both hover:underline print:hidden"
               >
                 <Presentation size={13} /> Project this section
               </Link>
             </div>
 
             {section.introFrame && (
-              <p className="text-sm text-brand-black bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4 leading-relaxed">
+              <p className="text-small text-ink bg-state-infoSubtle border border-state-infoLine rounded-lg p-3 mb-4 leading-relaxed">
                 <span className="font-semibold">Say before pressing play: </span>
                 {section.introFrame}
               </p>
             )}
 
             <div className="overflow-x-auto">
-              <table className="w-full text-sm min-w-[680px]">
+              <table className="w-full text-small min-w-[680px]">
                 <thead>
-                  <tr className="text-left text-xs uppercase tracking-widest text-brand-gray">
+                  <tr className="text-left text-eyebrow uppercase text-brand-gray">
                     <th className="py-2 pr-3 font-semibold w-16">Clock</th>
                     <th className="py-2 pr-3 font-semibold w-14">Code</th>
                     <th className="py-2 pr-3 font-semibold">Subsection</th>
@@ -117,12 +117,12 @@ export default function Facilitator() {
 
                     return (
                       <tr key={sub.code}>
-                        <td className="py-2.5 pr-3 font-mono text-xs text-brand-gray">{clock(startsAt)}</td>
-                        <td className="py-2.5 pr-3 font-mono text-xs text-brand-gray">{sub.code}</td>
+                        <td className="py-2.5 pr-3 font-mono text-caption text-brand-gray">{clock(startsAt)}</td>
+                        <td className="py-2.5 pr-3 font-mono text-caption text-brand-gray">{sub.code}</td>
                         <td className="py-2.5 pr-3">
                           <span className="font-medium text-brand-black">{sub.title}</span>
                           {notes.map((note, i) => (
-                            <p key={i} className="text-xs text-path-both leading-relaxed mt-1.5">
+                            <p key={i} className="text-caption text-path-both leading-relaxed mt-1.5">
                               <span className="font-semibold">Note: </span>{note.text}
                             </p>
                           ))}
@@ -137,7 +137,7 @@ export default function Facilitator() {
             </div>
 
             {extensions.length > 0 && (
-              <p className="text-xs text-brand-gray mt-3">
+              <p className="text-caption text-brand-gray mt-3">
                 <span className="font-semibold text-brand-black">Take-home (not delivered live): </span>
                 {extensions.map((sub) => `${sub.code} ${sub.title}`).join(' · ')}
               </p>
@@ -146,7 +146,7 @@ export default function Facilitator() {
         )
       })}
 
-      <div className="border-t border-brand-border pt-4 text-sm font-semibold text-brand-black">
+      <div className="border-t border-brand-border pt-4 text-small font-semibold text-brand-black">
         End of structured content at {clock(elapsed)}. The remaining 30 minutes of the two-hour session are
         Q&amp;A, recap, resource distribution, and the prize draw.
       </div>

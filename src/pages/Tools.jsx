@@ -28,11 +28,11 @@ export default function Tools() {
   return (
     <div className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <Breadcrumb crumbs={[{ to: '/', label: 'Home' }, { label: 'Tools' }]} />
-      <h1 className="text-4xl font-bold text-brand-black mb-2">Tools Reference</h1>
+      <h1 className="text-h1 font-bold text-brand-black mb-2">Tools Reference</h1>
       <p className="text-brand-gray leading-relaxed mb-2">
         Every tool introduced in the workshop: what it is for, what path it serves, and exactly what its free tier gets you.
       </p>
-      <p className="text-xs text-brand-gray mb-8">
+      <p className="text-caption text-brand-gray mb-8">
         Free-tier limits verified {FREE_TIER_VERIFIED}. These change often — check the vendor before you rely on them.
       </p>
 
@@ -43,9 +43,9 @@ export default function Tools() {
             <button
               key={f.value}
               onClick={() => setActiveFilter(f.value)}
-              className={`text-sm font-semibold px-4 py-2 rounded-full transition-colors ${
+              className={`pressable text-small font-semibold px-4 py-2 rounded-full transition-colors ${
                 activeFilter === f.value
-                  ? 'bg-brand-red text-white'
+                  ? 'bg-brand-red text-accent-on'
                   : 'bg-brand-grayLight text-brand-gray hover:text-brand-black'
               }`}
             >
@@ -60,7 +60,7 @@ export default function Tools() {
             placeholder="Search tools…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 text-sm border border-brand-border rounded-full focus:outline-none focus:border-brand-red"
+            className="w-full pl-9 pr-4 py-2 text-small border border-brand-border rounded-full focus:border-accent"
           />
         </div>
       </div>
@@ -71,30 +71,32 @@ export default function Tools() {
         if (groupTools.length === 0) return null
         return (
           <div key={group} className="mb-12">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-4">{group}</h2>
+            <h2 className="text-eyebrow uppercase text-brand-gray mb-4">{group}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {groupTools.map((tool) => {
                 const fallback = tool.freeTier.fallback ? getToolById(tool.freeTier.fallback) : null
                 return (
-                  <div key={tool.id} className="border border-brand-border rounded-xl p-5 bg-white hover:shadow-sm transition-shadow flex flex-col">
-                    <div className="flex items-start justify-between gap-2 mb-3">
-                      <div>
+                  <div key={tool.id} className="border border-brand-border rounded-xl p-5 bg-surface-raised hover:shadow-md hover:-translate-y-0.5 transition-all duration-250 ease-out flex flex-col">
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="min-w-0">
                         <h3 className="font-semibold text-brand-black">{tool.name}</h3>
-                        <p className="text-xs text-brand-gray mt-0.5">{tool.step}</p>
+                        <p className="text-caption text-brand-gray mt-0.5">{tool.step}</p>
                       </div>
-                      <div className="flex flex-col items-end gap-1.5">
+                      {/* shrink-0 so a long tool name squeezes the heading, not the
+                          badges — they wrapped mid-word before. */}
+                      <div className="flex flex-col items-end gap-1.5 shrink-0">
                         <EntityPill path={tool.path} />
                         <FreeTierBadge status={tool.freeTier.status} />
                       </div>
                     </div>
-                    <p className="text-sm text-brand-gray leading-relaxed mb-4">{tool.description}</p>
+                    <p className="text-small text-brand-gray leading-relaxed mb-4">{tool.description}</p>
 
                     <div className="mt-auto">
                       <div className="rounded-lg bg-brand-grayLight border border-brand-border p-3 mb-4">
-                        <p className="text-[11px] font-bold uppercase tracking-widest text-brand-gray mb-1">What the free tier gets you</p>
-                        <p className="text-xs text-brand-black leading-relaxed">{tool.freeTier.detail}</p>
+                        <p className="text-eyebrow uppercase text-brand-gray mb-1">What the free tier gets you</p>
+                        <p className="text-caption text-brand-black leading-relaxed">{tool.freeTier.detail}</p>
                         {fallback && (
-                          <p className="text-xs text-brand-gray leading-relaxed mt-2">
+                          <p className="text-caption text-brand-gray leading-relaxed mt-2">
                             <span className="font-semibold text-brand-black">Free alternative:</span> {fallback.name}
                           </p>
                         )}
@@ -103,7 +105,7 @@ export default function Tools() {
                         href={tool.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-red hover:underline underline-offset-2"
+                        className="inline-flex items-center gap-1.5 text-small font-medium text-brand-red hover:underline underline-offset-2"
                       >
                         Open Tool <ExternalLink size={13} />
                       </a>
@@ -119,7 +121,7 @@ export default function Tools() {
       {filtered.length === 0 && (
         <div className="text-center py-20 text-brand-gray">
           <p className="font-medium">No tools match your filters.</p>
-          <button onClick={() => { setActiveFilter('all'); setQuery('') }} className="text-brand-red text-sm mt-2 hover:underline">
+          <button onClick={() => { setActiveFilter('all'); setQuery('') }} className="text-brand-red text-small mt-2 hover:underline">
             Clear filters
           </button>
         </div>

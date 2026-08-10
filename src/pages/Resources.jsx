@@ -29,15 +29,15 @@ export default function Resources() {
   return (
     <div className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <Breadcrumb crumbs={[{ to: '/', label: 'Home' }, { label: 'Resources' }]} />
-      <h1 className="text-4xl font-bold text-brand-black mb-2">Resources</h1>
+      <h1 className="text-h1 font-bold text-brand-black mb-2">Resources</h1>
       <p className="text-brand-gray leading-relaxed mb-12">
         Everything you need to keep building after the workshop: checklist, tool links, and the full prompt library.
       </p>
 
       {/* Quick start checklist */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold text-brand-black mb-1">Quick Start Checklist</h2>
-        <p className="text-brand-gray text-sm mb-6">Your end-to-end workflow from idea to live product. Progress saves automatically.</p>
+        <h2 className="text-h2 font-bold text-brand-black mb-1">Quick Start Checklist</h2>
+        <p className="text-brand-gray text-small mb-6">Your end-to-end workflow from idea to live product. Progress saves automatically.</p>
         <div className="space-y-3">
           {checklistSteps.map((step, i) => {
             const done = !!checklist[step.id]
@@ -45,7 +45,7 @@ export default function Resources() {
               <label
                 key={step.id}
                 className={`flex items-start gap-4 p-4 rounded-xl border cursor-pointer transition-colors ${
-                  done ? 'bg-path-nontechLight border-path-nontech/30' : 'bg-white border-brand-border hover:border-brand-red'
+                  done ? 'bg-path-nontechLight border-path-nontech/30' : 'bg-surface-raised border-brand-border hover:border-brand-red'
                 }`}
               >
                 <input
@@ -55,10 +55,10 @@ export default function Resources() {
                   className="mt-0.5 accent-path-nontech"
                 />
                 <div>
-                  <p className={`font-semibold text-sm ${done ? 'line-through text-brand-gray' : 'text-brand-black'}`}>
+                  <p className={`font-semibold text-small ${done ? 'line-through text-brand-gray' : 'text-brand-black'}`}>
                     {i + 1}. {step.label}
                   </p>
-                  <p className="text-xs text-brand-gray mt-1 leading-relaxed">{step.description}</p>
+                  <p className="text-caption text-brand-gray mt-1 leading-relaxed">{step.description}</p>
                 </div>
               </label>
             )
@@ -68,8 +68,8 @@ export default function Resources() {
 
       {/* Tool links */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold text-brand-black mb-1">Tool Links</h2>
-        <p className="text-brand-gray text-sm mb-6">Every tool in one place. Open directly from here.</p>
+        <h2 className="text-h2 font-bold text-brand-black mb-1">Tool Links</h2>
+        <p className="text-brand-gray text-small mb-6">Every tool in one place. Open directly from here.</p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {tools.map((t) => (
             <a
@@ -77,11 +77,11 @@ export default function Resources() {
               href={t.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-3 p-4 border border-brand-border rounded-lg bg-white hover:border-brand-red hover:shadow-sm transition-all group"
+              className="flex items-center justify-between gap-3 p-4 border border-brand-border rounded-lg bg-surface-raised hover:border-brand-red hover:shadow-md hover:-translate-y-0.5 transition-all group"
             >
               <div>
-                <p className="font-semibold text-brand-black text-sm group-hover:text-brand-red transition-colors">{t.name}</p>
-                <p className="text-xs text-brand-gray mt-0.5">{t.step}</p>
+                <p className="font-semibold text-brand-black text-small group-hover:text-brand-red transition-colors">{t.name}</p>
+                <p className="text-caption text-brand-gray mt-0.5">{t.step}</p>
               </div>
               <ExternalLink size={14} className="text-brand-gray group-hover:text-brand-red transition-colors shrink-0" />
             </a>
@@ -91,16 +91,16 @@ export default function Resources() {
 
       {/* Free tier summary */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold text-brand-black mb-1">Free Tier Summary</h2>
-        <p className="text-brand-gray text-sm mb-2">
+        <h2 className="text-h2 font-bold text-brand-black mb-1">Free Tier Summary</h2>
+        <p className="text-brand-gray text-small mb-2">
           You can complete the whole workshop without paying, but two tools have real limits and two need a paid plan.
           Every paid step below has a free alternative.
         </p>
-        <p className="text-xs text-brand-gray mb-6">
+        <p className="text-caption text-brand-gray mb-6">
           Limits verified {FREE_TIER_VERIFIED}. AI pricing changes fast — confirm with the vendor before you rely on it.
         </p>
         <div className="border border-brand-border rounded-xl overflow-x-auto">
-          <table className="w-full text-sm min-w-[640px]">
+          <table className="w-full text-small min-w-[640px]">
             <thead>
               <tr className="bg-brand-grayLight">
                 <th className="text-left px-5 py-3 font-semibold text-brand-black">Tool</th>
@@ -112,7 +112,7 @@ export default function Resources() {
               {tools.map((t) => {
                 const fallback = t.freeTier.fallback ? getToolById(t.freeTier.fallback) : null
                 return (
-                  <tr key={t.id} className="bg-white align-top">
+                  <tr key={t.id} className="bg-surface-raised align-top">
                     <td className="px-5 py-3 font-medium text-brand-black whitespace-nowrap">{t.name}</td>
                     <td className="px-5 py-3"><FreeTierBadge status={t.freeTier.status} /></td>
                     <td className="px-5 py-3 text-brand-gray leading-relaxed">
@@ -133,11 +133,11 @@ export default function Resources() {
 
       {/* Prompt library */}
       <section className="mb-16">
-        <h2 className="text-2xl font-bold text-brand-black mb-1">Prompt Library</h2>
-        <p className="text-brand-gray text-sm mb-8">All prompts from the curriculum in one place. Copy and paste directly into the tools.</p>
+        <h2 className="text-h2 font-bold text-brand-black mb-1">Prompt Library</h2>
+        <p className="text-brand-gray text-small mb-8">All prompts from the curriculum in one place. Copy and paste directly into the tools.</p>
         {promptLibrary.map((group) => (
           <div key={group.sectionId} className="mb-10">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-4">{group.section}</h3>
+            <h3 className="text-eyebrow uppercase text-brand-gray mb-4">{group.section}</h3>
             {group.items.map((item, i) => (
               <PromptBox
                 key={`${group.sectionId}-${i}`}
@@ -152,16 +152,16 @@ export default function Resources() {
 
       {/* BYTE community */}
       <section className="mb-16">
-        <div className="bg-brand-black rounded-2xl p-8 text-center">
-          <h2 className="text-2xl font-bold text-white mb-3">Keep Building with BYTE</h2>
-          <p className="text-brand-gray leading-relaxed mb-6 max-w-lg mx-auto">
+        <div className="bg-surface-inverse rounded-2xl p-8 text-center">
+          <h2 className="text-h2 font-bold text-ink-inverse mb-3">Keep Building with BYTE</h2>
+          <p className="text-ink-inverseDim leading-relaxed mb-6 max-w-lg mx-auto">
             Real teams. Real projects. Real demo days. If you want to keep the momentum going, BYTE is where it happens.
           </p>
           <a
             href="https://github.com/BYTE-TMU"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-brand-red text-white font-semibold px-6 py-3 rounded-full hover:bg-red-700 transition-colors"
+            className="pressable inline-flex items-center gap-2 bg-brand-red text-accent-on font-semibold px-6 py-3 rounded-full hover:bg-accent-hover transition-colors"
           >
             Find BYTE on GitHub <ExternalLink size={14} />
           </a>
@@ -170,16 +170,16 @@ export default function Resources() {
 
       {/* Downloads — disabled */}
       <section>
-        <h2 className="text-2xl font-bold text-brand-black mb-1">Downloads</h2>
-        <p className="text-brand-gray text-sm mb-6">Workshop documents, coming soon.</p>
+        <h2 className="text-h2 font-bold text-brand-black mb-1">Downloads</h2>
+        <p className="text-brand-gray text-small mb-6">Workshop documents, coming soon.</p>
         <div className="grid sm:grid-cols-2 gap-4">
           {['Tools Reference Document', 'Curriculum Slide Deck'].map((name) => (
             <div
               key={name}
               className="flex items-center justify-between gap-3 p-4 border border-dashed border-brand-border rounded-lg bg-brand-grayLight opacity-60"
             >
-              <p className="text-sm font-medium text-brand-gray">{name}</p>
-              <span className="text-xs text-brand-gray bg-white px-2 py-1 rounded-full border border-brand-border">
+              <p className="text-small font-medium text-brand-gray">{name}</p>
+              <span className="text-caption text-brand-gray bg-surface-raised px-2 py-1 rounded-full border border-brand-border">
                 Coming soon
               </span>
             </div>

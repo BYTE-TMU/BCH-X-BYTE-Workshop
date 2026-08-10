@@ -1,14 +1,14 @@
 import { freeTierLabels } from '../../data/tools'
 
 const statusColors = {
-  free:    'bg-path-nontechLight text-path-nontech',
-  limited: 'bg-amber-50 text-amber-700',
-  paid:    'bg-brand-redLight text-brand-red',
+  free:    'bg-state-okSubtle text-state-ok',
+  limited: 'bg-state-warnSubtle text-state-warn',
+  paid:    'bg-accent-subtle text-accent',
 }
 
 export default function FreeTierBadge({ status }) {
   return (
-    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${statusColors[status] ?? statusColors.free}`}>
+    <span className={`text-caption font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${statusColors[status] ?? statusColors.free}`}>
       {freeTierLabels[status] ?? status}
     </span>
   )

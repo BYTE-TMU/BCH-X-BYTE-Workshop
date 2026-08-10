@@ -1,5 +1,7 @@
+import { motion } from 'motion/react'
 import { Check, Code2, MousePointerClick } from 'lucide-react'
 import { useProgress } from '../../context/ProgressContext'
+import { ui } from '../../motion/springs'
 import { cn } from '../../utils/cn'
 
 const options = [
@@ -31,7 +33,7 @@ export default function PathPicker({ compact = false }) {
   return (
     <div className="my-6">
       {!compact && (
-        <p className="text-sm font-semibold text-brand-black mb-3">Pick your path</p>
+        <p className="text-small font-semibold text-ink mb-3">Pick your path</p>
       )}
       <div className="grid sm:grid-cols-2 gap-3">
         {options.map(({ value, label, icon: Icon, blurb, activeClass, iconClass }) => {
@@ -42,25 +44,38 @@ export default function PathPicker({ compact = false }) {
               onClick={() => setSelectedPath(active ? null : value)}
               aria-pressed={active}
               className={cn(
-                'text-left rounded-xl border p-4 transition-all',
-                active ? activeClass : 'border-brand-border bg-white hover:border-brand-red'
+                'pressable-lg text-left rounded-xl border p-4 transition-colors',
+                active
+                  ? activeClass
+                  : 'border-line bg-surface-raised hover:border-accent hover:bg-surface-hover'
               )}
             >
               <div className="flex items-center gap-2 mb-1">
-                <Icon size={16} className={active ? iconClass : 'text-brand-gray'} />
-                <span className="font-semibold text-sm text-brand-black">{label}</span>
-                {active && <Check size={14} className={cn('ml-auto', iconClass)} />}
+                <Icon size={16} className={active ? iconClass : 'text-ink-secondary'} />
+                <span className="font-semibold text-small text-ink">{label}</span>
+                {active && (
+                  // Springs in from nothing, so committing to a path registers as
+                  // a physical event rather than a colour swap.
+                  <motion.span
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={ui}
+                    className={cn('ml-auto inline-flex', iconClass)}
+                  >
+                    <Check size={14} />
+                  </motion.span>
+                )}
               </div>
-              <p className="text-xs text-brand-gray leading-relaxed">{blurb}</p>
+              <p className="text-caption text-ink-secondary leading-relaxed">{blurb}</p>
             </button>
           )
         })}
       </div>
       {selectedPath && (
-        <p className="text-xs text-brand-gray mt-3">
+        <p className="text-caption text-ink-secondary mt-3">
           The other build section stays available, just dimmed, and your progress now counts only the
           sections on this path.{' '}
-          <button onClick={() => setSelectedPath(null)} className="text-brand-red hover:underline">
+          <button onClick={() => setSelectedPath(null)} className="text-accent hover:underline">
             Show both paths
           </button>
         </p>

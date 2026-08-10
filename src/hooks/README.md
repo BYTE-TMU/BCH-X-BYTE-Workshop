@@ -27,7 +27,17 @@ Used by: `components/ui/CopyButton.jsx`
 
 Adds `.reveal-visible` to every `<section>` and `[data-reveal]` element as it scrolls into view, driving the fade-up animation defined in `index.css`. Called once in `App.jsx`.
 
-Print styles override the animation so nothing comes out invisible on paper.
+Print styles override the animation so nothing comes out invisible on paper. Under `prefers-reduced-motion` the rise is dropped and only the opacity fade remains — reduced motion means a gentler equivalent, not no feedback at all.
+
+---
+
+### `useScrolled.js`
+
+```js
+const scrolled = useScrolled(threshold = 4)
+```
+
+Whether the page has scrolled past `threshold` pixels. Used by `Navbar` to drive `data-scrolled`, which fades in the hairline and gradient under the translucent bar. A divider drawn against blank space is decoration; one that appears when content passes under the bar is information.
 
 ---
 

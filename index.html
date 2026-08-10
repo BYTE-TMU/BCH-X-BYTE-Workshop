@@ -4,8 +4,52 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>BCH x BYTE Workshop</title>
-    <meta name="description" content="A hands-on workshop where you go from a vague idea to a live, deployed product — no coding experience required." />
+    <meta
+      name="description"
+      content="A hands-on workshop where you go from a vague idea to a live, deployed product — no coding experience required."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BCH x BYTE Workshop" />
+    <meta
+      property="og:description"
+      content="A hands-on workshop where you go from a vague idea to a live, deployed product — no coding experience required."
+    />
+    <meta property="og:url" content="https://byte-tmu.github.io/BCH-X-BYTE-Workshop/" />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Loaded here rather than via `@import` in the stylesheet: an @import is
+         discovered only after the CSS itself has downloaded and parsed, which
+         serialises two round trips before any text can render. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <!-- Resolve the theme before first paint. Anything later — including React —
+         produces a flash of the wrong theme on every load. -->
+    <script>
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('bch_byte_theme')
+          var dark =
+            stored === 'dark' ||
+            ((!stored || stored === 'system') &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches)
+          if (dark) document.documentElement.classList.add('dark')
+        } catch (e) {
+          /* private mode / storage disabled — fall through to the light default */
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

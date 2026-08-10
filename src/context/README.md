@@ -90,3 +90,22 @@ const { progress, toggleSubsection } = useProgress()
 ```
 
 `useProgress()` throws if called outside of `ProgressProvider`.
+
+---
+
+### `ThemeContext.jsx`
+
+Light / dark / system, persisted under `bch_byte_theme`.
+
+```js
+const { mode, isDark, setMode, cycleMode } = useTheme()
+```
+
+| Value | Type | Description |
+|---|---|---|
+| `mode` | `'light' \| 'dark' \| 'system'` | What the user chose. Defaults to `system` |
+| `isDark` | `boolean` | `mode` resolved against `prefers-color-scheme` |
+| `setMode` | `(mode) => void` | Set explicitly |
+| `cycleMode` | `() => void` | Advance light → dark → system |
+
+The provider toggles `html.dark`, which is what every token in `index.css` keys off. It does **not** own first paint: an inline script in `index.html` applies the same resolution before the bundle loads, because anything running later — React included — flashes the wrong theme on every load. If you change the storage key or the mode names, change them in both places.

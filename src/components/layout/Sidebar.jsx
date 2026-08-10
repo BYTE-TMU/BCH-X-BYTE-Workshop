@@ -5,6 +5,7 @@ import { useProgress } from '../../context/ProgressContext'
 import { sections } from '../../data/curriculum'
 import { useScrollSpy } from '../../hooks/useScrollSpy'
 import { isOffPath, liveSubsections, subsectionId } from '../../utils/curriculumHelpers'
+import { scrollIntoViewSafely } from '../../utils/scroll'
 import { cn } from '../../utils/cn'
 
 export default function Sidebar() {
@@ -22,8 +23,8 @@ export default function Sidebar() {
 
   return (
     <aside className="hidden lg:block sticky top-24 w-56 shrink-0 self-start max-h-[calc(100vh-8rem)] overflow-y-auto">
-      <div className="space-y-1 text-sm">
-        <p className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-3">Curriculum</p>
+      <div className="space-y-1 text-small">
+        <p className="text-eyebrow uppercase text-brand-gray mb-3">Curriculum</p>
         {sections.map((s) => {
           const active = location.pathname === `/curriculum/${s.id}`
           const done = isSectionComplete(s.id)
@@ -35,14 +36,14 @@ export default function Sidebar() {
                 to={`/curriculum/${s.id}`}
                 title={offPath ? 'Not on your selected path' : undefined}
                 className={cn(
-                  'flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ease-in-out',
+                  'pressable-lg flex items-center gap-2 px-3 py-2 rounded-lg transition-colors duration-200 ease-out',
                   active
                     ? 'bg-brand-redLight text-brand-red font-semibold'
                     : 'text-brand-black hover:bg-brand-grayLight hover:text-brand-red',
                   offPath && !active && 'opacity-40'
                 )}
               >
-                <span className={cn('text-xs shrink-0', active ? 'text-brand-red' : 'text-brand-gray')}>
+                <span className={cn('text-caption shrink-0', active ? 'text-brand-red' : 'text-brand-gray')}>
                   {s.number}
                 </span>
                 <span className="flex-1 leading-snug">{s.title}</span>
@@ -58,10 +59,10 @@ export default function Sidebar() {
                       href={`#${location.pathname}#${sub.code}`}
                       onClick={(e) => {
                         e.preventDefault()
-                        document.getElementById(sub.code)?.scrollIntoView({ behavior: 'smooth' })
+                        scrollIntoViewSafely(document.getElementById(sub.code))
                       }}
                       className={cn(
-                        'flex items-start gap-1.5 py-1 text-xs leading-snug transition-colors',
+                        'flex items-start gap-1.5 py-1 text-caption leading-snug transition-colors',
                         activeCode === sub.code
                           ? 'text-brand-red font-semibold'
                           : 'text-brand-gray hover:text-brand-black'
@@ -81,7 +82,7 @@ export default function Sidebar() {
         })}
 
         <div className="border-t border-brand-border my-4" />
-        <p className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-2">Reference</p>
+        <p className="text-eyebrow uppercase text-brand-gray mb-2">Reference</p>
         {[
           { to: '/tools', label: 'Tools' },
           { to: '/resources', label: 'Resources' },
@@ -91,7 +92,7 @@ export default function Sidebar() {
             key={to}
             to={to}
             className={cn(
-              'block px-3 py-2 rounded-lg text-sm transition-all duration-200 ease-in-out',
+              'pressable-lg block px-3 py-2 rounded-lg text-small transition-colors duration-200 ease-out',
               location.pathname === to
                 ? 'bg-brand-redLight text-brand-red font-semibold'
                 : 'text-brand-black hover:bg-brand-grayLight hover:text-brand-red'

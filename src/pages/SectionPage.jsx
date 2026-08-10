@@ -33,7 +33,7 @@ function ContentBlock({ block }) {
       return (
         <ul className="space-y-2 my-4 pl-1">
           {block.items.map((item, i) => (
-            <li key={i} className="flex items-start gap-2 text-brand-black leading-relaxed text-sm sm:text-base">
+            <li key={i} className="flex items-start gap-2 text-brand-black leading-relaxed text-small sm:text-base">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-red mt-2 shrink-0" />
               {item}
             </li>
@@ -45,8 +45,8 @@ function ContentBlock({ block }) {
       return (
         <ol className="space-y-2 my-4">
           {block.items.map((item, i) => (
-            <li key={i} className="flex items-start gap-3 text-brand-black leading-relaxed text-sm sm:text-base">
-              <span className="text-brand-red font-bold text-sm shrink-0 mt-0.5">{i + 1}.</span>
+            <li key={i} className="flex items-start gap-3 text-brand-black leading-relaxed text-small sm:text-base">
+              <span className="text-brand-red font-bold text-small shrink-0 mt-0.5">{i + 1}.</span>
               {item}
             </li>
           ))}
@@ -75,7 +75,7 @@ function ContentBlock({ block }) {
     case 'mindset':
       return (
         <blockquote className="border-l-4 border-brand-red pl-6 my-8">
-          <p className="text-xl font-semibold text-brand-black leading-relaxed">{block.text}</p>
+          <p className="text-h3 font-semibold text-brand-black leading-relaxed">{block.text}</p>
         </blockquote>
       )
 
@@ -97,13 +97,13 @@ function Subsection({ sub, presenterMode }) {
   return (
     <div id={sub.code} className="mb-10 scroll-mt-24">
       <div className="flex items-baseline gap-3 mb-4">
-        <span className="text-xs font-bold text-brand-gray font-mono">{sub.code}</span>
-        <h2 className={cn('text-xl font-bold transition-colors', done ? 'text-brand-gray' : 'text-brand-black')}>
+        <span className="text-caption font-bold text-brand-gray font-mono">{sub.code}</span>
+        <h2 className={cn('text-h3 font-bold transition-colors', done ? 'text-brand-gray' : 'text-brand-black')}>
           {sub.title}
         </h2>
         <div className="ml-auto shrink-0 flex items-center gap-2">
           {presenterMode && <SubsectionTimer timing={sub.timing} />}
-          {sub.timing && <span className="text-xs text-brand-gray">{sub.timing}</span>}
+          {sub.timing && <span className="text-caption text-brand-gray">{sub.timing}</span>}
         </div>
       </div>
 
@@ -116,7 +116,7 @@ function Subsection({ sub, presenterMode }) {
       <button
         onClick={() => toggleSubsection(subsectionId(sub))}
         className={cn(
-          'mt-4 flex items-center gap-2 text-xs font-medium transition-colors print:hidden',
+          'pressable mt-4 flex items-center gap-2 text-caption font-medium transition-colors print:hidden',
           done ? 'text-path-nontech' : 'text-brand-gray hover:text-brand-black'
         )}
       >
@@ -180,9 +180,9 @@ export default function SectionPage() {
   if (slidesMode) {
     const sub = live[Math.min(slideIndex, live.length - 1)]
     return (
-      <div className="max-w-4xl mx-auto px-6 py-12 text-lg">
-        <div className="flex items-center justify-between mb-8 text-sm text-brand-gray">
-          <span className="font-bold uppercase tracking-widest">
+      <div className="max-w-4xl mx-auto px-6 py-12 text-body-lg">
+        <div className="flex items-center justify-between mb-8 text-small text-brand-gray">
+          <span className="font-bold uppercase tracking-[0.1em]">
             Section {section.number}: {section.title}
           </span>
           <span className="font-mono">{slideIndex + 1} / {live.length}</span>
@@ -191,8 +191,8 @@ export default function SectionPage() {
         {sub && (
           <div className="slides-content">
             <div className="flex items-baseline gap-3 mb-6">
-              <span className="text-sm font-bold text-brand-gray font-mono">{sub.code}</span>
-              <h2 className="text-3xl font-bold text-brand-black">{sub.title}</h2>
+              <span className="text-small font-bold text-brand-gray font-mono">{sub.code}</span>
+              <h2 className="text-h2 font-bold text-brand-black">{sub.title}</h2>
               <div className="ml-auto shrink-0">
                 <SubsectionTimer timing={sub.timing} />
               </div>
@@ -207,17 +207,17 @@ export default function SectionPage() {
           <button
             onClick={() => setSlideIndex((i) => Math.max(i - 1, 0))}
             disabled={slideIndex === 0}
-            className="flex items-center gap-2 text-sm font-medium text-brand-black disabled:opacity-30"
+            className="flex items-center gap-2 text-small font-medium text-brand-black disabled:opacity-30"
           >
             <ArrowLeft size={16} /> Previous
           </button>
-          <Link to={`/curriculum/${section.id}`} className="text-sm text-brand-gray hover:text-brand-red">
+          <Link to={`/curriculum/${section.id}`} className="text-small text-brand-gray hover:text-brand-red">
             Exit projection mode
           </Link>
           <button
             onClick={() => setSlideIndex((i) => Math.min(i + 1, live.length - 1))}
             disabled={slideIndex >= live.length - 1}
-            className="flex items-center gap-2 text-sm font-medium text-brand-black disabled:opacity-30"
+            className="flex items-center gap-2 text-small font-medium text-brand-black disabled:opacity-30"
           >
             Next <ArrowRight size={16} />
           </button>
@@ -238,20 +238,20 @@ export default function SectionPage() {
 
       {/* Section header */}
       <div className="mb-8">
-        <span className="text-xs font-bold uppercase tracking-widest text-brand-gray">
+        <span className="text-eyebrow uppercase text-brand-gray">
           Section {section.number}
         </span>
-        <h1 className="text-3xl sm:text-4xl font-bold text-brand-black mt-1 mb-2">{section.title}</h1>
+        <h1 className="text-h2 sm:text-h1 font-bold text-brand-black mt-1 mb-2">{section.title}</h1>
         <div className="flex items-center gap-3 flex-wrap">
           <SectionBadge duration={sectionDuration(section)} />
           {presenterMode && (
             <>
-              <span className="text-xs text-brand-gray">
+              <span className="text-caption text-brand-gray">
                 {sectionMinutes(section)} min of live content
               </span>
               <Link
                 to={`/curriculum/${section.id}?slides=1`}
-                className="text-xs font-semibold text-path-both hover:underline"
+                className="text-caption font-semibold text-path-both hover:underline"
               >
                 Projection mode →
               </Link>
@@ -292,8 +292,8 @@ export default function SectionPage() {
           >
             <GraduationCap size={18} className="text-brand-red shrink-0" />
             <div className="flex-1">
-              <p className="font-semibold text-sm text-brand-black">Go deeper: take-home material</p>
-              <p className="text-xs text-brand-gray mt-0.5">
+              <p className="font-semibold text-small text-brand-black">Go deeper: take-home material</p>
+              <p className="text-caption text-brand-gray mt-0.5">
                 {extensions.length} extra {extensions.length === 1 ? 'topic' : 'topics'} we do not cover live. Read these after the workshop.
               </p>
             </div>
@@ -318,7 +318,7 @@ export default function SectionPage() {
         <button
           onClick={() => setSectionComplete(section.id, !isComplete)}
           className={cn(
-            'flex items-center gap-3 text-sm font-medium transition-colors',
+            'flex items-center gap-3 text-small font-medium transition-colors',
             isComplete ? 'text-path-nontech' : 'text-brand-gray hover:text-brand-black'
           )}
         >

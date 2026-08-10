@@ -5,7 +5,7 @@ import React from 'react'
 function Arrow({ dir = 'down' }) {
   return (
     <div
-      className={`flex text-brand-gray font-mono text-lg select-none ${
+      className={`flex text-brand-gray font-mono text-body-lg select-none ${
         dir === 'right' ? 'items-center px-0.5 shrink-0' : 'justify-center my-1'
       }`}
     >
@@ -21,17 +21,17 @@ function Box({ label, sub, color = 'gray', compact = false }) {
     green:  'bg-path-nontechLight border-path-nontech',
     purple: 'bg-path-bothLight border-path-both',
     gray:   'bg-brand-grayLight border-brand-border',
-    dark:   'bg-zinc-100 border-zinc-500',
+    dark:   'bg-surface-hover border-line-strong',
   }
   const textColor = 'text-brand-black'
   const subColor  = 'text-brand-gray'
   const pad       = compact ? 'px-3 py-2' : 'px-4 py-3'
-  const size      = compact ? 'text-xs' : 'text-sm'
+  const size      = compact ? 'text-caption' : 'text-small'
 
   return (
     <div className={`border-2 rounded-lg text-center ${pad} ${colors[color]}`}>
       <div className={`font-semibold leading-snug ${size} ${textColor}`}>{label}</div>
-      {sub && <div className={`text-xs mt-0.5 leading-snug ${subColor}`}>{sub}</div>}
+      {sub && <div className={`text-caption mt-0.5 leading-snug ${subColor}`}>{sub}</div>}
     </div>
   )
 }
@@ -40,7 +40,7 @@ function Wrapper({ title, children }) {
   return (
     <div className="my-6 p-5 bg-brand-grayLight rounded-xl border border-brand-border">
       {title && (
-        <p className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-4">
+        <p className="text-eyebrow uppercase text-brand-gray mb-4">
           {title}
         </p>
       )}
@@ -52,7 +52,7 @@ function Wrapper({ title, children }) {
 function LoopNote({ text }) {
   return (
     <div className="mt-3 flex justify-center">
-      <span className="text-xs text-brand-gray border border-dashed border-brand-gray rounded px-3 py-1.5 text-center">
+      <span className="text-caption text-brand-gray border border-dashed border-brand-gray rounded px-3 py-1.5 text-center">
         {text}
       </span>
     </div>
@@ -92,7 +92,7 @@ function ToolPipeline() {
           </React.Fragment>
         ))}
       </div>
-      <p className="text-xs text-brand-gray text-center mt-3">
+      <p className="text-caption text-brand-gray text-center mt-3">
         Each tool is chosen for what it does best at that stage — you will only need two or three tonight.
       </p>
     </Wrapper>
@@ -108,15 +108,15 @@ function BriefComparison() {
         {/* Weak */}
         <div className="border-2 border-brand-red rounded-lg overflow-hidden">
           <div className="bg-brand-red px-4 py-2">
-            <span className="text-white text-xs font-bold uppercase tracking-widest">
+            <span className="text-on-path text-eyebrow uppercase">
               ✗ Weak Brief
             </span>
           </div>
           <div className="p-4 bg-brand-redLight space-y-3">
-            <p className="text-sm italic text-brand-black">
+            <p className="text-small italic text-brand-black">
               "I want to make an app for students."
             </p>
-            <ul className="space-y-1.5 text-xs text-brand-gray">
+            <ul className="space-y-1.5 text-caption text-brand-gray">
               <li>✗ No defined user — which students?</li>
               <li>✗ No scoped features — what does it do?</li>
               <li>✗ No success metric — how will you know it worked?</li>
@@ -127,31 +127,31 @@ function BriefComparison() {
         {/* Strong */}
         <div className="border-2 border-path-nontech rounded-lg overflow-hidden">
           <div className="bg-path-nontech px-4 py-2">
-            <span className="text-white text-xs font-bold uppercase tracking-widest">
+            <span className="text-on-path text-eyebrow uppercase">
               ✓ Strong Brief
             </span>
           </div>
           <div className="p-4 bg-path-nontechLight space-y-2">
-            <p className="text-xs text-brand-black">
+            <p className="text-caption text-brand-black">
               <span className="font-semibold">Problem:</span> University students lack a
               professional online presence when applying to internships.
             </p>
-            <p className="text-xs text-brand-black">
+            <p className="text-caption text-brand-black">
               <span className="font-semibold">User:</span> 2nd-year business or CS student at a
               Canadian university.
             </p>
-            <p className="text-xs text-brand-black">
+            <p className="text-caption text-brand-black">
               <span className="font-semibold">Features:</span> Hero, skills list, project cards,
               contact links.
             </p>
-            <p className="text-xs text-brand-black">
+            <p className="text-caption text-brand-black">
               <span className="font-semibold">Success:</span> 5+ recruiter visits per week within
               one month of launch.
             </p>
           </div>
         </div>
       </div>
-      <p className="text-xs text-brand-gray text-center mt-3">
+      <p className="text-caption text-brand-gray text-center mt-3">
         A strong brief answers four questions before you write a single line of code or a single prompt.
       </p>
     </Wrapper>
@@ -169,9 +169,9 @@ function TwoLLMWorkflow() {
 
         <div className="border-2 border-path-technical rounded-lg overflow-hidden">
           <div className="bg-path-technical px-4 py-2">
-            <span className="text-white text-xs font-bold">Step 1 — Gemini</span>
+            <span className="text-on-path text-caption font-bold">Step 1 — Gemini</span>
           </div>
-          <ul className="px-4 py-3 text-xs text-brand-black space-y-1">
+          <ul className="px-4 py-3 text-caption text-brand-black space-y-1">
             <li>• Real-time web access — grounded in what exists today</li>
             <li>• Brainstorm the problem and define the target user</li>
             <li>• Research what tools and solutions already exist</li>
@@ -189,9 +189,9 @@ function TwoLLMWorkflow() {
 
         <div className="border-2 border-path-both rounded-lg overflow-hidden">
           <div className="bg-path-both px-4 py-2">
-            <span className="text-white text-xs font-bold">Step 2 — Claude</span>
+            <span className="text-on-path text-caption font-bold">Step 2 — Claude</span>
           </div>
-          <ul className="px-4 py-3 text-xs text-brand-black space-y-1">
+          <ul className="px-4 py-3 text-caption text-brand-black space-y-1">
             <li>• Long-form reasoning — handles complex, multi-part tasks</li>
             <li>• Synthesise messy research notes into a clean plan</li>
             <li>• Structure ideas into a four-section project brief</li>
@@ -206,7 +206,7 @@ function TwoLLMWorkflow() {
           <Box label="Build Prompt" sub="Ready to paste into Lovable or Cursor" color="purple" />
         </div>
       </div>
-      <p className="text-xs text-brand-gray text-center mt-3">
+      <p className="text-caption text-brand-gray text-center mt-3">
         Gemini gives you breadth and real-world grounding. Claude gives you structure and something
         actionable. Using one tool for both produces weaker results.
       </p>
@@ -340,12 +340,12 @@ function SprintVisual() {
         {/* Sprint 1 */}
         <div className="border-2 border-path-nontech rounded-lg overflow-hidden">
           <div className="bg-path-nontech px-4 py-2 flex items-center justify-between">
-            <span className="text-white text-xs font-bold uppercase tracking-widest">Sprint 1</span>
-            <span className="text-green-100 text-xs">High impact · Low effort</span>
+            <span className="text-on-path text-eyebrow uppercase">Sprint 1</span>
+            <span className="text-on-path/90 text-caption">High impact · Low effort</span>
           </div>
           <ul className="p-4 space-y-2">
             {sprint1.map((f) => (
-              <li key={f} className="flex items-start gap-2 text-xs text-brand-black">
+              <li key={f} className="flex items-start gap-2 text-caption text-brand-black">
                 <span className="text-path-nontech mt-0.5 shrink-0">✓</span>
                 {f}
               </li>
@@ -355,12 +355,12 @@ function SprintVisual() {
         {/* Sprint 2 */}
         <div className="border-2 border-path-technical rounded-lg overflow-hidden">
           <div className="bg-path-technical px-4 py-2 flex items-center justify-between">
-            <span className="text-white text-xs font-bold uppercase tracking-widest">Sprint 2</span>
-            <span className="text-blue-100 text-xs">More complex · Nice-to-have</span>
+            <span className="text-on-path text-eyebrow uppercase">Sprint 2</span>
+            <span className="text-on-path/90 text-caption">More complex · Nice-to-have</span>
           </div>
           <ul className="p-4 space-y-2">
             {sprint2.map((f) => (
-              <li key={f} className="flex items-start gap-2 text-xs text-brand-black">
+              <li key={f} className="flex items-start gap-2 text-caption text-brand-black">
                 <span className="text-path-technical mt-0.5 shrink-0">◷</span>
                 {f}
               </li>
@@ -368,7 +368,7 @@ function SprintVisual() {
           </ul>
         </div>
       </div>
-      <p className="text-xs text-brand-gray text-center mt-3">
+      <p className="text-caption text-brand-gray text-center mt-3">
         Sprint 1 ships value fast. Sprint 2 adds depth once the core product is validated.
       </p>
     </Wrapper>
@@ -427,26 +427,26 @@ function PathComparison() {
     <Wrapper title="Choosing Your Path — Non-Technical vs Technical">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
         <div className="bg-path-nontech rounded-lg px-4 py-2.5">
-          <p className="text-white text-xs font-bold uppercase tracking-widest">Non-Technical Path</p>
-          <p className="text-green-100 text-xs mt-0.5">Lovable</p>
+          <p className="text-on-path text-eyebrow uppercase">Non-Technical Path</p>
+          <p className="text-on-path/90 text-caption mt-0.5">Lovable</p>
         </div>
         <div className="bg-path-technical rounded-lg px-4 py-2.5">
-          <p className="text-white text-xs font-bold uppercase tracking-widest">Technical Path</p>
-          <p className="text-blue-100 text-xs mt-0.5">Cursor · GitHub · Vercel</p>
+          <p className="text-on-path text-eyebrow uppercase">Technical Path</p>
+          <p className="text-on-path/90 text-caption mt-0.5">Cursor · GitHub · Vercel</p>
         </div>
       </div>
 
       <div className="space-y-4">
         {rows.map((row) => (
           <div key={row.category}>
-            <p className="text-xs font-bold uppercase tracking-widest text-brand-gray mb-2">
+            <p className="text-eyebrow uppercase text-brand-gray mb-2">
               {row.category}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="border border-path-nontech rounded-lg p-3 bg-path-nontechLight">
                 <ul className="space-y-1.5">
                   {row.nontech.map((item, i) => (
-                    <li key={i} className="flex items-start gap-1.5 text-xs text-brand-black">
+                    <li key={i} className="flex items-start gap-1.5 text-caption text-brand-black">
                       <span className={`shrink-0 ${item.type === 'con' ? 'text-brand-red' : 'text-path-nontech'}`}>
                         {item.type === 'pro' ? '✓' : item.type === 'con' ? '✗' : '→'}
                       </span>
@@ -458,7 +458,7 @@ function PathComparison() {
               <div className="border border-path-technical rounded-lg p-3 bg-path-techLight">
                 <ul className="space-y-1.5">
                   {row.tech.map((item, i) => (
-                    <li key={i} className="flex items-start gap-1.5 text-xs text-brand-black">
+                    <li key={i} className="flex items-start gap-1.5 text-caption text-brand-black">
                       <span className={`shrink-0 ${item.type === 'con' ? 'text-brand-red' : 'text-path-technical'}`}>
                         {item.type === 'pro' ? '✓' : item.type === 'con' ? '✗' : '→'}
                       </span>
@@ -472,7 +472,7 @@ function PathComparison() {
         ))}
       </div>
 
-      <p className="text-xs text-brand-gray text-center mt-4">
+      <p className="text-caption text-brand-gray text-center mt-4">
         Neither path is right or wrong — choose the one that fits how you want to learn tonight.
       </p>
     </Wrapper>

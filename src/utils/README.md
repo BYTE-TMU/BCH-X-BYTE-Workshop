@@ -13,8 +13,8 @@ Merges Tailwind class strings, filtering out falsy values.
 ```js
 import { cn } from '../utils/cn'
 
-cn('px-4 py-2', isActive && 'bg-brand-red', undefined)
-// → 'px-4 py-2 bg-brand-red'
+cn('px-4 py-2', isActive && 'bg-accent', undefined)
+// → 'px-4 py-2 bg-accent'
 ```
 
 A lightweight alternative to `clsx` or `classnames` — no dependency needed at this scale.
@@ -66,3 +66,14 @@ excerpt(entry, 'credits')     // → a window of body text around the match
 Entries carry `{ group, title, subtitle, body, to, anchor? }`. Ranking favours title matches over body matches, and requires every search term to match somewhere. Deliberately dependency-free: the corpus is a few hundred short records.
 
 When you add a new content type to `data/`, add it to `buildIndex()` here or it will not be searchable.
+
+---
+
+### `scroll.js`
+
+```js
+prefersReducedMotion(): boolean
+scrollIntoViewSafely(el, options?): void
+```
+
+`scrollIntoViewSafely` jumps instead of gliding when the user has asked for reduced motion. CSS `scroll-behavior: smooth` is already gated by the media query in `index.css`, but it does not govern programmatic `scrollIntoView` calls — those need this wrapper. Used by `Sidebar` (table-of-contents anchors) and `CommandPalette` (jumping to a subsection after navigation).

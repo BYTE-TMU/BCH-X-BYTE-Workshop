@@ -7,10 +7,10 @@ export default function PresenterNote({ text }) {
 
   return (
     <div className="border-l-4 border-path-both bg-path-bothLight rounded-r-lg p-4 my-6">
-      <p className="text-xs font-bold uppercase tracking-widest text-path-both mb-1">
+      <p className="text-eyebrow uppercase text-path-both mb-1.5">
         Presenter Note
       </p>
-      <p className="text-sm text-brand-gray italic leading-relaxed">{text}</p>
+      <p className="text-small text-ink-secondary italic leading-relaxed">{text}</p>
     </div>
   )
 }

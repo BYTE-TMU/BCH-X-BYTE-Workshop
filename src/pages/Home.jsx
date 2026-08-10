@@ -27,34 +27,34 @@ export default function Home() {
       {/* Hero */}
       <section className="bg-brand-white border-b border-brand-border">
         <div className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-red bg-brand-redLight px-3 py-1.5 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 text-eyebrow uppercase text-brand-red bg-brand-redLight px-3 py-1.5 rounded-full mb-6">
             BCH x BYTE Workshop
           </div>
-          <h1 className="text-5xl sm:text-6xl font-bold text-brand-black leading-tight tracking-tight mb-6">
+          <h1 className="text-display font-bold text-ink mb-6">
             Build a Project from<br />Scratch Using AI
           </h1>
-          <p className="text-lg text-brand-gray leading-relaxed max-w-2xl mx-auto mb-10">
+          <p className="text-body-lg text-brand-gray leading-relaxed max-w-2xl mx-auto mb-10">
             A hands-on workshop where you go from a vague idea to a live, deployed product, no coding experience required.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             {resume ? (
               <Link
                 to={`/curriculum/${resume.section.id}`}
-                className="flex items-center gap-2 bg-brand-red text-white font-semibold px-6 py-3 rounded-full hover:bg-red-700 transition-colors"
+                className="pressable flex items-center gap-2 bg-brand-red text-accent-on font-semibold px-6 py-3 rounded-full hover:bg-accent-hover transition-colors"
               >
                 <PlayCircle size={16} /> Resume at {resume.sub.code} {resume.sub.title}
               </Link>
             ) : (
               <Link
                 to="/curriculum/section-0"
-                className="flex items-center gap-2 bg-brand-red text-white font-semibold px-6 py-3 rounded-full hover:bg-red-700 transition-colors"
+                className="pressable flex items-center gap-2 bg-brand-red text-accent-on font-semibold px-6 py-3 rounded-full hover:bg-accent-hover transition-colors"
               >
                 Start the Curriculum <ArrowRight size={16} />
               </Link>
             )}
             <Link
               to="/tools"
-              className="flex items-center gap-2 border border-brand-border text-brand-black font-semibold px-6 py-3 rounded-full hover:border-brand-red hover:text-brand-red transition-colors"
+              className="pressable flex items-center gap-2 border border-line text-brand-black font-semibold px-6 py-3 rounded-full hover:border-brand-red hover:text-brand-red transition-colors"
             >
               View All Tools
             </Link>
@@ -66,12 +66,12 @@ export default function Home() {
       <section className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-brand-red mb-3">What You Will Build</p>
-            <h2 className="text-3xl font-bold text-brand-black mb-4">A personal landing page: from idea to live URL</h2>
+            <p className="text-eyebrow uppercase text-brand-red mb-3">What You Will Build</p>
+            <h2 className="text-h2 font-bold text-brand-black mb-4">A personal landing page: from idea to live URL</h2>
             <p className="text-brand-gray leading-relaxed">
               An AI-powered personal landing page. Every student in the room needs one, it has zero prerequisite knowledge to understand, and it is simple enough to go from brief to live URL in the time available on both paths.
             </p>
-            <div className="mt-6 space-y-3 text-sm">
+            <div className="mt-6 space-y-3 text-small">
               {deliverableFeatures.map((f) => (
                 <div key={f} className="flex items-center gap-2 text-brand-black">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
@@ -95,7 +95,7 @@ export default function Home() {
                 <div className="h-20 bg-brand-border rounded-lg" />
               </div>
             </div>
-            <p className="text-xs text-brand-gray mt-4 text-center">Example landing page structure</p>
+            <p className="text-caption text-brand-gray mt-4 text-center">Example landing page structure</p>
           </div>
         </div>
       </section>
@@ -104,17 +104,17 @@ export default function Home() {
       <section className="bg-brand-grayLight border-y border-brand-border">
         <div className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center mb-12">
-            <p className="text-xs font-bold uppercase tracking-widest text-brand-red mb-3">What You Will Learn</p>
-            <h2 className="text-3xl font-bold text-brand-black">Four skills that transfer everywhere</h2>
+            <p className="text-eyebrow uppercase text-brand-red mb-3">What You Will Learn</p>
+            <h2 className="text-h2 font-bold text-brand-black">Four skills that transfer everywhere</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {goals.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="bg-white rounded-xl p-6 border border-brand-border">
+              <div key={title} className="bg-surface-raised rounded-xl p-6 border border-brand-border">
                 <div className="w-10 h-10 bg-brand-redLight rounded-lg flex items-center justify-center mb-4">
                   <Icon size={20} className="text-brand-red" />
                 </div>
                 <h3 className="font-semibold text-brand-black mb-2">{title}</h3>
-                <p className="text-sm text-brand-gray leading-relaxed">{description}</p>
+                <p className="text-small text-brand-gray leading-relaxed">{description}</p>
               </div>
             ))}
           </div>
@@ -124,8 +124,8 @@ export default function Home() {
       {/* Workshop at a glance */}
       <section className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="mb-10">
-          <p className="text-xs font-bold uppercase tracking-widest text-brand-red mb-3">Workshop at a Glance</p>
-          <h2 className="text-3xl font-bold text-brand-black">
+          <p className="text-eyebrow uppercase text-brand-red mb-3">Workshop at a Glance</p>
+          <h2 className="text-h2 font-bold text-brand-black">
             {sections.length} sections. Two hours. One live product.
           </h2>
           <p className="text-brand-gray mt-2">
@@ -143,13 +143,13 @@ export default function Home() {
                 isOffPath(s, selectedPath) && 'opacity-55'
               )}
             >
-              <span className="text-2xl font-bold text-brand-border w-8 shrink-0">{s.number}</span>
+              <span className="text-h2 font-bold text-brand-border w-8 shrink-0">{s.number}</span>
               <div className="flex-1 min-w-0">
                 <p className="font-semibold text-brand-black">{s.title}</p>
-                <p className="text-sm text-brand-gray truncate">{s.description}</p>
+                <p className="text-small text-brand-gray truncate">{s.description}</p>
               </div>
               <div className="hidden sm:flex items-center gap-2 shrink-0">
-                <span className="text-xs bg-brand-grayLight text-brand-gray font-semibold px-2.5 py-1 rounded-full">
+                <span className="text-caption bg-brand-grayLight text-brand-gray font-semibold px-2.5 py-1 rounded-full">
                   {sectionDuration(s)}
                 </span>
               </div>
@@ -160,13 +160,13 @@ export default function Home() {
       </section>
 
       {/* Start CTA */}
-      <section className="bg-brand-red">
+      <section className="bg-accent-band">
         <div className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to build?</h2>
-          <p className="text-red-200 mb-8 text-lg">Start with Section 0 and work through at your own pace.</p>
+          <h2 className="text-h2 font-bold text-on-band mb-4">Ready to build?</h2>
+          <p className="text-on-bandDim mb-8 text-body-lg">Start with Section 0 and work through at your own pace.</p>
           <Link
             to="/curriculum/section-0"
-            className="inline-flex items-center gap-2 bg-white text-brand-red font-semibold px-8 py-3 rounded-full hover:bg-red-50 transition-colors"
+            className="pressable inline-flex items-center gap-2 bg-on-band text-accent-band font-semibold px-8 py-3 rounded-full hover:bg-on-band/90 transition-colors"
           >
             Start with Section 0 <ArrowRight size={16} />
           </Link>

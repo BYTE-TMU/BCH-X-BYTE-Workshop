@@ -35,24 +35,24 @@ export default function SubsectionTimer({ timing }) {
 
   const elapsedRatio = (budget - remaining) / budget
   const tone =
-    remaining < 0 ? 'bg-brand-redLight text-brand-red'
-    : elapsedRatio >= 0.8 ? 'bg-amber-50 text-amber-700'
+    remaining < 0 ? 'bg-accent-subtle text-accent'
+    : elapsedRatio >= 0.8 ? 'bg-state-warnSubtle text-state-warn'
     : 'bg-path-bothLight text-path-both'
 
   return (
-    <div className={cn('inline-flex items-center gap-2 rounded-full pl-3 pr-1.5 py-1 text-xs font-semibold', tone)}>
+    <div className={cn('inline-flex items-center gap-2 rounded-full pl-3 pr-1.5 py-1 text-caption font-semibold', tone)}>
       <span className="font-mono tabular-nums">{format(remaining)}</span>
       <button
         onClick={() => setRunning((r) => !r)}
         aria-label={running ? 'Pause timer' : 'Start timer'}
-        className="p-1 rounded-full hover:bg-white/60 transition-colors"
+        className="pressable p-1 rounded-full hover:bg-surface-base/60 transition-colors"
       >
         {running ? <Pause size={12} /> : <Play size={12} />}
       </button>
       <button
         onClick={() => { setRunning(false); setRemaining(budget) }}
         aria-label="Reset timer"
-        className="p-1 rounded-full hover:bg-white/60 transition-colors"
+        className="pressable p-1 rounded-full hover:bg-surface-base/60 transition-colors"
       >
         <RotateCcw size={12} />
       </button>

@@ -9,10 +9,10 @@ export default function CopyButton({ text, className = '' }) {
       onClick={() => copy(text)}
       aria-label={copied ? 'Copied!' : 'Copy to clipboard'}
       aria-live="polite"
-      className={`flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-md transition-colors ${
+      className={`pressable flex items-center gap-1.5 text-caption font-medium px-2.5 py-1.5 rounded-md transition-colors ${
         copied
-          ? 'bg-path-nontechLight text-path-nontech'
-          : 'bg-zinc-700 text-zinc-300 hover:bg-zinc-600'
+          ? 'bg-state-okSubtle text-state-ok'
+          : 'bg-code-raised text-code-dim hover:bg-code-line hover:text-code-ink'
       } ${className}`}
     >
       {copied ? <Check size={13} /> : <Copy size={13} />}

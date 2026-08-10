@@ -7,26 +7,26 @@ function Accordion({ category, questions }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="border border-brand-border rounded-xl overflow-hidden">
+    <div className="border border-line rounded-xl overflow-hidden">
       <button
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="w-full flex items-center justify-between px-5 py-4 bg-white hover:bg-brand-grayLight transition-colors text-left"
+        className="pressable-lg w-full flex items-center justify-between px-5 py-4 bg-surface-raised hover:bg-surface-hover transition-colors text-left"
       >
-        <span className="font-semibold text-brand-black">{category}</span>
+        <span className="font-semibold text-ink">{category}</span>
         <ChevronDown
           size={16}
-          className={`text-brand-gray transition-transform duration-250 ${open ? 'rotate-180' : ''}`}
+          className={`text-ink-secondary transition-transform duration-300 ease-out ${open ? 'rotate-180' : ''}`}
         />
       </button>
 
       {/* CSS grid trick: animate grid-template-rows 0fr → 1fr */}
       <div className={`accordion-content ${open ? 'open' : ''}`}>
-        <div className="accordion-inner border-t border-brand-border divide-y divide-brand-border">
+        <div className="accordion-inner border-t border-line divide-y divide-line">
           {questions.map((item, i) => (
-            <div key={i} className="px-5 py-5 bg-white">
-              <p className="font-semibold text-brand-black mb-2">{item.q}</p>
-              <p className="text-sm text-brand-gray leading-relaxed">{item.a}</p>
+            <div key={i} className="px-5 py-5 bg-surface-raised">
+              <p className="font-semibold text-ink mb-2">{item.q}</p>
+              <p className="text-small text-ink-secondary leading-relaxed">{item.a}</p>
             </div>
           ))}
         </div>
@@ -51,7 +51,7 @@ export default function Appendix() {
   return (
     <div className="max-w-wide mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <Breadcrumb crumbs={[{ to: '/', label: 'Home' }, { label: 'Q&A Appendix' }]} />
-      <h1 className="text-4xl font-bold text-brand-black mb-2">Q&A Appendix</h1>
+      <h1 className="text-h1 font-bold text-brand-black mb-2">Q&A Appendix</h1>
       <p className="text-brand-gray leading-relaxed mb-8">
         Anticipated questions by category, mirroring the live Q&A appendix document used during the workshop.
       </p>
@@ -63,7 +63,7 @@ export default function Appendix() {
           placeholder="Search questions…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full pl-9 pr-4 py-2.5 text-sm border border-brand-border rounded-lg focus:outline-none focus:border-brand-red transition-colors"
+          className="w-full pl-9 pr-4 py-2.5 text-small border border-brand-border rounded-lg focus:border-accent transition-colors"
         />
       </div>
 
@@ -75,7 +75,7 @@ export default function Appendix() {
         ) : (
           <div className="text-center py-20 text-brand-gray">
             <p className="font-medium">No results for &ldquo;{query}&rdquo;</p>
-            <button onClick={() => setQuery('')} className="text-brand-red text-sm mt-2 hover:underline">
+            <button onClick={() => setQuery('')} className="text-brand-red text-small mt-2 hover:underline">
               Clear search
             </button>
           </div>
