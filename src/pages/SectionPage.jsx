@@ -60,6 +60,7 @@ function ContentBlock({ block }) {
           prompt={block.prompt}
           tool={block.tool}
           warning={block.warning}
+          why={block.why}
         />
       )
 

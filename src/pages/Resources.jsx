@@ -144,6 +144,7 @@ export default function Resources() {
                 label={item.label}
                 prompt={item.prompt}
                 tool={item.tool}
+                why={item.why}
               />
             ))}
           </div>

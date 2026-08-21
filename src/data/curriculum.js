@@ -1,7 +1,16 @@
 // Each section carries a `path`: 'both' means everyone does it, 'nontech' and
-// 'technical' are the two alternative build routes a student picks in 1.5.
+// 'technical' are the two alternative build routes a student picks in 1.6.
 // Subsections marked `extension: true` are take-home material — they render inside
 // a collapsed disclosure and are excluded from the live 90-minute run of show.
+//
+// Prompt blocks (`type: 'prompt'`) come in two deliberate styles: "structured"
+// prompts spell out the five parts taught in 1.7 (Context, Task, Constraints,
+// Output format, Success criteria) as labeled multi-line sections, used for the
+// heavy-lifting research, synthesis, build, and audit prompts. Short iteration and
+// fix prompts stay as single-paragraph prose with the same five parts woven in —
+// structuring a two-sentence tweak would be more ceremony than the task needs. Every
+// prompt carries a `why` field explaining what makes it work; it renders under the
+// prompt text and is never included in the copied text.
 export const sections = [
   {
     id: 'section-0',
@@ -125,6 +134,41 @@ export const sections = [
       },
       {
         code: '1.2',
+        title: 'Before You Prompt: What Never to Paste into an AI Tool',
+        timing: '3 minutes',
+        content: [
+          {
+            type: 'body',
+            text: 'You are about to spend the next two hours typing into AI chat tools. Before the first prompt, know where the line is. Most chat tools log your conversations, and free tiers often use them to improve future models unless you turn that off. Nothing you type tonight is truly private the way a note to yourself is.',
+          },
+          {
+            type: 'bullets',
+            items: [
+              'Passwords, API keys, or any login credential — even inside a screenshot.',
+              'A Social Insurance Number, student ID number, or any government-issued ID.',
+              'Someone else\'s personal information without their permission — a friend\'s phone number, a classmate\'s home address.',
+              'Full banking details or payment card numbers.',
+              'Sensitive health or medical information, about yourself or anyone else.',
+            ],
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            text: 'Your name, a professional email, and a LinkedIn link are the point of tonight\'s project — sharing those is normal and expected. The rule above is about sensitive categories, not personal information in general. If you are ever unsure whether something is sensitive, leave it out of the prompt and add it by hand afterward.',
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            text: 'Free tiers of Gemini, Claude, Lovable, and Cursor may use your conversations to train future models unless you turn that off in settings. Paid plans typically opt out by default. Checking each tool\'s privacy settings before you start costs nothing.',
+          },
+          {
+            type: 'presenterNote',
+            text: 'This is a norm-setting moment, not a workflow step — keep it to two or three minutes. The goal is that the placeholder habit in the upcoming build prompts makes sense in context rather than landing as an arbitrary instruction.',
+          },
+        ],
+      },
+      {
+        code: '1.3',
         title: 'Step 1: Brainstorm and Research with Gemini',
         timing: '12 minutes',
         content: [
@@ -136,13 +180,30 @@ export const sections = [
             type: 'prompt',
             label: 'Weak Prompt: Do Not Use This',
             prompt: 'Make me a personal website.',
+            why: 'Nothing to grade here — no context, no defined task beyond "make," no constraints, no format, and no way to know if the result is good. The model has to invent your entire situation for you, so it guesses average.',
             tool: 'gemini',
             warning: true,
           },
           {
             type: 'prompt',
             label: 'Good Prompt 1: Define the problem and target user',
-            prompt: 'I am a second-year business student at a university in Toronto. I want to build a personal landing page that helps me stand out when applying to internships and co-ops. Help me understand: what problem does this actually solve, who else has this problem, and what should a strong student landing page actually include to be genuinely useful to a recruiter?',
+            prompt: `CONTEXT
+I am a second-year business student at a university in Toronto. I want to build a personal landing page that helps me stand out when applying to internships and co-ops.
+
+TASK
+Help me understand what problem this page actually solves, who else has this same problem, and what a strong student landing page needs to include to be genuinely useful to a recruiter.
+
+CONSTRAINTS
+- Be specific to university students applying to internships, not general career advice.
+- If you are not certain about something, say so instead of stating it as fact.
+- Do not invent statistics or cite a source you cannot name.
+
+OUTPUT FORMAT
+Three short sections: the problem, the target user, and what a strong page includes. Keep each section under 100 words.
+
+SUCCESS CRITERIA
+I should be able to read this once and know exactly what to research next.`,
+            why: 'Every part of the five-part anatomy from 1.7 is here: context up front so the model is not guessing, one task, explicit constraints including an instruction not to bluff, a scannable format, and a bar for what counts as good. That is the entire difference between this and "make me a personal website."',
             tool: 'gemini',
             warning: false,
           },
@@ -153,7 +214,23 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Good Prompt 2: Research the current landscape',
-            prompt: 'What tools do university students currently use to build personal landing pages? What are the most common ones, and what do students say is missing or frustrating about them? I want to understand what already exists before I decide what to build.',
+            prompt: `CONTEXT
+I am researching what already exists before I decide what to build, using the target user and problem I just defined.
+
+TASK
+Find out what tools university students currently use to build personal landing pages, and what students say is missing or frustrating about the current options.
+
+CONSTRAINTS
+- Ground this in tools and sources that actually exist right now — use your web access rather than relying on memory.
+- Name specific tools, not just categories like "portfolio builders."
+- Flag anything you are inferring rather than something you found directly.
+
+OUTPUT FORMAT
+A short list of the tools you found, followed by a summary of the recurring complaints or gaps.
+
+SUCCESS CRITERIA
+I want at least one thing here I did not already know, and I want to see where your information came from.`,
+            why: 'Naming "use your web access" matters — Gemini defaults to grounded search here, but only if you make that explicit instead of leaving it to guess whether you want current facts or a plausible-sounding summary from memory.',
             tool: 'gemini',
             warning: false,
           },
@@ -164,7 +241,22 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Good Prompt 3: Validate with recruiter perspective',
-            prompt: 'What do recruiters and hiring managers actually look for when they visit a student\'s personal website? Give me specific things, not general advice. I want to know what makes the difference between a page they spend 30 seconds on versus one they actually send to the hiring team.',
+            prompt: `CONTEXT
+I have a working idea for a personal landing page and I want to see it from the other side: the person deciding whether to spend more than a few seconds on it.
+
+TASK
+Tell me what recruiters and hiring managers actually look for when they open a student's personal website, and what specifically makes the difference between a page they skim and one they forward to the hiring team.
+
+CONSTRAINTS
+- Give concrete, specific signals, not general advice like "make it professional."
+- Distinguish between what recruiters have told you directly versus what you are inferring.
+
+OUTPUT FORMAT
+A short numbered list, five items or fewer, ordered by how much each one matters.
+
+SUCCESS CRITERIA
+Each item should be something I can point to on a real page and say "yes, I have that" or "no, I don't."`,
+            why: 'The output format — a short ranked list — turns vague advice into a checklist you can literally hold your build against later in Section 4.',
             tool: 'gemini',
             warning: false,
           },
@@ -175,7 +267,7 @@ export const sections = [
         ],
       },
       {
-        code: '1.3',
+        code: '1.4',
         title: 'Step 2: Synthesize and Generate with Claude',
         timing: '11 minutes',
         content: [
@@ -186,7 +278,27 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Good Prompt 1: Synthesize research into a project brief',
-            prompt: 'I have been researching a personal landing page for university students applying to internships. Here is what I found from my research session: [paste Gemini output here]. Using this research, write me a structured project brief with exactly four sections: one, the problem statement in two to three sentences; two, the target user in one clear sentence; three, exactly three core features the page must have; four, two specific success metrics that would tell me this page is working. Keep it concise, practical, and free of jargon.',
+            prompt: `CONTEXT
+I have been researching a personal landing page for university students applying to internships. Here is what I found from my research session: [paste your Gemini output here]
+
+TASK
+Turn this research into a structured project brief.
+
+CONSTRAINTS
+- Use only what is in my pasted research and what I have told you — do not add features or claims that were not there.
+- Keep it concise, practical, and free of jargon.
+- If the research leaves a question unanswered, say so instead of filling the gap with something plausible.
+
+OUTPUT FORMAT
+Exactly four sections:
+1. Problem statement, two to three sentences.
+2. Target user, one clear sentence.
+3. Exactly three core features the page must have.
+4. Two specific success metrics that would tell me this page is working.
+
+SUCCESS CRITERIA
+I should be able to hand this brief to someone else and have them understand the project without asking a follow-up question.`,
+            why: 'The constraint against inventing features is the guardrail against hallucination, stated as an explicit rule instead of just hoped for.',
             tool: 'claude',
             warning: false,
           },
@@ -197,7 +309,23 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Good Prompt 2: Generate the build prompt',
-            prompt: 'Now take this project brief and write me two build prompts. The first should be optimized for pasting into Lovable, which is a natural language app builder with no code required. The second should be optimized for pasting into Cursor, which is a code editor with AI assistance. Both prompts should describe the same personal landing page but be framed appropriately for each tool\'s strengths. Make the prompts specific enough that someone with no technical background could use them.',
+            prompt: `CONTEXT
+I have a finished project brief for a personal landing page for a university student applying to internships. Here it is: [paste your project brief here]
+
+TASK
+Write two build prompts for the same page: one optimized for Lovable, a natural-language app builder with no code, and one optimized for Cursor, a code editor with AI assistance.
+
+CONSTRAINTS
+- Describe the same page in both, framed for each tool's strengths.
+- Make both specific enough that someone with no technical background could use either one as-is.
+- Use placeholder contact details (a placeholder email and a "linkedin.com/in/yourname" style link) rather than real ones — real contact info gets added by hand once the page is live, not baked into a prompt you might paste more than once.
+
+OUTPUT FORMAT
+Two clearly labeled prompts, "For Lovable" and "For Cursor," each a single self-contained block of text.
+
+SUCCESS CRITERIA
+I should be able to copy either block directly into its tool with no editing required.`,
+            why: 'This is where the placeholder habit from 1.2 pays off directly: a build prompt is text you might paste into two different companies\' products, then paste again if the first attempt goes wrong. Placeholders mean neither company\'s logs, nor your own paste history, end up holding your real number or address for no reason.',
             tool: 'claude',
             warning: false,
           },
@@ -216,7 +344,7 @@ export const sections = [
         ],
       },
       {
-        code: '1.4',
+        code: '1.5',
         title: 'Common Beginner Mistakes',
         timing: '2 minutes',
         content: [
@@ -226,12 +354,13 @@ export const sections = [
               'Prompting in one sentence and expecting a finished result. A prompt is the start of a conversation, not a command. The follow-up is where the real value is.',
               'Skipping the research step and going straight to building. If you do not know who you are building for, you will build the wrong thing.',
               'Treating the first output as final. Read it critically. Push back. Iterate.',
+              'Pasting something sensitive into a prompt because it is faster than using a placeholder. It almost never is, and it is the one mistake on this list you cannot undo once you hit enter.',
             ],
           },
         ],
       },
       {
-        code: '1.5',
+        code: '1.6',
         title: 'Choosing Your Path',
         timing: '2 minutes',
         content: [
@@ -253,7 +382,7 @@ export const sections = [
         ],
       },
       {
-        code: '1.6',
+        code: '1.7',
         title: 'Anatomy of a Prompt That Works',
         timing: '6 minutes',
         extension: true,
@@ -274,7 +403,7 @@ export const sections = [
           },
           {
             type: 'body',
-            text: 'Look back at the weak prompt from 1.2: "Make me a personal website." It has a task and nothing else. The model has to guess at your context, your constraints, the format, and what good would even look like — so it guesses average. Now look at Good Prompt 1 in the same subsection: context in the first sentence, task in the second, and three explicit questions that define both the constraints and the output. Same model, same effort from you, completely different answer.',
+            text: 'Look back at the weak prompt from 1.3: "Make me a personal website." It has a task and nothing else. The model has to guess at your context, your constraints, the format, and what good would even look like — so it guesses average. Now look at Good Prompt 1 in the same subsection: every one of the five parts is labeled and separated. Same model, same effort from you, completely different answer.',
           },
           {
             type: 'mindset',
@@ -287,14 +416,30 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Practice: have the AI grade your prompt',
-            prompt: 'Here is a prompt I am about to send to an AI tool: [paste your prompt]. Before I send it, tell me what is missing. Specifically: is my context clear, is there exactly one task or several tangled together, are my constraints explicit, have I said what format I want, and have I said how I will judge the answer? Rewrite it for me with the gaps filled in, and explain what you changed and why.',
+            prompt: `CONTEXT
+I am about to send a prompt to an AI tool and I want a second opinion before I use up the attempt.
+
+TASK
+Here is the prompt: [paste your prompt here]. Tell me what is missing.
+
+CONSTRAINTS
+- Check specifically for: is the context clear, is there exactly one task or several tangled together, are the constraints explicit, have I said what output format I want, and have I said how I will judge the answer.
+- Then rewrite the prompt with the gaps filled in.
+- Explain what you changed and why, in one sentence per change.
+
+OUTPUT FORMAT
+A short diagnosis first, then the rewritten prompt in its own block, then the list of changes.
+
+SUCCESS CRITERIA
+The rewritten version should score better against all five parts of the anatomy than my original did.`,
+            why: 'This turns the five-part anatomy into a repeatable habit: you can run any prompt you are about to send through this same check, for any tool, for the rest of the workshop and beyond.',
             tool: 'claude',
             warning: false,
           },
         ],
       },
       {
-        code: '1.7',
+        code: '1.8',
         title: 'How to Judge What the AI Gives You',
         timing: '5 minutes',
         extension: true,
@@ -323,7 +468,8 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Pushing back productively',
-            prompt: 'Your last answer was too generic in two places: [name them]. It would apply to almost any student, and I need it grounded in my specific situation, which is [restate your context]. Keep the structure you used, keep the parts that were specific, and redo only the weak sections. Where you are unsure or making an assumption, say so explicitly instead of filling the gap with something plausible.',
+            prompt: 'Your last answer was too generic in two places: [name them]. It would apply to almost any student, and I need it grounded in my specific situation, which is [restate your context]. Keep the structure and the parts that were already specific, and redo only the weak sections. Where you are unsure or making an assumption, say so explicitly instead of filling the gap with something plausible, and do not introduce any new fact, statistic, or claim that was not in your original answer or in what I have told you.',
+            why: 'Pushing back keeps everything that already worked and asks the model to redo only the weak parts — a fresh prompt from scratch throws that away and risks a worse answer than the one you are trying to fix.',
             tool: 'claude',
             warning: false,
           },
@@ -367,7 +513,26 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Build Prompt: Paste from Claude',
-            prompt: 'Build me a personal landing page for a second-year university student applying to internships in business or technology. The page should include: a hero section with a name, degree and year, and a one-line bio; a skills section listing four to six areas of focus or tools; a projects section with two cards, each showing a project name, a one-sentence description, and a link placeholder; and a contact section with a LinkedIn link and an email address. Use a clean, modern design with a white background, dark text, and a single accent colour. The layout should be responsive and professional.',
+            prompt: `CONTEXT
+This is the build prompt generated by Claude for a personal landing page for a second-year university student applying to internships in business or technology.
+
+TASK
+Build the page.
+
+CONSTRAINTS
+- Include a hero section with a name, degree and year, and a one-line bio.
+- Include a skills section listing four to six areas of focus or tools.
+- Include a projects section with two cards, each showing a project name, a one-sentence description, and a link placeholder.
+- Include a contact section with a LinkedIn link and an email address — use placeholder values for now (yourname@example.com, linkedin.com/in/yourname); I will swap in my real details once the page is live.
+- Use a clean, modern design: white background, dark text, a single accent colour.
+- The layout must be fully responsive.
+
+OUTPUT FORMAT
+A complete, working page ready to preview.
+
+SUCCESS CRITERIA
+Everything above should be visibly present in the preview with no placeholder sections missing.`,
+            why: 'Placeholders here are not paranoia — this exact text might get reused for a second attempt or sit in Lovable\'s project history longer than you expect. Swapping in real contact details by hand, once, at the end, costs nothing.',
             tool: 'lovable',
             warning: false,
           },
@@ -393,28 +558,32 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Iteration 1: Visual refinement',
-            prompt: 'Change the accent colour to a deep navy blue and make the hero section taller with more vertical breathing room. The name should be larger and the bio should sit below it with a clear visual separation.',
+            prompt: 'Change the accent colour to a deep navy blue and make the hero section taller with more vertical breathing room. The name should be larger and the bio should sit below it with a clear visual separation. Do not touch the skills, projects, or contact sections while you do this.',
+            why: 'Naming the sections to leave alone is as important as the change itself — an undirected edit tends to "improve" things you already approved.',
             tool: 'lovable',
             warning: false,
           },
           {
             type: 'prompt',
             label: 'Iteration 2: Content refinement',
-            prompt: 'In the hero section, add a short paragraph under the bio that explains what you are currently studying, what kind of roles you are looking for, and one sentence about what makes you different. Keep it to three sentences total.',
+            prompt: 'In the hero section, add a short paragraph under the bio that explains what you are currently studying, what kind of roles you are looking for, and one sentence about what makes you different. Keep it to three sentences total and leave the rest of the layout exactly as it is.',
+            why: 'A word-count constraint keeps a content request from quietly turning into a full rewrite of the hero section.',
             tool: 'lovable',
             warning: false,
           },
           {
             type: 'prompt',
             label: 'Iteration 3: Structural refinement',
-            prompt: 'Add a fixed navigation bar at the top with links that scroll smoothly to each section: About, Skills, Projects, and Contact. The nav bar should stay visible as the user scrolls down the page.',
+            prompt: 'Add a fixed navigation bar at the top with links that scroll smoothly to each section: About, Skills, Projects, and Contact. The nav bar should stay visible as the user scrolls down the page. Leave the content inside each section unchanged.',
+            why: 'Naming exactly which sections the nav bar touches keeps a structural change from cascading into the content underneath it.',
             tool: 'lovable',
             warning: false,
           },
           {
             type: 'prompt',
             label: 'Iteration 4: Final polish',
-            prompt: 'Make the two project cards side by side on wider screens and stacked vertically on mobile. Add a subtle shadow to each card and a hover effect that lifts the card slightly when the mouse moves over it.',
+            prompt: 'Make the two project cards side by side on wider screens and stacked vertically on mobile. Add a subtle shadow to each card and a hover effect that lifts the card slightly when the mouse moves over it. This is a styling change only — do not alter the text inside either card.',
+            why: 'Labeling this a styling change only is what stops a layout request from rewriting the copy sitting inside the cards.',
             tool: 'lovable',
             warning: false,
           },
@@ -428,6 +597,11 @@ export const sections = [
           {
             type: 'body',
             text: 'Click deploy in Lovable, wait for the URL, and open it in your browser. You can now copy the URL and paste it into a message or LinkedIn. This took under 15 minutes, required zero lines of code, and the result is a live product with a real URL you can send to anyone tonight.',
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            text: 'Before you share the link, swap every placeholder contact detail for your real one, and do a quick read of the live page for anything you would not want a stranger to see. It takes under a minute and it is much easier to do now than after someone has already seen it.',
           },
         ],
       },
@@ -458,7 +632,8 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Recovering from a broken state',
-            prompt: 'The last change broke something. Here is exactly what I am seeing: [describe the symptom in plain language, and paste any error message word for word]. Before changing any code, tell me what you think caused it and what you plan to change. Fix only that one thing and leave everything else exactly as it is. If you are not confident about the cause, say so and ask me a question instead of guessing.',
+            prompt: 'The last change broke something. Here is exactly what I am seeing: [describe the symptom in plain language, and paste any error message word for word]. Before changing anything, tell me what you think caused it and what you plan to change. Fix only that one thing and leave everything else exactly as it is. If you are not confident about the cause, say so and ask me a question instead of guessing.',
+            why: 'Asking for the diagnosis before the fix is what turns a guess into an actual repair instead of a second broken thing stacked on the first.',
             tool: 'lovable',
             warning: false,
           },
@@ -497,7 +672,28 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Build Prompt: Paste from Claude',
-            prompt: 'Create a personal landing page as a single index.html file with embedded CSS and no external dependencies. The page should include: a navigation bar with anchor links to each section; a hero section with a name placeholder, a degree and year placeholder, a one-line bio placeholder, and a short paragraph about your goals; a skills section with six skill tags in a flex grid; a projects section with two cards each containing a title, a one-sentence description, and a link placeholder; and a contact section with LinkedIn and email placeholders. Use a clean professional design with a white background, dark text, system fonts, and navy blue as the accent colour. The page must be fully responsive.',
+            prompt: `CONTEXT
+This is the build prompt for a personal landing page as a single index.html file with embedded CSS and no external dependencies.
+
+TASK
+Create the page.
+
+CONSTRAINTS
+- Include a navigation bar with anchor links to each section.
+- Include a hero section with a name placeholder, a degree and year placeholder, a one-line bio placeholder, and a short paragraph about goals.
+- Include a skills section with six skill tags in a flex grid.
+- Include a projects section with two cards, each with a title, a one-sentence description, and a link placeholder.
+- Include a contact section with LinkedIn and email placeholders — no real contact details go into this file yet.
+- Do not add any external script, tracking pixel, or analytics tag; this is a static file with no third-party calls.
+- Use a clean professional design: white background, dark text, system fonts, navy blue accent colour.
+- The page must be fully responsive.
+
+OUTPUT FORMAT
+A single complete index.html file.
+
+SUCCESS CRITERIA
+Opening the file directly in a browser should show a finished-looking page with no missing sections.`,
+            why: 'Ruling out external scripts up front matters more here than on the no-code path: you can read every line of this file yourself before you ship it, so use that. "No third-party calls" is a constraint you can actually verify.',
             tool: 'cursor',
             warning: false,
           },
@@ -523,7 +719,8 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Fix 1: Navigation anchor links',
-            prompt: 'The navigation links are not scrolling to the correct sections when clicked. Check the href values in the nav and the id attributes on each section element. Fix any mismatches so every link scrolls smoothly to the right section. Also add smooth scroll behaviour to the entire page.',
+            prompt: 'The navigation links are not scrolling to the correct sections when clicked. Check the href values in the nav and the id attributes on each section element, fix any mismatches so every link scrolls to the right section, and add smooth scroll behaviour to the page. Do not change anything else in the file.',
+            why: 'Pointing at the exact mechanism — href values and id attributes — gives the model something concrete to check instead of guessing at the whole nav.',
             tool: 'cursor',
             warning: false,
           },
@@ -534,7 +731,8 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Fix 2: Mobile responsiveness',
-            prompt: 'In mobile view, the project cards are overflowing their container and the navigation links are too close together to tap easily. Fix the project cards so they stack vertically on screens under 768px wide, and adjust the nav so the links have enough spacing to be tappable on a phone.',
+            prompt: 'In mobile view, the project cards are overflowing their container and the navigation links are too close together to tap easily. Fix the project cards so they stack vertically on screens under 768px wide, and give the nav links enough spacing to be tappable on a phone. Do not change the desktop layout.',
+            why: 'A specific breakpoint (768px) is something the model can test its own fix against, instead of a vague "make it responsive."',
             tool: 'cursor',
             warning: false,
           },
@@ -566,6 +764,11 @@ export const sections = [
             ],
           },
           {
+            type: 'callout',
+            variant: 'warning',
+            text: 'Never commit a .env file, API key, or access token to a public GitHub repository. GitHub scans for some well-known key formats after the fact, but a public repo is exposed the instant you push, not just when someone happens to look. This project has no secrets in it, but the habit is the part worth keeping for the next one.',
+          },
+          {
             type: 'body',
             text: 'Navigate to vercel.com, sign in with GitHub, click add new project, select the repository, and click deploy. You now have a live URL. Open it in your browser and copy the URL to share with anyone. Both paths end at the same place: a live product with a real URL.',
           },
@@ -595,6 +798,7 @@ export const sections = [
             type: 'prompt',
             label: 'Debugging with the exact error',
             prompt: 'Something broke after the last change. Here is the exact error, copied word for word: [paste the full error message]. Here is what I was trying to do: [one sentence]. Walk me through what this error actually means in plain language, tell me which line is causing it, then fix only that. Do not refactor anything else while you are in there.',
+            why: 'Pasting the literal error rather than your summary of it is the single highest-leverage habit on this whole path — file names, line numbers, and exact wording let the model localize the problem instead of guessing at your whole file.',
             tool: 'cursor',
             warning: false,
           },
@@ -632,6 +836,7 @@ export const sections = [
             type: 'prompt',
             label: 'If the DNS step goes wrong',
             prompt: 'I am pointing a custom domain at a site hosted on Vercel and it is not working yet. My registrar is [registrar name]. Here are the DNS records I currently have set: [paste them]. Here is what Vercel is telling me: [paste the status message]. Explain in plain language what is wrong, what each record actually does, and exactly what I should change.',
+            why: 'DNS records are already public the moment your domain is live — anyone can look them up — so this is one of the few technical details in tonight\'s workshop that is completely fine to paste in full.',
             tool: 'claude',
             warning: false,
           },
@@ -655,7 +860,23 @@ export const sections = [
           {
             type: 'prompt',
             label: 'README Prompt',
-            prompt: 'I just built a personal landing page as a single HTML file with embedded CSS. Here is the project brief it was based on: [paste brief]. Write a README for this project. Include four sections: what it is and who it is for, how to open or run it locally, how to deploy it to Vercel, and how someone else could contribute or make changes. Write it clearly enough that someone with no technical background can follow every step.',
+            prompt: `CONTEXT
+I just built a personal landing page as a single HTML file with embedded CSS. Here is the project brief it was based on: [paste your brief here]
+
+TASK
+Write a README for this project.
+
+CONSTRAINTS
+- Include exactly four sections: what it is and who it is for, how to open or run it locally, how to deploy it to Vercel, and how someone else could contribute or make changes.
+- Write it clearly enough that someone with no technical background can follow every step.
+- Do not include any real API key, password, deployment token, or personal contact detail directly in the README — if a step needs one, describe it as a placeholder the reader fills in themselves.
+
+OUTPUT FORMAT
+Standard README structure with headings for each of the four sections.
+
+SUCCESS CRITERIA
+A stranger with no context should be able to follow this and end up with a running copy of the project.`,
+            why: 'A README is one of the most-cloned, most-forwarded files in a project — the last place you want a real credential to end up by accident.',
             tool: 'claude',
             warning: false,
           },
@@ -682,7 +903,23 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Sprint Planning Prompt',
-            prompt: 'Take this raw list of feature ideas and organize them into two sprints. Sprint 1 should include the most impactful features that are also the simplest to build. Sprint 2 should include the more complex or nice-to-have features. Format the output as a table with five columns: feature name, sprint number, effort level (low, medium, or high), expected outcome in one sentence, and the AI tool most likely to help build it.',
+            prompt: `CONTEXT
+I have a raw list of feature ideas for my landing page: [paste your list here]
+
+TASK
+Organize them into two sprints.
+
+CONSTRAINTS
+- Sprint 1: the most impactful features that are also the simplest to build.
+- Sprint 2: the more complex or nice-to-have features.
+- For any feature that collects or stores visitor data (a contact form, an email signup, analytics), flag it separately and note what data it would collect and why.
+
+OUTPUT FORMAT
+A table with five columns: feature name, sprint number, effort level (low, medium, or high), expected outcome in one sentence, and the AI tool most likely to help build it.
+
+SUCCESS CRITERIA
+I should be able to look at Sprint 1 alone and know exactly what to build next.`,
+            why: 'Flagging data-collecting features separately is a five-second habit now that saves a much longer conversation later, once a feature is live and actually collecting something.',
             tool: 'claude',
             warning: false,
           },
@@ -745,7 +982,23 @@ export const sections = [
           {
             type: 'prompt',
             label: 'Audit prompt',
-            prompt: 'Audit my personal landing page for accessibility and mobile usability. Check specifically for: colour contrast that falls below WCAG AA, images missing alt text, headings used out of order or skipping levels, interactive elements that cannot be reached or seen when tabbing with a keyboard, tap targets too small to hit comfortably on a phone, and any layout that overflows horizontally under 400px wide. List every problem you find with the specific element it affects, ordered by how much it matters, then fix them one at a time starting with the worst.',
+            prompt: `CONTEXT
+I have a personal landing page ready to share, and I want to check it for accessibility and mobile usability before I do.
+
+TASK
+Audit the page.
+
+CONSTRAINTS
+- Check specifically for: colour contrast that falls below WCAG AA, images missing alt text, headings used out of order or skipping levels, interactive elements that cannot be reached or seen when tabbing with a keyboard, tap targets too small to hit comfortably on a phone, and any layout that overflows horizontally under 400px wide.
+- List every problem with the specific element it affects.
+- Order the list by how much each problem matters.
+
+OUTPUT FORMAT
+A numbered list of problems, followed by fixes applied one at a time, worst first.
+
+SUCCESS CRITERIA
+Every item on your list should be something I could point to on the live page and immediately see.`,
+            why: 'Ordering by severity and fixing one at a time is what keeps a long list of findings from turning into a dozen simultaneous, hard-to-verify changes.',
             tool: 'claude',
             warning: false,
           },
@@ -757,6 +1010,55 @@ export const sections = [
       },
       {
         code: '4.5',
+        title: 'Privacy & Security Check Before You Ship',
+        timing: '5 minutes',
+        extension: true,
+        content: [
+          {
+            type: 'body',
+            text: 'Personal sites leak more than people expect — not because of some hack, but because a live page is public the second it ships, and both build paths tonight can leave more exposed than you intended. This is a five-minute pass before you send the link to anyone.',
+          },
+          {
+            type: 'bullets',
+            items: [
+              'View the page source (right-click, "View Page Source," or open your browser\'s dev tools) and read it once. Is there anything in there you would not want a stranger to see?',
+              'Confirm no API key, access token, or password appears anywhere in the code. Client-side code is fully visible to anyone who opens dev tools, not just to someone typing the URL.',
+              'If you used Cursor and pushed to GitHub, confirm nothing sensitive got committed: check that .gitignore covers any local config file, and glance through the commit history for anything you did not mean to include.',
+              'Before uploading any photo, know that photos can carry embedded location data (EXIF). Strip it, or use a version already stripped by the platform you exported it from.',
+              'Decide how you want your email exposed. A plain mailto: link is easy for bots to harvest; a contact form or a lightly obfuscated display, like "name at domain dot com," cuts down spam for little extra effort.',
+              'Re-read your own bio and project descriptions for anything more identifying than you meant to share — a home address, a class schedule, a phone number typed in out of habit.',
+            ],
+          },
+          {
+            type: 'prompt',
+            label: 'Privacy & security audit prompt',
+            prompt: `CONTEXT
+I am about to share a personal landing page publicly and want a check before I do. Here is the code: [paste your HTML/CSS, or describe what Lovable generated]
+
+TASK
+Review it for privacy and security issues before I ship it.
+
+CONSTRAINTS
+- Check specifically for: any hardcoded API key, password, or access token; any real personal information that looks like it was meant as a placeholder (a real phone number, home address, or full birthdate); any third-party script or tracking tag I did not explicitly ask for; and any broken or placeholder link left pointing nowhere.
+- Do not guess at problems that are not actually there — if a category is clean, say so instead of inventing something to report.
+
+OUTPUT FORMAT
+A list of findings grouped by category, each with the exact line or element affected. If a category is clean, write "no issues found" for that category instead of omitting it.
+
+SUCCESS CRITERIA
+I should be able to fix every finding in under ten minutes.`,
+            why: 'Asking it to explicitly confirm clean categories, not just report problems, is what stops you from wondering whether it actually checked or just found nothing to say.',
+            tool: 'claude',
+            warning: false,
+          },
+          {
+            type: 'teachingPoint',
+            text: 'None of this requires a security background. It requires reading your own code once before other people do, which is a habit that pays off on every project after this one too.',
+          },
+        ],
+      },
+      {
+        code: '4.6',
         title: 'What to Build Next',
         timing: '5 minutes',
         extension: true,
@@ -770,13 +1072,30 @@ export const sections = [
             items: [
               'A project case study page. Take something you have already done — a case competition, a class project, a part-time job — and write it up properly: the problem, what you did, what happened. Same build, more valuable to a recruiter than a skills list.',
               'A small tool that solves an annoyance you personally have. A study timer, a group-project splitter, a course planner. The step up here is that it has logic, not just content, so you will use the iteration loop far more.',
-              'Something with saved data. A habit tracker, a reading list, a club signup page. This is where you meet databases and accounts, and where Lovable and Cursor start doing genuinely impressive work on your behalf.',
+              'Something with saved data. A habit tracker, a reading list, a club signup page. This is where you meet databases and accounts, and where Lovable and Cursor start doing genuinely impressive work on your behalf — and where you meet real user data for the first time, so 4.5\'s checklist becomes a design decision, not just a pre-launch check.',
             ],
           },
           {
             type: 'prompt',
             label: 'Scoping your next project',
-            prompt: 'I just built and deployed a personal landing page using AI tools, and I want to build something more ambitious next. Here is what I am considering: [describe your idea in a few sentences]. Help me scope it properly. What is the smallest version that would still be genuinely useful to someone? What are the three features it absolutely needs, and what am I likely to think I need but actually do not? What is the one part of this that will be harder than I expect, and how should I approach that part first?',
+            prompt: `CONTEXT
+I just built and deployed a personal landing page using AI tools, and I want to build something more ambitious next. Here is what I am considering: [describe your idea in a few sentences]
+
+TASK
+Help me scope it properly before I start building.
+
+CONSTRAINTS
+- Identify the smallest version that would still be genuinely useful to someone.
+- Name the three features it absolutely needs.
+- Name what I am likely to think I need but actually do not.
+- If the idea involves storing anyone's data — accounts, saved entries, uploads — flag what that data would be and what the minimum responsible way to handle it looks like.
+
+OUTPUT FORMAT
+Four short sections matching the four constraints above.
+
+SUCCESS CRITERIA
+I should end this with a scope I could realistically finish, not a wish list.`,
+            why: 'The data-handling flag is doing real work here — "something with saved data" is exactly the kind of project mentioned above, and that is precisely where privacy stops being an afterthought and starts being a design decision.',
             tool: 'claude',
             warning: false,
           },

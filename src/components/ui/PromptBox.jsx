@@ -1,7 +1,8 @@
+import { Lightbulb } from 'lucide-react'
 import CopyButton from './CopyButton'
 import ToolChip from './ToolChip'
 
-export default function PromptBox({ label, prompt, tool, warning = false }) {
+export default function PromptBox({ label, prompt, tool, warning = false, why }) {
   const labelColor = warning ? 'text-accent' : 'text-path-both'
 
   return (
@@ -23,6 +24,15 @@ export default function PromptBox({ label, prompt, tool, warning = false }) {
       <pre className="font-mono text-small text-code-ink leading-relaxed whitespace-pre-wrap p-5 overflow-x-auto">
         {prompt}
       </pre>
+      {why && (
+        <div className="flex items-start gap-2 px-5 py-3 border-t border-code-line bg-code-raised/50">
+          <Lightbulb size={14} className="shrink-0 mt-0.5 text-code-dim" />
+          <p className="text-caption text-code-dim leading-relaxed">
+            <span className="font-semibold text-code-ink">{warning ? 'Why this fails: ' : 'Why this works: '}</span>
+            {why}
+          </p>
+        </div>
+      )}
     </div>
   )
 }

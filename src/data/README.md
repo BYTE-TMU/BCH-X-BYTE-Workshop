@@ -49,7 +49,7 @@ Content block types used in the `content` array:
 | `body` | `text` | Paragraph |
 | `bullets` | `items[]` | Unordered list |
 | `numbered` | `items[]` | Ordered list |
-| `prompt` | `label`, `prompt`, `tool`, `warning` | `PromptBox` |
+| `prompt` | `label`, `prompt`, `tool`, `warning`, `why` | `PromptBox` |
 | `teachingPoint` | `text` | `TeachingPoint` |
 | `presenterNote` | `text` | `PresenterNote` (presenter mode only) |
 | `callout` | `text`, `variant` | `Callout` — `info`, `warning`, or `tip` |

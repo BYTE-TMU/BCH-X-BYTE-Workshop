@@ -10,12 +10,13 @@ Presentational components for rendering specific content block types within sect
 
 Renders a workshop prompt in a dark code-style box.
 
-Props: `{ label: string, prompt: string, tool?: string, warning?: boolean }`
+Props: `{ label: string, prompt: string, tool?: string, warning?: boolean, why?: string }`
 
 - `bg-code-surface` background, monospace font — code surfaces stay dark in both themes
 - Default: purple (`border-t-path-both`) top border
 - `warning={true}`: red border + "Do Not Use This Prompt" banner
-- Includes `ToolChip` (top-left) and `CopyButton` (top-right)
+- Includes `ToolChip` (top-left) and `CopyButton` (top-right) — `CopyButton` only ever copies `prompt`, never `why`
+- `why`, when present, renders as a "Why this works" (or "Why this fails" when `warning`) note below the prompt text, in `PromptBox.jsx`
 
 ---
 

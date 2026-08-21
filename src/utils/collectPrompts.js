@@ -21,6 +21,7 @@ export function collectPrompts({ includeWarnings = false } = {}) {
             prompt: block.prompt,
             tool: block.tool,
             warning: block.warning,
+            why: block.why,
             sectionId: section.id,
             subsectionCode: sub.code,
           }))

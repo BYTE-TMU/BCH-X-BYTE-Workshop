@@ -61,7 +61,7 @@ export const appendix = [
       },
       {
         q: 'How long is the workshop and what is the format?',
-        a: 'The workshop runs two hours total. The first 90 minutes is structured content across five stages: project scoping, research, design, implementation, and maintenance. There is a mix of pre-recorded demos and live demonstrations. The final 30 minutes is open Q&A, a recap, resource distribution, and a live prize draw.',
+        a: 'The workshop runs two hours total. The first roughly 90 minutes is structured content across five stages: project scoping, research, design, implementation, and maintenance. There is a mix of pre-recorded demos and live demonstrations. The final 30 minutes is open Q&A, a recap, resource distribution, and a live prize draw.',
       },
       {
         q: 'Do attendees leave with anything?',
