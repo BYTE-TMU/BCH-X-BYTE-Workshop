@@ -169,22 +169,26 @@ export default function Resources() {
         </div>
       </section>
 
-      {/* Downloads — disabled */}
+      {/* Downloads */}
       <section>
         <h2 className="text-h2 font-bold text-brand-black mb-1">Downloads</h2>
-        <p className="text-brand-gray text-small mb-6">Workshop documents, coming soon.</p>
+        <p className="text-brand-gray text-small mb-6">Workshop documents and slides.</p>
         <div className="grid sm:grid-cols-2 gap-4">
-          {['Tools Reference Document', 'Curriculum Slide Deck'].map((name) => (
-            <div
-              key={name}
-              className="flex items-center justify-between gap-3 p-4 border border-dashed border-brand-border rounded-lg bg-brand-grayLight opacity-60"
-            >
-              <p className="text-small font-medium text-brand-gray">{name}</p>
-              <span className="text-caption text-brand-gray bg-surface-raised px-2 py-1 rounded-full border border-brand-border">
-                Coming soon
-              </span>
-            </div>
-          ))}
+          <a
+            href="https://canva.link/s2pm5mtfdsowld0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between gap-3 p-4 border border-brand-border rounded-lg bg-surface-raised hover:border-brand-red hover:shadow-md hover:-translate-y-0.5 transition-all group"
+          >
+            <p className="text-small font-medium text-brand-black group-hover:text-brand-red transition-colors">Curriculum Slide Deck</p>
+            <ExternalLink size={14} className="text-brand-gray group-hover:text-brand-red transition-colors shrink-0" />
+          </a>
+          <div className="flex items-center justify-between gap-3 p-4 border border-dashed border-brand-border rounded-lg bg-brand-grayLight opacity-60">
+            <p className="text-small font-medium text-brand-gray">Tools Reference Document</p>
+            <span className="text-caption text-brand-gray bg-surface-raised px-2 py-1 rounded-full border border-brand-border">
+              Coming soon
+            </span>
+          </div>
         </div>
       </section>
     </div>

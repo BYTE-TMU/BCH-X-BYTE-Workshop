@@ -81,7 +81,7 @@ Post-workshop reference page:
 3. **Free Tier Summary** — three-state table (Free / Free with limits / Paid) with the specific limit and a named fallback
 4. **Prompt Library** — every curriculum prompt, derived via `utils/collectPrompts.js`, each with a copy button
 5. **BYTE Community** — dark card with GitHub link
-6. **Downloads** — disabled stubs (Coming Soon) for PDF documents
+6. **Downloads** — Curriculum Slide Deck links out to Canva; Tools Reference Document remains a disabled "Coming soon" stub
 
 ---
 
